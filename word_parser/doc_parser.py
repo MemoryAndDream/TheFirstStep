@@ -172,12 +172,20 @@ def parser_docx(doc_path=r'C:\Users\Administrator\Desktop\mytest\61937348.DOCX')
             questions_words_num = 0
             answers_words_num = 0
             for line in lines:
-                if re.match(u'^\d[,，、\s]',line):
-                    questions += 1
-                    questions_words_num += len(line)
-                    #print line,'q'
+                line = line.strip()
+                if not line:continue
+                if len(line) >28:
+                    answers_words_num += len(line)
                 else:
-                    answers_words_num+= len(line)
+                    if re.match(u'^\d[,，、\s]',line):
+                        questions += 1
+                        questions_words_num += len(line)
+                        #print line,'q'
+                    elif not re.match(u'.*[:.。：%]$',line):
+                        questions += 1
+                        questions_words_num += len(line)
+                    else:
+                        answers_words_num+= len(line)
 
             record_obj["公司回答字数"]=answers_words_num
             record_obj["投资者问题个数"] = questions
@@ -239,27 +247,32 @@ def main(): #
         i += 1
         tmp_xls_FILE_NAME = datetime.datetime.now().strftime('%Y%m%d%H%M%S') + xls_FILE_NAME
         for file_path in sub_file_paths:
-            if file_path in readed_file_name_list:
-                continue
-            lower_file_path = file_path.lower()
-            if  lower_file_path.endswith(u'doc')  or lower_file_path.endswith(u'docx') : #or lower_file_path.endswith(u'pdf')
-                tmpPath = os.path.join(parent_path, file_path)
-                if lower_file_path.endswith(u'doc'):
-                    doc_to_docx(tmpPath,TMP_DOCX)
-                    tmpPath = TMP_DOCX
-                obj = parser_docx(tmpPath)
-                csv_row = []
-                j=0
-                for field in CSV_TITLE:
-                    sheet1.write(i, j, obj[field])
-                    j += 1
-                i+=1
-                # 保存文件
-                book.save(tmp_xls_FILE_NAME)
-            else:
-                pass
-            with open(CACHE_TXT,'a') as f:
-                f.write(file_path+'\n')
+            try:
+                if file_path in readed_file_name_list:
+                    continue
+                if '$' in file_path: #缓存文件
+                    continue
+                lower_file_path = file_path.lower()
+                if  lower_file_path.endswith(u'doc')  or lower_file_path.endswith(u'docx') : #or lower_file_path.endswith(u'pdf')
+                    tmpPath = os.path.join(parent_path, file_path)
+                    if lower_file_path.endswith(u'doc'):
+                        doc_to_docx(tmpPath,TMP_DOCX)
+                        tmpPath = TMP_DOCX
+                    obj = parser_docx(tmpPath)
+                    csv_row = []
+                    j=0
+                    for field in CSV_TITLE:
+                        sheet1.write(i, j, obj[field])
+                        j += 1
+                    i+=1
+                    # 保存文件
+                    book.save(tmp_xls_FILE_NAME)
+                else:
+                    pass
+                with open(CACHE_TXT,'a') as f:
+                    f.write(file_path+'\n')
+            except Exception,e:
+                print str(e)
 
 
 
@@ -267,3 +280,6 @@ def main(): #
 
 if __name__ == '__main__':
     main()
+    #rs= parser_docx(doc_path=r'C:\Users\Administrator\Desktop\mytest\1.docx')
+    #for o in rs:
+#        print o,rs[o]
