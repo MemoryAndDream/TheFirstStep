@@ -63,6 +63,8 @@ ORG_WORDS = [
 ]
 RANK_WORDS = [u'董事长',u'副总经理',u'总经理',u'秘书',u'董事',u'财务总监',u'副总裁',u'总裁',u'总监',u'经理',u'高管',u'助理']
 
+BLACK_LIST = [u'研究员'] # 不属于人名也不属于职位
+
 book = xlwt.Workbook()
 #创建表单
 sheet1 = book.add_sheet(u'sheet1',cell_overwrite_ok=True)
@@ -81,7 +83,7 @@ def parser_docx(doc_path=r'C:\Users\Administrator\Desktop\mytest\61937348.DOCX')
     for p in doc.paragraphs:
         text = p.text
         # 证券代码解析
-        zqdm = get_regex_data(u'证券代码：(\d+)',text)
+        zqdm = get_regex_data(u'证券代码：\s*(\d+)',text)
         if zqdm:
            print zqdm
            record_obj['证券代码'] = zqdm
@@ -94,6 +96,7 @@ def parser_docx(doc_path=r'C:\Users\Administrator\Desktop\mytest\61937348.DOCX')
         for row in t.rows:
             if len(row.cells)<2:continue
             cells = row.cells
+            cells[0].text = cells[0].text.replace('\n','').replace('\r','')
             # 关系活动类别解析
             if u'关系活动类别' in cells[0].text:
                 for activity_type in [u'□特定对象调研',u'□分析师会议',u'□媒体采访',u'□业绩说明会',u'□新闻发布会',u'□路演活动',u'□现场参观',u'□其他']:
@@ -110,6 +113,8 @@ def parser_docx(doc_path=r'C:\Users\Administrator\Desktop\mytest\61937348.DOCX')
                 names = re.findall(u'[\u4E00-\u9FA5]+',content)
                 for name in names:
                     is_ORG = False
+                    if name in BLACK_LIST:
+                        continue
                     for word in ORG_WORDS:
                         if word in name:
                             is_ORG = True
@@ -127,6 +132,7 @@ def parser_docx(doc_path=r'C:\Users\Administrator\Desktop\mytest\61937348.DOCX')
                 record_obj['参与人员人数'] = len(geren)
                 print names
             elif u'时间' in cells[0].text:
+                import pdb;pdb.set_trace()
                 record_obj['时间'] = cells[1].text
             elif u'日期' in cells[0].text:
                 record_obj['日期'] = cells[1].text
@@ -157,7 +163,7 @@ def parser_docx(doc_path=r'C:\Users\Administrator\Desktop\mytest\61937348.DOCX')
                 else:
                     renmin.append(name)
             jibie = list(set(jibie))
-            record_obj['上市公司接待人员级别'] = jibie
+            record_obj['上市公司接待人员级别'] =  u' '.join(jibie)
             record_obj['上市公司接待人员姓名'] = renmin
         if record_obj['参与人员姓名']:
             record_obj['参与人员人数'] = len(record_obj['参与人员姓名'])
@@ -169,26 +175,51 @@ def parser_docx(doc_path=r'C:\Users\Administrator\Desktop\mytest\61937348.DOCX')
             nrjs = record_obj["投资者关系活动主要内容介绍"]
             lines = nrjs.split('\n')
             questions = 0
+            answers = 0
             questions_words_num = 0
             answers_words_num = 0
-            for line in lines:
+            '''放弃了的逻辑 因为需求建议只解析标准格式的 就是说问题尽量往少里统计'''
+            # for line in lines:
+            #     line = line.strip()
+            #     if not line:continue
+            #     if re.match(u'.*[\?？]$',line):
+            #         questions += 1
+            #         questions_words_num += len(line)
+            #     elif len(line) >28:
+            #         answers_words_num += len(line)
+            #     else:
+            #         if re.match(u'^\d[,，、\s]',line):
+            #             questions += 1
+            #             questions_words_num += len(line)
+            #             #print line,'q'
+            #         elif not re.match(u'.*[:.。：%]$',line): #可以加上答的判断
+            #             questions += 1
+            #             questions_words_num += len(line)
+            #         else:
+            #             answers_words_num+= len(line)
+            '''新的逻辑只检测 xx ： 或者 xxx？ 作为问题和回答的判断依据 所以问题的格式和字数都会偏小'''
+            label_list = ['a' for i in range(len(lines)) ]
+            a =q =0
+            for i in range(len(lines)):
+                line = lines[i]
                 line = line.strip()
                 if not line:continue
-                if len(line) >28:
-                    answers_words_num += len(line)
+                if re.match(u'.*[\?？]$', line):
+                    label_list[i]='q'
+                    a+=1
+                elif re.match(u'^\s*[\u4E00-\u9FA5]{0,4}答[\u4E00-\u9FA5]{0,4}\s*：', line):
+                    label_list[i] = 'a'
+                    if i >1:label_list[i-1] = 'q'
+                    q+=1
+            for i in range(len(lines)):
+                if label_list[i] == 'q':
+                    questions += 1
+                    questions_words_num += len(lines[i])
                 else:
-                    if re.match(u'^\d[,，、\s]',line):
-                        questions += 1
-                        questions_words_num += len(line)
-                        #print line,'q'
-                    elif not re.match(u'.*[:.。：%]$',line):
-                        questions += 1
-                        questions_words_num += len(line)
-                    else:
-                        answers_words_num+= len(line)
-
-            record_obj["公司回答字数"]=answers_words_num
-            record_obj["投资者问题个数"] = questions
+                    answers += 1
+                    answers_words_num += len(lines[i])
+            record_obj["公司回答字数"] = answers_words_num
+            record_obj["投资者问题个数"] = max(a,q)
             record_obj["投资者问题字数"] = questions_words_num
     return record_obj
 
@@ -250,7 +281,7 @@ def main(): #
             try:
                 if file_path in readed_file_name_list:
                     continue
-                if '$' in file_path: #缓存文件
+                if '$' in file_path or file_path in TMP_DOCX: #缓存文件
                     continue
                 lower_file_path = file_path.lower()
                 if  lower_file_path.endswith(u'doc')  or lower_file_path.endswith(u'docx') : #or lower_file_path.endswith(u'pdf')
@@ -277,9 +308,10 @@ def main(): #
 
 
 
-
+# 打包命令 pyinstaller -F -p D:\aliyun_meng\taobao_requests\ D:\aliyun_meng\taobao_requests\doc_parser.py
 if __name__ == '__main__':
     main()
-    #rs= parser_docx(doc_path=r'C:\Users\Administrator\Desktop\mytest\1.docx')
-    #for o in rs:
-#        print o,rs[o]
+    # rs= parser_docx(doc_path=r'C:\Users\Administrator\Desktop\mytest\1.docx')
+    # for o in rs:
+    #    print o,rs[o]
+
