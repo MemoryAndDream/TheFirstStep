@@ -4,3 +4,10 @@
 *.xls
 *.doc
 *.docx
+*.html
+*.tmp
+*.toc
+*.pyz
+*.pkg
+*.spec
+*.imi
