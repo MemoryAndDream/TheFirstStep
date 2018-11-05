@@ -46,5 +46,5 @@ class Ui_Form(object):
         Form.setWindowTitle(_translate("Form", "Form", None))
         self.label.setText(_translate("Form", "激活码", None))
         self.pushButton.setText(_translate("Form", "生成", None))
-        self.label_2.setText(_translate("Form", "激活码生成器 激活码5分钟内有效", None))
+        self.label_2.setText(_translate("Form", "激活码生成器 激活码15分钟内有效", None))
 

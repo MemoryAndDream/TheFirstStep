@@ -1,4 +1,6 @@
-.pyc
-.xml
-.manifest
-.xls
+*.pyc
+*.xml
+*.manifest
+*.xls
+*.doc
+*.docx
