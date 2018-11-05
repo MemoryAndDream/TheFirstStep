@@ -13,6 +13,7 @@ sys.setdefaultencoding('utf8')
 import  xlwt
 import datetime
 import ConfigParser
+import jieba
 content = open('main.conf').read()
 #Window下用记事本打开配置文件并修改保存后，编码为UNICODE或UTF-8的文件的文件头
 #会被相应的加上\xff\xfe（\xff\xfe）或\xef\xbb\xbf，然后再传递给ConfigParser解析的时候会出错
@@ -39,6 +40,7 @@ CSV_TITLE = [
     "投资者关系活动类别",
     "参与单位名称",
     "参与人员姓名",
+    "参与单位名称及人员姓名",
     "时间",
     "地点",
     "上市公司接待人员级别",
@@ -59,11 +61,22 @@ CSV_TITLE = [
 
 #机构核心词 通过分词统计得到  包含这些词的视为机构
 ORG_WORDS = [
-    u'基金',u'证券',u'券商',u'个人',u'分析',u'评级',u'投资',u'公司',u'银行',u'单位'
+    u'基金',u'证券',u'券商',u'个人',u'分析',u'评级',u'投资',u'公司',u'银行',u'单位',u'摩根',u'媒体'
 ]
-RANK_WORDS = [u'董事长',u'副总经理',u'总经理',u'秘书',u'董事',u'财务总监',u'副总裁',u'总裁',u'总监',u'经理',u'高管',u'助理']
+RANK_WORDS = [u'董事长',u'副总经理',u'总经理',u'秘书',u'董事',u'财务总监',u'副总裁',u'总裁',u'总监',u'经理',u'高管',u'助理',u'级别']
 
-BLACK_LIST = [u'研究员'] # 不属于人名也不属于职位
+BLACK_LIST = [u'研究员',u'等'] # 不属于人名也不属于职位
+
+family_names  = [
+'赵', '钱', '孙', '李', '周', '吴', '郑', '王', '冯', '陈', '褚', '卫', '蒋', '沈', '韩', '杨', '朱', '秦', '尤', '许',
+'何', '吕', '施', '张', '孔', '曹', '严', '华', '金', '魏', '陶', '姜', '戚', '谢', '邹', '喻', '柏', '水', '窦', '章',
+'云', '苏', '潘', '葛', '奚', '范', '彭', '郎', '鲁', '韦', '昌', '马', '苗', '凤', '花', '方', '俞', '任', '袁', '柳',
+'酆', '鲍', '史', '唐', '费', '廉', '岑', '薛', '雷', '贺', '倪', '汤', '滕', '殷', '罗', '毕', '郝', '邬', '安', '常',
+'乐', '于', '时', '傅', '皮', '卞', '齐', '康', '伍', '余', '元', '卜', '顾', '孟', '平', '黄', '和', '穆', '萧', '尹',
+'姚', '邵', '堪', '汪', '祁', '毛', '禹', '狄', '米', '贝', '明', '臧', '计', '伏', '成', '戴', '谈', '宋', '茅', '庞',
+'熊', '纪', '舒', '屈', '项', '祝', '董', '梁', '邓']
+
+family_names = [family_name.decode('utf8') for family_name in family_names]
 
 book = xlwt.Workbook()
 #创建表单
@@ -108,6 +121,7 @@ def parser_docx(doc_path=r'C:\Users\Administrator\Desktop\mytest\61937348.DOCX')
             # 参与单位名称及人员姓名解析 不规则字段，解析规则：大于3个字的或者包含关键词的作为机构名 其他作为人名
             elif u'参与单位名称及人员姓名' in cells[0].text:
                 content = cells[1].text
+                record_obj["参与单位名称及人员姓名"]=content
                 geren = []
                 jigou = []
                 names = re.findall(u'[\u4E00-\u9FA5]+',content)
@@ -122,7 +136,20 @@ def parser_docx(doc_path=r'C:\Users\Administrator\Desktop\mytest\61937348.DOCX')
                     if len(name) > 3:  # 四个字的也当成机构名
                         is_ORG = True
                     if is_ORG:
-                        jigou.append(name)
+                        flag = True
+                        for family_name in family_names:
+                            if family_name in name:
+                                seg_list = [w for w in jieba.cut(name)]
+                                if seg_list[-1][0] in family_names:
+                                    geren.append(seg_list[-1])
+                                    jigou.append(u''.join(seg_list[:-1]))
+                                    flag = False
+                                elif len(seg_list)>1 and seg_list[-2] in family_names:
+                                    geren.append(seg_list[-2]+seg_list[-1])
+                                    jigou.append(u''.join(seg_list[:-1]))
+                                    flag = False
+                                break
+                        if flag:jigou.append(name)
                     else:
                         geren.append(name)
                 jigou = list(set(jigou))
@@ -132,7 +159,6 @@ def parser_docx(doc_path=r'C:\Users\Administrator\Desktop\mytest\61937348.DOCX')
                 record_obj['参与人员人数'] = len(geren)
                 print names
             elif u'时间' in cells[0].text:
-                import pdb;pdb.set_trace()
                 record_obj['时间'] = cells[1].text
             elif u'日期' in cells[0].text:
                 record_obj['日期'] = cells[1].text
@@ -159,7 +185,19 @@ def parser_docx(doc_path=r'C:\Users\Administrator\Desktop\mytest\61937348.DOCX')
                     is_RANK = True
 
                 if is_RANK:
-                    jibie.append(name)
+                    for family_name in family_names:
+                        if family_name in name:
+                            seg_list = [w for w in jieba.cut(name)]
+                            if seg_list[-1][0] in family_names:
+                                renmin.append(seg_list[-1])
+                                jibie.append(u''.join(seg_list[:-1]))
+                                flag = False
+                            elif len(seg_list) > 1 and seg_list[-2] in family_names:
+                                renmin.append(seg_list[-2]+seg_list[-1])
+                                jibie.append(u''.join(seg_list[:-1]))
+                                flag = False
+                            break
+                    if flag:jibie.append(name)
                 else:
                     renmin.append(name)
             jibie = list(set(jibie))
@@ -265,18 +303,17 @@ def main(): #
         for line in f:
             readed_file_name_list.append(line.strip())
 
-
-
+    tmp_xls_FILE_NAME = datetime.datetime.now().strftime('%Y%m%d%H%M%S') + xls_FILE_NAME
+    i = j = 0
+    for field in CSV_TITLE:
+        sheet1.write(i, j, unicode(field))
+        j += 1
     for file_paths in file_list:
 
         sub_file_paths = file_paths[2]
         parent_path = file_paths[0]
-        i = j =0
-        for field in CSV_TITLE:
-            sheet1.write(i, j, unicode(field))
-            j += 1
-        i += 1
-        tmp_xls_FILE_NAME = datetime.datetime.now().strftime('%Y%m%d%H%M%S') + xls_FILE_NAME
+        i = 1
+        j =0
         for file_path in sub_file_paths:
             try:
                 if file_path in readed_file_name_list:
