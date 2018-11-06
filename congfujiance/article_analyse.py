@@ -37,7 +37,7 @@ class ArticleAnalyse:
         doc = docx.Document(filepath)
         lines = []
         for p in doc.paragraphs:
-            lines.append(p.text)
+            lines.append(self.baidu_analyse(p.text))
         html_path = os.path.join(u'检测报告\\', '.'.join(file_name.split('.')[:-1])+'.html') # 后面还是单独建个文件夹的好
         self.render_html(html_path,lines)
 
@@ -47,7 +47,7 @@ class ArticleAnalyse:
         lines = []
         with open(filepath) as f:
             for line in f:
-                lines.append(line)
+                lines.append(self.baidu_analyse(line))
         html_path = os.path.join(u'检测报告\\', '.'.join(file_name.split('.')[:-1])+'.html') # 后面还是单独建个文件夹的好
         self.render_html(html_path,lines)
 
@@ -79,27 +79,43 @@ class ArticleAnalyse:
 
     def baidu_analyse(self,line):
         from baidu_craw import BaiduCraw
-
         sentences = self.line_split(line)
+        new_line = ''
         while sentences:
-            keyword = ''
-            while len(keyword)<20 and sentences: # 这里有bug，一行丢掉最后一段算了
+            keyword = sentences.pop(0)
+            while sentences and len(keyword+sentences[0])<=38: # 这里有bug，一行丢掉最后一段算了
                 keyword += sentences.pop(0)
-                #BaiduCraw().keyword_search(keyword)
-            print keyword
-        return line
+            keyword_result = BaiduCraw().keyword_search(keyword.encode('utf8'))
+            if not keyword_result:continue
+            record,em,sim_url = keyword_result[0]
+            score = 0
+            keyword = keyword.decode('utf8')
+            for word in keyword:
+                if word in em:
+                    score+=1
+            similar_rate = score*1.0/len(keyword)
+            print keyword,similar_rate,sim_url
+            if similar_rate>0.7:
+                color = 'red'
+            elif similar_rate>0.4:
+                color = 'orange'
+            else:
+                color = 'green'
+            new_line += '<a href="{sim_url}"><font color="{color}">{content}</font></a>'.format(sim_url=sim_url,similar_rate=similar_rate,color=color,content=keyword)
+        return new_line
 
     def line_split(self,line):
         sentences = re.split(u'[,.，。？！]',line)
-        for sentence in sentences:
-         print sentence
+        return sentences
 
 
 if __name__ == '__main__':
-    a = ArticleAnalyse(ur'D:\用户目录\我的文档\GitHub\TheFirstStep\congfujiance\test_docs\1029-1023国学1200JZGA10-10国魏晋南北朝时期最厉害的家族.doc')
+    #a = ArticleAnalyse(ur'D:\用户目录\我的文档\GitHub\TheFirstStep\congfujiance\test_docs\1029-1023国学1200JZGA10-10国魏晋南北朝时期最厉害的家族.doc')
     #a.doc_analyse()
+    a = ArticleAnalyse(ur'D:\用户目录\我的文档\GitHub\TheFirstStep\congfujiance\test_docs\1.txt')
+    a.txt_analyse()
     pass
-    a.baidu_analyse('蜀国刘备的手下有五大上将。分别是义字当头的关羽、英勇无畏的张飞和常胜将军赵子龙。还有两个就是黄忠老将军与本文的传奇人物__马超。作为刘备五将之一的马超也是有着一段传奇的人生经历。 ')
+    #a.baidu_analyse(u'蜀国刘备的手下有五大上将。分别是义字当头的关羽、英勇无畏的张飞和常胜将军常山赵子龙。还有两个就是黄忠老将军与本文的传奇人物__马超。作为刘备五将之一的马超也是有着一段传奇的人生经历。 ')
 
 
-
+#congfujiance/检测报告/1029-1023国学1200JZGA10-10国魏晋南北朝时期最厉害的家族.html

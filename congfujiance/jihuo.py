@@ -57,6 +57,7 @@ class MyPyQT_Form(QtGui.QMainWindow,QtGui.QWidget,Ui_Form):
         code = self.QLineEdit.text() #QString
         if os.path.exists(CODE_FILE_PATH):
             QtGui.QMessageBox.information(self, u"激活失败", u"激活文件已存在") #b61129731b5ec530755a61815366ca29 一年有效的激活码
+             #3c90f6a7073d20a56efecd68074fb441 12月6号前有效
 
         if code:
             prp = prpcrypt('123454536f667445454d537973576562', '1234577290ABCDEF1264147890ACAE45'[0:16])

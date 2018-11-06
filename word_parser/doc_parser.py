@@ -308,12 +308,10 @@ def main(): #
     for field in CSV_TITLE:
         sheet1.write(i, j, unicode(field))
         j += 1
+    i = 1
     for file_paths in file_list:
-
         sub_file_paths = file_paths[2]
         parent_path = file_paths[0]
-        i = 1
-        j =0
         for file_path in sub_file_paths:
             try:
                 if file_path in readed_file_name_list:
@@ -330,7 +328,7 @@ def main(): #
                     csv_row = []
                     j=0
                     for field in CSV_TITLE:
-                        sheet1.write(i, j, obj[field])
+                        sheet1.write(i, j, obj[field]) # 这里有问题
                         j += 1
                     i+=1
                     # 保存文件

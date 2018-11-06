@@ -44,7 +44,7 @@ class MyPyQT_Form(QtGui.QMainWindow,QtGui.QWidget,Ui_Form):
     #实现pushButton_click()函数，textEdit是我们放上去的文本框的id
     def pushButton_click(self):
         print '触发点击'
-        s = time.time()+60*60*24*365
+        s = time.time() # 激活码生成的有效时长由这里修改
         prp = prpcrypt('123454536f667445454d537973576562','1234577290ABCDEF1264147890ACAE45'[0:16])
         s= prp.encrypt(str(int(s)))
         print prp.decrypt(s)

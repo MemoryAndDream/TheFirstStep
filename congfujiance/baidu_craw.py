@@ -23,11 +23,15 @@ class BaiduCraw:
         rsp = r.text
         segments = self.getXpath('//div[@class="result c-container "]', rsp)  #
         for segment in segments:
-
             records = self.getXpath('//div[@class ="c-abstract"]//text()',segment)
-            print self.extractorText(records)
-            # for record in records:
-            #     print record
+            record = self.extractorText(records)
+
+            ems = self.getXpath('//div[@class ="c-abstract"]//em/text()',segment)
+            em = self.extractorText(ems)
+            sim_url = self.getXpath('//div[@class="f13"]/a[@class="c-showurl"]/@href',segment)
+            sim_url = sim_url[0] if sim_url else ''
+            record_list.append((record,em,sim_url))
+
         return record_list
 
     # 获取xpath 要判断一下输入类型，或者异常处理
@@ -54,5 +58,7 @@ class BaiduCraw:
         return re.sub('(<[^>]*?>)',"",content)
 
 if __name__ == '__main__':
-    BaiduCraw().keyword_search('在《三国》中，司马懿一出场就自命非凡')
+    rs = BaiduCraw().keyword_search('在《三国》中，司马懿一出场就自命非凡')
+    for r in rs :
+        print r[0],r[1]
     pass
