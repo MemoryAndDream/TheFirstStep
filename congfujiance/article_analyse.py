@@ -11,6 +11,7 @@ sys.setdefaultencoding('utf-8')
 from win32com import client as wc
 import docx
 import re
+import threadpool
 from rend_html import render_html
 if not os.path.exists(u'检测报告'):
     os.mkdir(u'检测报告')
@@ -22,6 +23,7 @@ if not os.path.exists(u'tmp'):
 class ArticleAnalyse:
     def __init__(self,filepath):
         self.filepath = filepath
+        self.craw_result = []
         pass
 
     def doc_analyse(self): #最后需要异常处理
@@ -39,8 +41,10 @@ class ArticleAnalyse:
         lines = []
         extra_info={}
         extra_info['name']=file_name
+        analyse_lines = []
         for p in doc.paragraphs:
-            lines.append(self.baidu_analyse(p.text))
+            analyse_lines.append(p.text)
+        lines = self.multithread_craw(analyse_lines)
         html_path = os.path.join(u'检测报告\\', '.'.join(file_name.split('.')[:-1])+'.html') # 后面还是单独建个文件夹的好
         sum_similar_rate = self.save_html(html_path,lines,extra_info)
         return {"sum_similar_rate":sum_similar_rate}
@@ -49,12 +53,25 @@ class ArticleAnalyse:
         filepath = self.filepath
         file_name = os.path.basename(filepath)
         lines = []
+        analyse_lines = []
         with open(filepath) as f:
             for line in f:
-                lines.append(self.baidu_analyse(line))
+                analyse_lines.append(line)
+        lines = self.multithread_craw(analyse_lines)
         html_path = os.path.join(u'检测报告\\', '.'.join(file_name.split('.')[:-1])+'.html') # 后面还是单独建个文件夹的好
         sum_similar_rate = self.save_html(html_path,lines)
         return {"sum_similar_rate":sum_similar_rate}
+
+    def multithread_craw(self,lines):
+        task_pool = threadpool.ThreadPool(8)
+        parms = [([lines[i],i],None) for i in range(len(lines))]
+        print parms
+        requests = threadpool.makeRequests(self.baidu_analyse, parms)
+        for req in requests:
+            task_pool.putRequest(req)
+        task_pool.wait()
+        rs = sorted(self.craw_result,key = lambda d: d['line_no'])
+        return [r['result'] for r in rs]
 
 
     def doc_to_docx(self,doc_path, docx_path):
@@ -80,13 +97,13 @@ class ArticleAnalyse:
             return sum_similar_rate
 
 
-    def baidu_analyse(self,line):
+    def baidu_analyse(self,line,line_no=0):
         from baidu_craw import BaiduCraw
         sentences = self.line_split(line)
         new_line = []
         while sentences:
             keyword = sentences.pop(0)
-            while sentences and len(keyword+sentences[0])<=38: # 这里有bug，一行丢掉最后一段算了
+            while sentences and len(keyword+sentences[0])<= 38: # 这里有bug，一行丢掉最后一段算了
                 keyword += sentences.pop(0)
             keyword_result = BaiduCraw().keyword_search(keyword.encode('utf8'))
             if not keyword_result:continue
@@ -104,6 +121,7 @@ class ArticleAnalyse:
             sentence['similar_url'] = sim_url
             sentence['similar_rate'] = similar_rate
             new_line.append(sentence)
+        self.craw_result.append({"line_no":line_no,"result":new_line})
         return new_line
 
     def line_split(self,line):

@@ -25,8 +25,15 @@ class MyPyQT_Form(QtGui.QMainWindow,QtGui.QWidget,Ui_Form):
         self.step = 0
         self.timer = QtCore.QBasicTimer()
         self.tableWidget.setHorizontalHeaderLabels([u'文件名',u'重复率'])
+
         if not os.path.exists(CODE_FILE_PATH):
-            QtGui.QMessageBox.information(self, u"未激活", u"程序未激活，请先运行激活器激活程序")
+
+            #if time.time() < 1544253334:
+            #    QtGui.QMessageBox.information(self, u"未激活", u"试用有效期到2018.12.8")
+            #    return
+            if self.input_code():
+                return
+            QtGui.QMessageBox.information(self, u"未激活", u"程序未激活,不能使用")
             sys.exit()
         else:
             with open(CODE_FILE_PATH) as f:
@@ -67,13 +74,13 @@ class MyPyQT_Form(QtGui.QMainWindow,QtGui.QWidget,Ui_Form):
             time.sleep(1)
 
     def timerEvent(self, event):
+        global success_num
         self.progressBar.setValue(success_num*1.0*100/total_file_num if total_file_num else 0)
 
     def onStart(self):
-        if self.timer.isActive():
-            self.timer.stop()
-        else:
-            self.timer.start(100, self)
+       # if self.timer.isActive(): # 这里这么弄就只能执行一次了
+       #     self.timer.stop()
+        self.timer.start(100, self)
 
     def BigWork(self):
         # 把按钮禁用掉
@@ -85,6 +92,7 @@ class MyPyQT_Form(QtGui.QMainWindow,QtGui.QWidget,Ui_Form):
         self.bwThread.insertSignal.connect(self.insert_record)
         # 开始执行 run() 函数里的内容
         self.bwThread.start()
+        print 'start'
 
     def insert_record(self,record): #异步的！
         global record_num
@@ -109,6 +117,8 @@ class MyPyQT_Form(QtGui.QMainWindow,QtGui.QWidget,Ui_Form):
         self.pushButton_2.setText(u'重新开始')
 
     def clear_excel(self):
+        global record_num
+        record_num=0
         self.tableWidget.clearContents() # 重新set就清空了 据说多看manual
 
     def export_excel(self):
@@ -127,6 +137,36 @@ class MyPyQT_Form(QtGui.QMainWindow,QtGui.QWidget,Ui_Form):
                 except AttributeError:
                     pass
 
+    def input_code(self, event=None):  # 输入：文本
+        # 第三个参数表示显示类型，可选，有正常（QLineEdit.Normal）、密碼（ QLineEdit. Password）、不显示（ QLineEdit. NoEcho）三种情况
+        value, ok = QInputDialog.getText(self, u"激活后才能使用", u"软件未激活\n\n请输入激活码:", QLineEdit.Normal, u"这是默认值")
+        if not ok:
+            return False
+        code = value # QString
+         # b61129731b5ec530755a61815366ca29 一年有效的激活码
+        # 3c90f6a7073d20a56efecd68074fb441 12月6号前有效
+        if code:
+            prp = prpcrypt('123454536f667445454d537973576562', '1234577290ABCDEF1264147890ACAE45'[0:16])
+            try:
+                code = unicode(code)
+                t = prp.decrypt(code)
+                print t
+                if int(t) < time.time() - 60 * 15:
+                    QtGui.QMessageBox.information(self, u"激活失败", u"激活失败,激活码已过期")
+                else:
+                    pan_code = str(win32api.GetVolumeInformation("C:\\")[1])
+                    with open(CODE_FILE_PATH, 'w') as f:
+                        f.write(pan_code)
+                    QtGui.QMessageBox.information(self, u"激活成功", u"激活成功，生成激活文件jihuoma.tmp，请勿删除")
+                    return True
+            except Exception, e:
+                print str(e)
+                QtGui.QMessageBox.information(self, u"激活失败", u"激活失败")
+        else:
+            QtGui.QMessageBox.information(self, u"请输入激活码", u"请输入激活码")
+
+        return False
+
 #继承 QThread 类 长时间工作需要另起工作线程
 class BigWorkThread(QtCore.QThread):
 
@@ -143,6 +183,7 @@ class BigWorkThread(QtCore.QThread):
     def run(self):
         global success_num
         global total_file_num
+        print 'set success_num total_file_num'
         total_file_num = 0
         success_num = 0
         file_list  = os.walk(self.dir_path)
@@ -158,26 +199,59 @@ class BigWorkThread(QtCore.QThread):
             parent_path = file_paths[0]
             for file_path in sub_file_paths:
                 lower_file_path = file_path.lower()
-                if  lower_file_path.endswith(u'.doc')  or lower_file_path.endswith(u'.docx') : #or lower_file_path.endswith(u'pdf')
-                    if '$' in file_path:  # 缓存文件
-                        continue
-                    tmpPath = os.path.join(parent_path, file_path)
-                    analyse = ArticleAnalyse(tmpPath)
-                    analyse_result = analyse.doc_analyse()
-                    #analyse_result = {'sum_similar_rate':10}
-                elif lower_file_path.endswith(u'.txt'):
-                    tmpPath = os.path.join(parent_path, file_path)
-                    analyse = ArticleAnalyse(tmpPath)
-                    analyse_result = analyse.txt_analyse()
-                    #analyse_result = {'sum_similar_rate': 12}
-                if analyse_result:
-                    sum_similar_rate = analyse_result['sum_similar_rate']
-                    self.insertSignal.emit([file_path,sum_similar_rate])
+                try:
+                    if  lower_file_path.endswith(u'.doc')  or lower_file_path.endswith(u'.docx') : #or lower_file_path.endswith(u'pdf')
+                        if '$' in file_path:  # 缓存文件
+                            continue
+                        tmpPath = os.path.join(parent_path, file_path)
+                        analyse = ArticleAnalyse(tmpPath)
+                        analyse_result = analyse.doc_analyse()
+                        #analyse_result = {'sum_similar_rate':10}
+                    elif lower_file_path.endswith(u'.txt'):
+                        tmpPath = os.path.join(parent_path, file_path)
+                        analyse = ArticleAnalyse(tmpPath)
+                        analyse_result = analyse.txt_analyse()
+                        #analyse_result = {'sum_similar_rate': 12}
+                    if analyse_result:
+                        sum_similar_rate = analyse_result['sum_similar_rate']
+                        self.insertSignal.emit([file_path,sum_similar_rate])
+                except Exception,e:
+                    print str(e)
+                time.sleep(1)
                 success_num += 1
         #干完了，发送一个信号告诉主线程窗口
         self.finishSignal.emit(['hello,','world','!'])
 
 
+
+
+class prpcrypt():
+    def __init__(self, key, iv):
+        self.key = key
+        self.iv = iv
+        self.mode = AES.MODE_CBC
+
+        # 加密函数，如果text不是16的倍数【加密文本text必须为16的倍数！】，那就补足为16的倍数
+    def encrypt(self, text):
+        cryptor = AES.new(self.key, self.mode, self.iv)
+        # 这里密钥key 长度必须为16（AES-128）、24（AES-192）、或32（AES-256）Bytes 长度.目前AES-128足够用
+        length = 16
+        count = len(text)
+        if (count % length != 0):
+            add = length - (count % length)
+        else:
+            add = 0
+        text = text + ('\0' * add)
+        self.ciphertext = cryptor.encrypt(text)
+        # 因为AES加密时候得到的字符串不一定是ascii字符集的，输出到终端或者保存时候可能存在问题
+        # 所以这里统一把加密后的字符串转化为16进制字符串 ,当然也可以转换为base64加密的内容，可以使用b2a_base64(self.ciphertext)
+        return b2a_hex(self.ciphertext)
+
+    # 解密后，去掉补足的空格用strip() 去掉
+    def decrypt(self, text):
+        cryptor = AES.new(self.key, self.mode, self.iv)
+        plain_text = cryptor.decrypt(a2b_hex(text))
+        return plain_text.rstrip('\0')
 
 
 

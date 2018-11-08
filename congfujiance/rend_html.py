@@ -7,7 +7,7 @@ date：          2018/11/7
 """
 # 用于生成检测报告 后面要美化啥的也要用这个来改
 from jinja2 import Template
-
+import cgi
 template_str = u'''
 <html>
 <head>
@@ -82,6 +82,8 @@ def render_html(lines):
     for line in lines:
         for sentence in line:
             similar_rate_sum += sentence['similar_rate']
+            sentence['origin_content'] = cgi.escape(sentence['origin_content'])
+            sentence['similar_content'] = cgi.escape(sentence['similar_content'])
             sentence_count+=1
     sum_similar_rate = round(100*similar_rate_sum/sentence_count,1) if sentence_count else 0
     rsp = (template.render(lines=lines,sum_similar_rate = sum_similar_rate ))
@@ -100,4 +102,4 @@ if __name__ == '__main__':
     sentence['similar_rate'] = 0.658
     sentences.append(sentence)
     lines.append(sentences)
-    render_html(lines)
+    print render_html(lines)
