@@ -19,7 +19,7 @@ class BaiduCraw:
     def keyword_search(self,keyword):
         record_list = []
         url = 'http://www.baidu.com/s?wd=%s'%urllib.quote(keyword)
-        r = requests.get(url,headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36'})
+        r = requests.get(url,headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36'},timeout=10)
         rsp = r.text
         segments = self.getXpath('//div[@class="result c-container "]', rsp)  #
         for segment in segments:

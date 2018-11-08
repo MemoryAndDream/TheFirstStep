@@ -11,7 +11,7 @@ sys.setdefaultencoding('utf-8')
 from win32com import client as wc
 import docx
 import re
-
+from rend_html import render_html
 if not os.path.exists(u'检测报告'):
     os.mkdir(u'检测报告')
 
@@ -29,17 +29,21 @@ class ArticleAnalyse:
         filepath = self.filepath
         file_name = os.path.basename(filepath)
         if filepath.endswith('DOC') or filepath.endswith('doc'):
-            tmp_file_path = os.path.dirname(os.path.abspath(__file__)).decode('GB2312')+ur"\tmp\tmp.docx" #windows 中文路径编码
+            tmp_file_path =ur"C:\Windows\temp\tmp.docx" #windows 中文路径编码
+            print tmp_file_path
             self.doc_to_docx(filepath, tmp_file_path)
             filepath = tmp_file_path
 
         # 提取docx中的文字
         doc = docx.Document(filepath)
         lines = []
+        extra_info={}
+        extra_info['name']=file_name
         for p in doc.paragraphs:
             lines.append(self.baidu_analyse(p.text))
         html_path = os.path.join(u'检测报告\\', '.'.join(file_name.split('.')[:-1])+'.html') # 后面还是单独建个文件夹的好
-        self.render_html(html_path,lines)
+        sum_similar_rate = self.save_html(html_path,lines,extra_info)
+        return {"sum_similar_rate":sum_similar_rate}
 
     def txt_analyse(self):
         filepath = self.filepath
@@ -49,7 +53,8 @@ class ArticleAnalyse:
             for line in f:
                 lines.append(self.baidu_analyse(line))
         html_path = os.path.join(u'检测报告\\', '.'.join(file_name.split('.')[:-1])+'.html') # 后面还是单独建个文件夹的好
-        self.render_html(html_path,lines)
+        sum_similar_rate = self.save_html(html_path,lines)
+        return {"sum_similar_rate":sum_similar_rate}
 
 
     def doc_to_docx(self,doc_path, docx_path):
@@ -62,25 +67,23 @@ class ArticleAnalyse:
 
         word = wc.Dispatch('Word.Application')
         doc = word.Documents.Open(doc_path)  # 目标路径下的文件
+        print docx_path
         doc.SaveAs(docx_path, 12, False, "", True, "", False, False, False, False)  # 转化后路径下的文件
         doc.Close()
         word.Quit()
 
-    def render_html(self,html_path,lines):
+    def save_html(self,html_path,lines,extra_info={}):
         with open(html_path,'w') as html:
             print html_path
-            html.write('<html>')
-            for line in lines:
-                html.write(line)
-                # 这里可以插入百度识别逻辑了
-                html.write('<br/>'+'\n')
-            html.write('</html>')
+            content, sum_similar_rate = render_html(lines)
+            html.write(content)
+            return sum_similar_rate
 
 
     def baidu_analyse(self,line):
         from baidu_craw import BaiduCraw
         sentences = self.line_split(line)
-        new_line = ''
+        new_line = []
         while sentences:
             keyword = sentences.pop(0)
             while sentences and len(keyword+sentences[0])<=38: # 这里有bug，一行丢掉最后一段算了
@@ -95,25 +98,27 @@ class ArticleAnalyse:
                     score+=1
             similar_rate = score*1.0/len(keyword)
             print keyword,similar_rate,sim_url
-            if similar_rate>0.7:
-                color = 'red'
-            elif similar_rate>0.4:
-                color = 'orange'
-            else:
-                color = 'green'
-            new_line += '<a href="{sim_url}"><font color="{color}">{content}</font></a>'.format(sim_url=sim_url,similar_rate=similar_rate,color=color,content=keyword)
+            sentence = {}
+            sentence['origin_content'] = keyword
+            sentence['similar_content'] = record
+            sentence['similar_url'] = sim_url
+            sentence['similar_rate'] = similar_rate
+            new_line.append(sentence)
         return new_line
 
     def line_split(self,line):
         sentences = re.split(u'[,.，。？！]',line)
-        return sentences
+        split_char = re.findall(u'[,.，。？！]',line)
+        new_sentences = [sentences[i]+split_char[i] for i in range(len(sentences)-1)]
+        new_sentences.append(sentences[-1])
+        return new_sentences
 
 
 if __name__ == '__main__':
-    #a = ArticleAnalyse(ur'D:\用户目录\我的文档\GitHub\TheFirstStep\congfujiance\test_docs\1029-1023国学1200JZGA10-10国魏晋南北朝时期最厉害的家族.doc')
-    #a.doc_analyse()
-    a = ArticleAnalyse(ur'D:\用户目录\我的文档\GitHub\TheFirstStep\congfujiance\test_docs\1.txt')
-    a.txt_analyse()
+    a = ArticleAnalyse(ur'D:\用户目录\我的文档\GitHub\TheFirstStep\congfujiance\test_docs\1029-1023国学1200JZGA10-10国魏晋南北朝时期最厉害的家族.doc')
+    a.doc_analyse()
+    #a = ArticleAnalyse(ur'D:\用户目录\我的文档\GitHub\TheFirstStep\congfujiance\test_docs\1.txt')
+    #a.txt_analyse()
     pass
     #a.baidu_analyse(u'蜀国刘备的手下有五大上将。分别是义字当头的关羽、英勇无畏的张飞和常胜将军常山赵子龙。还有两个就是黄忠老将军与本文的传奇人物__马超。作为刘备五将之一的马超也是有着一段传奇的人生经历。 ')
 
