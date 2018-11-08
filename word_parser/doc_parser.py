@@ -14,6 +14,8 @@ import  xlwt
 import datetime
 import ConfigParser
 import jieba
+jieba.set_dictionary("dict.txt")
+jieba.initialize()
 content = open('main.conf').read()
 #Window下用记事本打开配置文件并修改保存后，编码为UNICODE或UTF-8的文件的文件头
 #会被相应的加上\xff\xfe（\xff\xfe）或\xef\xbb\xbf，然后再传递给ConfigParser解析的时候会出错
@@ -63,7 +65,7 @@ CSV_TITLE = [
 ORG_WORDS = [
     u'基金',u'证券',u'券商',u'个人',u'分析',u'评级',u'投资',u'公司',u'银行',u'单位',u'摩根',u'媒体'
 ]
-RANK_WORDS = [u'董事长',u'副总经理',u'总经理',u'秘书',u'董事',u'财务总监',u'副总裁',u'总裁',u'总监',u'经理',u'高管',u'助理',u'级别']
+RANK_WORDS = [u'董事长',u'副总经理',u'总经理',u'秘书',u'董事',u'财务总监',u'副总裁',u'总裁',u'总监',u'经理',u'高管',u'助理',u'级别',u'零售',u'部']
 
 BLACK_LIST = [u'研究员',u'等'] # 不属于人名也不属于职位
 
@@ -183,7 +185,7 @@ def parser_docx(doc_path=r'C:\Users\Administrator\Desktop\mytest\61937348.DOCX')
                         break
                 if len(name) > 3:  # 四个字的也当成机构名
                     is_RANK = True
-
+                flag = True
                 if is_RANK:
                     for family_name in family_names:
                         if family_name in name:
@@ -345,7 +347,9 @@ def main(): #
 
 # 打包命令 pyinstaller -F -p D:\aliyun_meng\taobao_requests\ D:\aliyun_meng\taobao_requests\doc_parser.py
 if __name__ == '__main__':
+
     main()
+    import time;time.sleep(10)
     # rs= parser_docx(doc_path=r'C:\Users\Administrator\Desktop\mytest\1.docx')
     # for o in rs:
     #    print o,rs[o]
