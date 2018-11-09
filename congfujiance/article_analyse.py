@@ -13,6 +13,7 @@ import docx
 import re
 import threadpool
 from rend_html import render_html
+import math
 if not os.path.exists(u'检测报告'):
     os.mkdir(u'检测报告')
 
@@ -114,6 +115,7 @@ class ArticleAnalyse:
                 if word in em:
                     score+=1
             similar_rate = score*1.0/len(keyword)
+            similar_rate =(math.pow(similar_rate, 1.5)) / 9.85
             print keyword,similar_rate,sim_url
             sentence = {}
             sentence['origin_content'] = keyword
