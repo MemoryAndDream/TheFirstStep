@@ -81,7 +81,7 @@ class ArticleAnalyse:
         return {"sum_similar_rate":sum_similar_rate,'sum_word_count':extra_info['word_count'] ,'sum_similar_count':extra_info['similar_count']}
 
     def multithread_craw(self,lines):
-        task_pool = threadpool.ThreadPool(8)
+        task_pool = threadpool.ThreadPool(32) #速度调节
         parms = [([lines[i],i],None) for i in range(len(lines))]
         print parms
         requests = threadpool.makeRequests(self.baidu_analyse, parms)

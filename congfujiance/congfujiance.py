@@ -59,6 +59,15 @@ class MyPyQT_Form(QtGui.QMainWindow,QtGui.QWidget,Ui_Form):
     def showDialog2(self):
         QtGui.QDesktopServices.openUrl(QtCore.QUrl('file:///' +  os.path.dirname(os.path.abspath(__file__)).decode('GB2312')+ur"/检测报告" ))
 
+    def showDialog3(self):
+        QtGui.QMessageBox.information(self, u"使用说明", u"1、选择文件夹\n\n"
+                                                     u"2、点击开始分析。\n\n"
+                                                     u"3、程序会自动分析文件夹下的所有doc、docx、txt后缀名的文件。\n\n"
+                                                     u"4、点击查看报告查看每个文件对应的HTML格式的分析报告。\n\n"
+                                                     u"ps：程序使用百度和搜狗双引擎高并发分析，最后得出的重复率为指数函数拟合后的结果，不完全等于重复字率\n\n"
+                                                     u"   作者: 回忆与梦 qq：312141830")
+
+
     def start_check(self):
         if not self.dir_path:
             QtGui.QMessageBox.information(self, u"错误", u"请先选择文件夹")
@@ -70,7 +79,7 @@ class MyPyQT_Form(QtGui.QMainWindow,QtGui.QWidget,Ui_Form):
 
 
     def main(self,dir_path): # pyqt不能把主进程卡死 工作进程要和主进程分离
-        # 遍历文件夹下的所有doc docx text 文件
+        #         # 遍历文件夹下的所有doc docx text 文件
 
        # import pdb;pdb.set_trace()
         for i in range(5):

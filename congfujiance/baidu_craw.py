@@ -9,7 +9,9 @@ import requests,urllib
 from lxml import etree
 # 百度爬虫程序 只输出每条记录的结构 不负责分析逻辑
 import random,re
-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 class BaiduCraw:
 
@@ -17,6 +19,13 @@ class BaiduCraw:
         pass
 
     def keyword_search(self,keyword):
+        baidu_record_list = self.baidu_keyword_search(keyword)
+        sogou_record_list = self.sougou_search(keyword)
+        if sogou_record_list and len(sogou_record_list[0][1])>len(baidu_record_list[0][1]):
+            return sogou_record_list
+        return baidu_record_list
+
+    def baidu_keyword_search(self,keyword):
         record_list = []
         url = 'http://www.baidu.com/s?wd=%s'%urllib.quote(keyword)
         r = requests.get(url,headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36'},timeout=10)
@@ -30,6 +39,26 @@ class BaiduCraw:
             em = self.extractorText(ems)
             sim_url = self.getXpath('//div[@class="f13"]/a[@class="c-showurl"]/@href',segment)
             sim_url = sim_url[0] if sim_url else ''
+            record_list.append((record,em,sim_url))
+
+        return record_list
+
+
+    def sougou_search(self,keyword):
+
+        record_list = []
+        url = 'https://www.sogou.com/web?query=%s&ie=utf8'%urllib.quote(keyword)
+        r = requests.get(url,headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36'},timeout=10)
+        rsp = r.text
+        segments = self.getXpath('//div[@class="rb"]', rsp)  #
+        for segment in segments:
+            records = self.getXpath('//div[@class="ft"]//text()',segment)
+            record = self.extractorText(records)
+
+            ems = self.getXpath('//div[@class="ft"]//em/text()',segment)
+            em = self.extractorText(ems)
+            sim_url = self.getXpath('//h3/a/@href',segment)
+            sim_url = 'https://www.sogou.com'+sim_url[0] if sim_url else ''
             record_list.append((record,em,sim_url))
 
         return record_list
@@ -60,5 +89,5 @@ class BaiduCraw:
 if __name__ == '__main__':
     rs = BaiduCraw().keyword_search('在《三国》中，司马懿一出场就自命非凡')
     for r in rs :
-        print r[0],r[1]
+        print r[0],r[1],r[2]
     pass

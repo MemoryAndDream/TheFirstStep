@@ -76,6 +76,10 @@ class Ui_Form(object):
         font.setPointSize(11)
         self.pushButton_5.setFont(font)
         self.pushButton_5.setObjectName(_fromUtf8("pushButton_5"))
+        self.pushButton_6 = QtGui.QPushButton(Form)
+        self.pushButton_6.setGeometry(QtCore.QRect(660, 10, 71, 28))
+        self.pushButton_6.setObjectName(_fromUtf8("pushButton_6"))
+
         self.progressBar = QtGui.QProgressBar(Form)
         self.progressBar.setGeometry(QtCore.QRect(0, 170, 741, 21))
         self.progressBar.setProperty("value", 0)
@@ -89,6 +93,7 @@ class Ui_Form(object):
         self.tableWidget.setColumnWidth(3, 130)
         self.connect(self.pushButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.showDialog)
         self.connect(self.pushButton_3, QtCore.SIGNAL(_fromUtf8("clicked()")), self.showDialog2)
+        self.connect(self.pushButton_6, QtCore.SIGNAL(_fromUtf8("clicked()")), self.showDialog3)
         self.connect(self.pushButton_2, QtCore.SIGNAL(_fromUtf8("clicked()")), self.start_check)
         self.connect(self.pushButton_4, QtCore.SIGNAL(_fromUtf8("clicked()")), self.export_excel)
         self.connect(self.pushButton_5, QtCore.SIGNAL(_fromUtf8("clicked()")), self.clear_excel)
@@ -99,13 +104,15 @@ class Ui_Form(object):
 
 
     def retranslateUi(self, Form):
-        Form.setWindowTitle(_translate("Form", "改趣全网文章查重", None))
-        self.label.setText(_translate("Form", "改趣全网文章查重", None))
+        Form.setWindowTitle(_translate("Form", "大麦全网文章查重工具", None))
+        # self.label.setToolTip(_translate("Dialog", "作者:回忆与梦 qq:312141830", None))
+        self.label.setText(_translate("Form", "大麦全网文章查重工具", None))
         self.pushButton.setText(_translate("Form", "选择文件夹", None))
         self.pushButton_2.setText(_translate("Form", "开始分析", None))
        # self.label_2.setText(_translate("Form", "未选择文件夹", None))
         self.pushButton_3.setText(_translate("Form", "查看详细分析报告", None))
         self.pushButton_4.setText(_translate("Form", "导出报告", None))
         self.pushButton_5.setText(_translate("Form", "清空报告", None))
+        self.pushButton_6.setText(_translate("Dialog", "使用说明", None))
 
 
