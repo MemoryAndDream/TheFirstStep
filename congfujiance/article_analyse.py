@@ -46,22 +46,39 @@ class ArticleAnalyse:
         for p in doc.paragraphs:
             analyse_lines.append(p.text)
         lines = self.multithread_craw(analyse_lines)
+        extra_info['word_count']=0
+        extra_info['similar_count'] = 0
+        for line in lines:
+            for sentence in line:
+                extra_info['similar_count']+=sentence['similar_count']
+                extra_info['word_count'] += sentence['word_count']
         html_path = os.path.join(u'检测报告\\', '.'.join(file_name.split('.')[:-1])+'.html') # 后面还是单独建个文件夹的好
         sum_similar_rate = self.save_html(html_path,lines,extra_info)
-        return {"sum_similar_rate":sum_similar_rate}
+
+
+
+        return {"sum_similar_rate":sum_similar_rate,'sum_word_count':extra_info['word_count'] ,'sum_similar_count':extra_info['similar_count']}
 
     def txt_analyse(self):
         filepath = self.filepath
         file_name = os.path.basename(filepath)
+        extra_info={}
+        extra_info['name']=file_name
+        extra_info['word_count']=0
+        extra_info['similar_count'] = 0
         lines = []
         analyse_lines = []
         with open(filepath) as f:
             for line in f:
                 analyse_lines.append(line)
         lines = self.multithread_craw(analyse_lines)
+        for line in lines:
+            for sentence in line:
+                extra_info['similar_count'] += sentence['similar_count']
+                extra_info['word_count'] += sentence['word_count']
         html_path = os.path.join(u'检测报告\\', '.'.join(file_name.split('.')[:-1])+'.html') # 后面还是单独建个文件夹的好
-        sum_similar_rate = self.save_html(html_path,lines)
-        return {"sum_similar_rate":sum_similar_rate}
+        sum_similar_rate = self.save_html(html_path,lines,extra_info)
+        return {"sum_similar_rate":sum_similar_rate,'sum_word_count':extra_info['word_count'] ,'sum_similar_count':extra_info['similar_count']}
 
     def multithread_craw(self,lines):
         task_pool = threadpool.ThreadPool(8)
@@ -93,7 +110,7 @@ class ArticleAnalyse:
     def save_html(self,html_path,lines,extra_info={}):
         with open(html_path,'w') as html:
             print html_path
-            content, sum_similar_rate = render_html(lines)
+            content, sum_similar_rate = render_html(lines,extra_info)
             html.write(content)
             return sum_similar_rate
 
@@ -106,22 +123,33 @@ class ArticleAnalyse:
             keyword = sentences.pop(0)
             while sentences and len(keyword+sentences[0])<= 38: # 这里有bug，一行丢掉最后一段算了
                 keyword += sentences.pop(0)
-            keyword_result = BaiduCraw().keyword_search(keyword.encode('utf8'))
+            try:
+                keyword.encode('utf8')
+                keyword_result = BaiduCraw().keyword_search(keyword.encode('utf8'))
+            except:
+                keyword_result = BaiduCraw().keyword_search(keyword.decode('GBK').encode('utf8'))
             if not keyword_result:continue
             record,em,sim_url = keyword_result[0]
             score = 0
-            keyword = keyword.decode('utf8')
+            try:
+                keyword = keyword.decode('utf8')
+            except:
+                keyword = keyword.decode('GBK')
+            keyword = keyword.replace('\n','').replace('\r','')
             for word in keyword:
                 if word in em:
                     score+=1
             similar_rate = score*1.0/len(keyword)
-            similar_rate =(math.pow(similar_rate, 1.5)) / 9.85
+            similar_rate =(math.pow(similar_rate*100, 1.5)) / 985
             print keyword,similar_rate,sim_url
             sentence = {}
             sentence['origin_content'] = keyword
             sentence['similar_content'] = record
             sentence['similar_url'] = sim_url
             sentence['similar_rate'] = similar_rate
+            sentence['similar_count'] = score
+            sentence['word_count'] = len(keyword)
+
             new_line.append(sentence)
         self.craw_result.append({"line_no":line_no,"result":new_line})
         return new_line
@@ -135,10 +163,10 @@ class ArticleAnalyse:
 
 
 if __name__ == '__main__':
-    a = ArticleAnalyse(ur'D:\用户目录\我的文档\GitHub\TheFirstStep\congfujiance\test_docs\1029-1023国学1200JZGA10-10国魏晋南北朝时期最厉害的家族.doc')
-    a.doc_analyse()
-    #a = ArticleAnalyse(ur'D:\用户目录\我的文档\GitHub\TheFirstStep\congfujiance\test_docs\1.txt')
-    #a.txt_analyse()
+    #a = ArticleAnalyse(ur'D:\github\TheFirstStep\congfujiance\test_docs\1029-1023国学1200JZGA10-10国魏晋南北朝时期最厉害的家族.doc')
+    #a.doc_analyse()
+    a = ArticleAnalyse(ur'D:\github\TheFirstStep\congfujiance\test_docs\1.txt')
+    a.txt_analyse()
     pass
     #a.baidu_analyse(u'蜀国刘备的手下有五大上将。分别是义字当头的关羽、英勇无畏的张飞和常胜将军常山赵子龙。还有两个就是黄忠老将军与本文的传奇人物__马超。作为刘备五将之一的马超也是有着一段传奇的人生经历。 ')
 

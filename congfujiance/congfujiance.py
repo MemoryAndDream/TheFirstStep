@@ -24,7 +24,7 @@ class MyPyQT_Form(QtGui.QMainWindow,QtGui.QWidget,Ui_Form):
         self.dir_path = ''
         self.step = 0
         self.timer = QtCore.QBasicTimer()
-        self.tableWidget.setHorizontalHeaderLabels([u'文件名',u'重复率'])
+        self.tableWidget.setHorizontalHeaderLabels([u'文件名', u'字数', u'重复字数', u'整体重复率(%)'])
 
         if not os.path.exists(CODE_FILE_PATH):
 
@@ -44,11 +44,14 @@ class MyPyQT_Form(QtGui.QMainWindow,QtGui.QWidget,Ui_Form):
                     QtGui.QMessageBox.information(self, u"激活失败", u"程序激活失败")
                     sys.exit()
 
-        #
+
+    def closeEvent(self, event):
+        quit()
+
 
     def showDialog(self):
         filename = QtGui.QFileDialog.getExistingDirectory(self, 'Open file', './')
-        self.label_2.setText(filename[:5]+'..')
+       # self.label_2.setText(filename[:5]+'..')
         self.dir_path = unicode(filename)
         self.pushButton_2.setDisabled(False)
         self.pushButton_2.setText(u'开始分析')
@@ -96,11 +99,16 @@ class MyPyQT_Form(QtGui.QMainWindow,QtGui.QWidget,Ui_Form):
 
     def insert_record(self,record): #异步的！
         global record_num
-        file_path,sum_similar_rate = record
+        file_path,sum_word_count,sum_similar_count,sum_similar_rate = record
+        print file_path,sum_word_count,sum_similar_count,sum_similar_rate
         newItem = QTableWidgetItem(file_path)
         self.tableWidget.setItem(record_num, 0, newItem)
-        newItem = QTableWidgetItem(str(sum_similar_rate))
+        newItem = QTableWidgetItem(str(sum_word_count))
         self.tableWidget.setItem(record_num, 1, newItem)
+        newItem = QTableWidgetItem(str(sum_similar_count))
+        self.tableWidget.setItem(record_num, 2, newItem)
+        newItem = QTableWidgetItem(str(sum_similar_rate))
+        self.tableWidget.setItem(record_num, 3, newItem)
         record_num += 1
         self.tableWidget.insertRow(self.tableWidget.rowCount()) # 增加一行
 
@@ -214,7 +222,9 @@ class BigWorkThread(QtCore.QThread):
                         #analyse_result = {'sum_similar_rate': 12}
                     if analyse_result:
                         sum_similar_rate = analyse_result['sum_similar_rate']
-                        self.insertSignal.emit([file_path,sum_similar_rate])
+                        sum_word_count = analyse_result['sum_word_count']
+                        sum_similar_count = analyse_result['sum_similar_count']
+                        self.insertSignal.emit([file_path,sum_word_count,sum_similar_count,sum_similar_rate])
                 except Exception,e:
                     print str(e)
                 time.sleep(1)
@@ -252,8 +262,6 @@ class prpcrypt():
         cryptor = AES.new(self.key, self.mode, self.iv)
         plain_text = cryptor.decrypt(a2b_hex(text))
         return plain_text.rstrip('\0')
-
-
 
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
