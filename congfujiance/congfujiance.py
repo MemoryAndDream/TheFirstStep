@@ -41,7 +41,7 @@ class MyPyQT_Form(QtGui.QMainWindow,QtGui.QWidget,Ui_Form):
                 print code
                 pan_code = str(win32api.GetVolumeInformation("C:\\")[1])
                 if not code == pan_code:
-                    QtGui.QMessageBox.information(self, u"激活失败", u"程序激活失败")
+                    QtGui.QMessageBox.information(self, u"激活失败", u"程序激活失败，如果是拷贝的程序请删除临时文件jihuoma.tmp之后重试")
                     sys.exit()
 
 
