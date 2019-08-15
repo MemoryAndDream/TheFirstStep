@@ -1,0 +1,123 @@
+a.BigButton {
+	width: 90px; height: 26px; text-align: center; color: rgb(50, 91, 24); line-height: 26px; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-image: url("../../images/pmlc_btn11.gif");
+}
+a.BigButton:visited {
+	width: 90px; height: 26px; text-align: center; color: rgb(50, 91, 24); line-height: 26px; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-image: url("../../images/pmlc_btn11.gif");
+}
+a.BigButton:link {
+	width: 90px; height: 26px; text-align: center; color: rgb(50, 91, 24); line-height: 26px; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-image: url("../../images/pmlc_btn11.gif");
+}
+a.BigButton:hover {
+	width: 90px; height: 26px; text-align: center; color: rgb(50, 91, 24); line-height: 26px; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-image: url("../../images/pmlc_btn11.1.gif");
+}
+a.BigButton:active {
+	width: 90px; height: 26px; text-align: center; color: rgb(50, 91, 24); line-height: 26px; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-image: url("../../images/pmlc_btn11.1.gif");
+}
+a.SmallButton {
+	width: 40px; height: 22px; text-align: center; color: rgb(50, 91, 24); line-height: 22px; font-size: 12px; text-decoration: none; word-spacing: 1em; display: block; background-image: url("../../images/SwfButtonNoText_40x22.png");
+}
+a.SmallButton:visited {
+	width: 40px; height: 22px; text-align: center; color: rgb(50, 91, 24); line-height: 22px; font-size: 12px; text-decoration: none; word-spacing: 1em; display: block; background-image: url("../../images/SwfButtonNoText_40x22.png");
+}
+a.SmallButton:link {
+	width: 40px; height: 22px; text-align: center; color: rgb(50, 91, 24); line-height: 22px; font-size: 12px; text-decoration: none; word-spacing: 1em; display: block; background-image: url("../../images/SwfButtonNoText_40x22.png");
+}
+a.SmallButton:hover {
+	background-position: 0px -22px; width: 40px; height: 22px; text-align: center; color: rgb(50, 91, 24); line-height: 22px; font-size: 12px; text-decoration: none; word-spacing: 1em; display: block; background-image: url("../../images/SwfButtonNoText_40x22.png");
+}
+a.SmallButton:active {
+	background-position: 0px -22px; width: 40px; height: 22px; text-align: center; color: rgb(50, 91, 24); line-height: 22px; font-size: 12px; text-decoration: none; word-spacing: 1em; display: block; background-image: url("../../images/SwfButtonNoText_40x22.png");
+}
+a.ResultSel {
+	color: black; font-size: 12px; font-weight: bold; text-decoration: underline;
+}
+a.ResultSel:visited {
+	color: black; font-size: 12px; font-weight: bold; text-decoration: underline;
+}
+a.ResultSel:link {
+	color: black; font-size: 12px; font-weight: bold; text-decoration: underline;
+}
+a.ResultSel:hover {
+	color: black; font-size: 12px; font-weight: bold; text-decoration: underline;
+}
+a.ResultSel:active {
+	color: black; font-size: 12px; font-weight: bold; text-decoration: underline;
+}
+a.ResultNoSel {
+	color: black; font-size: 10px; text-decoration: underline;
+}
+a.ResultNoSel:visited {
+	color: black; font-size: 10px; text-decoration: underline;
+}
+a.ResultNoSel:link {
+	color: black; font-size: 10px; text-decoration: underline;
+}
+a.ResultNoSel:hover {
+	color: black; font-size: 10px; text-decoration: underline;
+}
+a.ResultNoSel:active {
+	color: black; font-size: 10px; text-decoration: underline;
+}
+.Small_CheckResult {
+	font-size: 10px;
+}
+a.BigButton_Login1 {
+	width: 200px; height: 50px; text-align: center; color: rgb(50, 91, 24); line-height: 26px; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-image: url("../../images/sysqs.gif");
+}
+a.BigButton_Login1:visited {
+	width: 200px; height: 50px; text-align: center; color: rgb(50, 91, 24); line-height: 26px; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-image: url("../../images/sysqs.gif");
+}
+a.BigButton_Login1:link {
+	width: 200px; height: 50px; text-align: center; color: rgb(50, 91, 24); line-height: 26px; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-image: url("../../images/sysqs.gif");
+}
+a.BigButton_Login1:hover {
+	width: 200px; height: 50px; text-align: center; color: rgb(50, 91, 24); line-height: 26px; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-image: url("../../images/sysqs01.gif");
+}
+a.BigButton_Login1:active {
+	width: 200px; height: 50px; text-align: center; color: rgb(50, 91, 24); line-height: 26px; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-image: url("../../images/sysqs01.gif");
+}
+a.BigButton_Login2 {
+	width: 200px; height: 50px; text-align: center; color: rgb(50, 91, 24); line-height: 26px; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-image: url("../../images/syxys.gif");
+}
+a.BigButton_Login2:visited {
+	width: 200px; height: 50px; text-align: center; color: rgb(50, 91, 24); line-height: 26px; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-image: url("../../images/syxys.gif");
+}
+a.BigButton_Login2:link {
+	width: 200px; height: 50px; text-align: center; color: rgb(50, 91, 24); line-height: 26px; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-image: url("../../images/syxys.gif");
+}
+a.BigButton_Login2:hover {
+	width: 200px; height: 50px; text-align: center; color: rgb(50, 91, 24); line-height: 26px; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-image: url("../../images/syxys01.gif");
+}
+a.BigButton_Login2:active {
+	width: 200px; height: 50px; text-align: center; color: rgb(50, 91, 24); line-height: 26px; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-image: url("../../images/syxys01.gif");
+}
+a.BigButton_Login3 {
+	width: 200px; height: 50px; text-align: center; color: rgb(50, 91, 24); line-height: 26px; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-image: url("../../images/sysms.gif");
+}
+a.BigButton_Login3:visited {
+	width: 200px; height: 50px; text-align: center; color: rgb(50, 91, 24); line-height: 26px; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-image: url("../../images/sysms.gif");
+}
+a.BigButton_Login3:link {
+	width: 200px; height: 50px; text-align: center; color: rgb(50, 91, 24); line-height: 26px; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-image: url("../../images/sysms.gif");
+}
+a.BigButton_Login3:hover {
+	width: 200px; height: 50px; text-align: center; color: rgb(50, 91, 24); line-height: 26px; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-image: url("../../images/sysms01.gif");
+}
+a.BigButton_Login3:active {
+	width: 200px; height: 50px; text-align: center; color: rgb(50, 91, 24); line-height: 26px; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-image: url("../../images/sysms01.gif");
+}
+a.LoginButton {
+	width: 65px; height: 24px; text-align: center; color: rgb(0, 51, 0); line-height: 24px; font-size: 12px; text-decoration: none; display: block; background-image: url("../../images/anniu_01.gif");
+}
+a.LoginButton:visited {
+	width: 65px; height: 24px; text-align: center; color: rgb(0, 51, 0); line-height: 24px; font-size: 12px; text-decoration: none; display: block; background-image: url("../../images/anniu_01.gif");
+}
+a.LoginButton:link {
+	width: 65px; height: 24px; text-align: center; color: rgb(0, 51, 0); line-height: 24px; font-size: 12px; text-decoration: none; display: block; background-image: url("../../images/anniu_01.gif");
+}
+a.LoginButton:hover {
+	width: 65px; height: 24px; text-align: center; color: rgb(255, 255, 255); line-height: 24px; font-size: 12px; text-decoration: none; display: block; background-image: url("../../images/anniu_02.gif");
+}
+a.LoginButton:active {
+	width: 65px; height: 24px; text-align: center; color: rgb(255, 255, 255); line-height: 24px; font-size: 12px; text-decoration: none; display: block; background-image: url("../../images/anniu_02.gif");
+}

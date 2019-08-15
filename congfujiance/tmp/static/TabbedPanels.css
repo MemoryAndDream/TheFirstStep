@@ -1,0 +1,48 @@
+.TabbedPanels {
+	margin: 0px; padding: 10px 12px 0px 13px; width: 730px;
+}
+#TabGroup {
+	background: rgb(255, 255, 255); margin: 0px; padding: 0px; border: 0px currentColor; border-image: none; width: 360px; text-align: left; float: left;
+}
+.TabbedPanelsTabGroup {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none; width: 730px; height: 26px; text-align: left;
+}
+.TabbedPanelsTab {
+	width: 131px; height: 26px; text-align: center; color: rgb(0, 93, 0); line-height: 26px; font-family: Georgia, "Times New Roman" , Times, serif; font-size: 14px; float: left; position: relative; cursor: pointer; background-image: url("../../images/pmlc_bg2.gif"); -moz-user-select: none; -khtml-user-select: none;
+}
+.TabbedPanelsTab1 {
+	width: 131px; height: 26px; text-align: center; color: rgb(0, 93, 0); line-height: 26px; font-family: Georgia, "Times New Roman" , Times, serif; font-size: 14px; float: left; position: relative; cursor: pointer; background-image: url("../../images/pmlc_bg1.gif"); -moz-user-select: none; -khtml-user-select: none;
+}
+.TabbedPanelsTabHover {
+	cursor: pointer; background-image: url("../../images/pmlc_bg1.gif"); background-color: rgb(240, 248, 235);
+}
+.TabbedPanelsTabSelected {
+	background-image: url("../../images/pmlc_bg1.gif"); background-color: rgb(240, 248, 235);
+}
+.TabbedPanelsTab a {
+	color: black; text-decoration: none;
+}
+.TabbedPanelsContentGroup {
+	margin: 0px; border: 1px solid rgb(204, 204, 204); border-image: none; width: 730px; background-color: rgb(240, 248, 235);
+}
+.Content {
+	padding: 10px 10px 10px 20px; text-align: left; color: rgb(85, 85, 85);
+}
+.ContentVisible {
+	
+}
+.VTabbedPanels .TabGroup {
+	border-width: 1px; border-style: solid; border-color: rgb(153, 153, 153) rgb(153, 153, 153) rgb(204, 204, 204) rgb(204, 204, 204); float: left; position: relative; background-color: rgb(238, 238, 238);
+}
+.TabbedPanelsContent {
+	padding: 0px;
+}
+.VTabbedPanels .PanelsTab {
+	margin: 0px; border-top-color: currentColor; border-right-color: currentColor; border-left-color: currentColor; border-top-width: medium; border-right-width: medium; border-left-width: medium; border-top-style: none; border-right-style: none; border-left-style: none; float: none;
+}
+.VTabbedPanels .TabSelected {
+	border-bottom-color: rgb(153, 153, 153); border-bottom-width: 1px; border-bottom-style: solid; background-color: rgb(255, 255, 255);
+}
+.VTabbedPanels .ContentGroup {
+	padding: 0px; width: 400px; height: 300px; clear: none; float: left;
+}

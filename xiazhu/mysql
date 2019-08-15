@@ -1,0 +1,7 @@
+数据库地址 mysql -h47.96.238.217 -uguest -p123456 alcp
+
+
+
+CREATE USER 'guest'@'%' IDENTIFIED BY '123456';
+GRANT all privileges ON alcp.* TO 'guest'@'%'
+CREATE DATABASE `alcp` CHARACTER SET utf8 COLLATE utf8_general_ci;

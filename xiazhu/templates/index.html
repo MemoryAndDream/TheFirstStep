@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>结果页面</title>
+</head>
+<body>
+<style>
+ table{border: 1px solid black;}
+ table td{ background:#FFF;border: 1px solid black;}
+.divcss5-td-1{width:60px}
+ .bg_1  { background:yellow;border: 1px solid black;}
+ .bg_2 { background:deepskyblue;border: 1px solid black;}
+
+
+</style>
+
+
+{% for tem_key in ['dx_tems','dx_tems2','ds1','ds2'] %}
+
+{% for rpt in result_dict[tem_key]['rpt'] %}
+<table>
+<tr>
+    {% for item in rpt %}
+
+        <td class='{{"bg_1" if item=="正" else "bg_2"}}'>{{item}}</td>
+
+    {% endfor %}
+</tr>
+   {% endfor %}
+
+    {% for rpt in result_dict[tem_key]['diff'] %}
+<table>
+<tr>
+    {% for item in rpt %}
+
+        <td class='{{"bg_1" if item==0 else "bg_2"}}'>{{item}}</td>
+    {% endfor %}
+
+</tr>
+
+   {% endfor %}
+</table>
+<br/>
+{% endfor %}
+</body>
+</html>

@@ -22,27 +22,28 @@ class MyPyQT_Form(QtGui.QMainWindow,QtGui.QWidget,Ui_Form):
         super(MyPyQT_Form,self).__init__()
         self.setupUi(self)
         self.dir_path = ''
+
         self.step = 0
         self.timer = QtCore.QBasicTimer()
         self.tableWidget.setHorizontalHeaderLabels([u'文件名', u'字数', u'重复字数', u'整体重复率(%)'])
 
-        if not os.path.exists(CODE_FILE_PATH):
-
-            #if time.time() < 1544253334:
-            #    QtGui.QMessageBox.information(self, u"未激活", u"试用有效期到2018.12.8")
-            #    return
-            if self.input_code():
-                return
-            QtGui.QMessageBox.information(self, u"未激活", u"程序未激活,不能使用")
-            sys.exit()
-        else:
-            with open(CODE_FILE_PATH) as f:
-                code = str(f.readlines()[0])
-                print code
-                pan_code = str(win32api.GetVolumeInformation("C:\\")[1])
-                if not code == pan_code:
-                    QtGui.QMessageBox.information(self, u"激活失败", u"程序激活失败，如果是拷贝的程序请删除临时文件jihuoma.tmp之后重试")
-                    sys.exit()
+        # if not os.path.exists(CODE_FILE_PATH):
+        #
+        #     #if time.time() < 1544253334:
+        #     #    QtGui.QMessageBox.information(self, u"未激活", u"试用有效期到2018.12.8")
+        #     #    return
+        #     if self.input_code():
+        #         return
+        #     QtGui.QMessageBox.information(self, u"未激活", u"程序未激活,不能使用")
+        #     sys.exit()
+        # else:
+        #     with open(CODE_FILE_PATH) as f:
+        #         code = str(f.readlines()[0])
+        #         print code
+        #         pan_code = str(win32api.GetVolumeInformation("C:\\")[1])
+        #         if not code == pan_code:
+        #             QtGui.QMessageBox.information(self, u"激活失败", u"程序激活失败，如果是拷贝的程序请删除临时文件jihuoma.tmp之后重试")
+        #             sys.exit()
 
 
     def closeEvent(self, event):
@@ -51,6 +52,13 @@ class MyPyQT_Form(QtGui.QMainWindow,QtGui.QWidget,Ui_Form):
 
     def showDialog(self):
         filename = QtGui.QFileDialog.getExistingDirectory(self, 'Open file', './')
+       # self.label_2.setText(filename[:5]+'..')
+        self.dir_path = unicode(filename)
+        self.pushButton_2.setDisabled(False)
+        self.pushButton_2.setText(u'开始分析')
+
+    def showDialog4(self):
+        filename = QtGui.QFileDialog.getOpenFileName(self, 'Open file', './')
        # self.label_2.setText(filename[:5]+'..')
         self.dir_path = unicode(filename)
         self.pushButton_2.setDisabled(False)
@@ -70,7 +78,7 @@ class MyPyQT_Form(QtGui.QMainWindow,QtGui.QWidget,Ui_Form):
 
     def start_check(self):
         if not self.dir_path:
-            QtGui.QMessageBox.information(self, u"错误", u"请先选择文件夹")
+            QtGui.QMessageBox.information(self, u"错误", u"请先选择文件夹或文件")
             return
         self.onStart()
         self.BigWork()
@@ -149,8 +157,8 @@ class MyPyQT_Form(QtGui.QMainWindow,QtGui.QWidget,Ui_Form):
         for currentColumn in range(self.tableWidget.columnCount()):
             for currentRow in range(self.tableWidget.rowCount()):
                 try:
-                    teext = unicode(self.tableWidget.item(currentRow, currentColumn).text())
-                    sheet.write(currentRow, currentColumn, teext)
+                    text = unicode(self.tableWidget.item(currentRow, currentColumn).text())
+                    sheet.write(currentRow, currentColumn, text)
                 except AttributeError:
                     pass
 
@@ -203,17 +211,25 @@ class BigWorkThread(QtCore.QThread):
         print 'set success_num total_file_num'
         total_file_num = 0
         success_num = 0
-        file_list  = os.walk(self.dir_path)
+        # 判断是文件还是文件夹
+        if os.path.isdir(self.dir_path):
+            file_list  = os.walk(self.dir_path)
+        else:
+            file_path = self.dir_path
+            sub_file_paths = [os.path.basename(file_path)]
+            parent_path = os.path.dirname(file_path)
+            file_list = [[parent_path,[],sub_file_paths]]
         for file_paths in file_list:
             sub_file_paths = file_paths[2]
             for file_path in sub_file_paths:
                 if '$' in file_path:  # 缓存文件
                     continue
                 total_file_num += 1
-        file_list = os.walk(self.dir_path)
+
         for file_paths in file_list:
             sub_file_paths = file_paths[2]
             parent_path = file_paths[0]
+            print parent_path,sub_file_paths
             for file_path in sub_file_paths:
                 lower_file_path = file_path.lower()
                 try:

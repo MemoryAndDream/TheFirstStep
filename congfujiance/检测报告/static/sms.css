@@ -1,0 +1,60 @@
+.megBox {
+	background: rgb(245, 243, 221); margin: 0px auto; padding: 20px; width: 360px;
+}
+.message_main {
+	color: rgb(51, 51, 51);
+}
+.message_main .meg_h3 {
+	padding-bottom: 10px; font-size: 16px; font-weight: bold; border-bottom-color: rgb(187, 187, 187); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.message_main .meg_p {
+	color: rgb(102, 102, 102); padding-top: 10px; font-size: 12px;
+}
+.message_main .meg_ul {
+	list-style: none; padding: 10px 0px; border-bottom-color: rgb(187, 187, 187); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.message_main .meg_ul li {
+	list-style: none; padding: 5px 0px; font-size: 12px;
+}
+.message_main .meg_ul li label {
+	width: 86px; text-align: right; vertical-align: middle; display: inline-block;
+}
+.message_main .meg_ul li span {
+	font-size: 14px; vertical-align: middle;
+}
+.message_main .meg_ul li input {
+	padding: 3px 5px; border: 1px solid rgb(187, 187, 187); border-image: none; width: 100px; color: rgb(102, 102, 102); line-height: 16px; font-size: 12px; vertical-align: middle;
+}
+.message_main .meg_ul li .meg_a {
+	background: rgb(238, 238, 238); padding: 0px; border-radius: 3px; border: 1px solid rgb(187, 187, 187); border-image: none; width: 110px; height: 23px; text-align: center; color: rgb(68, 68, 68); line-height: 23px; font-size: 12px; font-weight: bold; margin-left: 10px; vertical-align: middle; display: inline-block; cursor: pointer;
+}
+.message_main .meg_ul li .meg_a_int {
+	background: rgb(238, 238, 238); border: 1px solid rgb(187, 187, 187); border-image: none; color: rgb(153, 153, 153); cursor: default;
+}
+.message_main .meg_ul li .meg_btn {
+	background: rgb(25, 105, 4); padding: 0px; border-radius: 3px; border: 1px solid rgb(25, 105, 4); border-image: none; width: 60px; height: 25px; text-align: center; color: rgb(255, 255, 255); line-height: 23px; font-size: 12px; font-weight: bold; margin-left: 86px; vertical-align: middle; cursor: pointer;
+}
+.message_main .meg_ul li .meg_btn:hover {
+	background: rgb(27, 122, 2); border: 1px solid rgb(27, 122, 2); border-image: none;
+}
+.message_main .meg_p2 {
+	padding: 10px 0px; color: rgb(102, 102, 102); font-size: 12px; border-bottom-color: rgb(187, 187, 187); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.message_main .meg_infor {
+	color: rgb(51, 51, 51); line-height: 20px; padding-top: 10px; font-size: 12px;
+}
+.message_main .meg_ul .meg_set {
+	padding: 0px; display: block;
+}
+.message_main .meg_ul .meg_liSet {
+	display: none;
+}
+.message_main .meg_ul .meg_set .meg_sp {
+	color: rgb(59, 181, 26); font-size: 12px; margin-left: 86px; display: inline-block;
+}
+.message_main .meg_ul .meg_set .meg_sp_cw {
+	width: 240px; color: rgb(197, 45, 45); font-size: 12px; margin-left: 86px; display: inline-block;
+}
+.meg_amlc {
+	background: rgb(255, 255, 255); padding: 90px 0px; width: 100%; height: 400px; text-align: left; position: relative;
+}

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>结果页面</title>
+</head>
+<body>
+{% for record in records %}
+<p>{{ record[1]  }}{{'  '}}{{ record[2]}}{{'  '}}{{ record[3]}}</p>
+    {% endfor %}
+
+</body>
+</html>

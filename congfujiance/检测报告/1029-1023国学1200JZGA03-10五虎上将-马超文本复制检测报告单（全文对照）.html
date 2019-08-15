@@ -1,0 +1,2044 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>report</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+  
+    <div id="app">
+        <div class="n_title">
+            <div class="n_print">
+
+            </div>
+            <table width="640" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <td class="n_logo_left">
+                            <a href="http://check.cnki.net/" target="_blank">
+                                <img alt="" src="./static/jie_amlc.gif">
+                            </a>
+                        </td>
+                        <td class="n_logo_right">
+                            <a href="http://check.cnki.net/" target="_blank">
+                                <img alt="" src="./static/jie_zw.gif">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="n_bodytop">
+            <div class="n_bt">文本复制检测报告单<span class="n_jie">(<span id="Label_Report_Type_Name">全文对照</span>)</span>
+            </div>
+            <table width="100%" class="n_table_a"
+                style="border-top-color: rgb(3, 93, 3); border-top-width: 2px; border-top-style: solid;" border="0"
+                cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr class="n_table_a_cos">
+                        <td colspan="2">
+                            <table width="640" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td width="420" class="n_text_red_a">№:<span
+                                                id="Label_ReportID">{{report_number}}</span>
+
+                                        </td>
+                                        <td width="60" class="t_text_red_a">检测时间：
+                                        </td>
+                                        <td><span id="Label_Apply_Time">{{createtime}}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 10px;" colspan="3"><span
+                                                class="t_text_red_a">检测单位：</span><span id="Label_Company"></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="n_text_green" style="width: 100px;">检测文献：
+                        </td>
+                        <td class="n_text_block_a" style="width: 539px;"><span
+                                id="Label_Title">{{article_name}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="n_text_green" style="width: 100px;">作者：
+                        </td>
+                        <td class="n_text_block_a"><span id="Label_Author">{{article_author}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="n_text_green" style="width: 100px; vertical-align: top;">检测范围：
+                        </td>
+                        <td class="n_text_block_bm"><span
+                                id="Label_Check_Range">中国学术期刊网络出版总库<br>中国博士学位论文全文数据库/中国优秀硕士学位论文全文数据库<br>中国重要会议论文全文数据库<br>中国重要报纸全文数据库<br>中国专利全文数据库<br>图书资源<br>优先出版文献库<br>互联网资源(包含贴吧等论坛资源)<br>英文数据库(涵盖期刊、博硕、会议的英文数据以及德国Springer、英国Taylor&amp;Francis
+                                期刊数据库等)<br>港澳台学术文献库<br>互联网文档资源<br>CNKI大成编客-原创作品库<br>个人比对库</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="n_text_green" style="width: 100px;">时间范围：
+                        </td>
+                        <td class="n_text_block_a"><span id="Label_Time_Range">{{time_range}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="item_title">检测结果 </div>
+            <div class="n_bgd_k2">
+                <table width="640" class="n_table_b" id="p1" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr class="n_table_b_cos">
+                            <td width="95" class="n_text_red_a" v-for="item in report_result">
+                                {{item.key}}{{item.value}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table width="640" id="Table2" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr class="n_table_b_cos">
+                            <td width="26" height="25"><img style="border: currentColor; border-image: none;" alt=""
+                                    src="./static/jie_yins.gif">
+                            </td>
+                            <td width="184" class="n_text_block_b6">去除引用文献复制比：<span class="n_red_bold"><span
+                                        id="Label_Quote">23.5%</span></span>
+                            </td>
+                            <td width="27"><img style="border: currentColor; border-image: none;" alt=""
+                                    src="./static/jie_bens.gif">
+                            </td>
+                            <td class="n_text_block_b6">去除本人已发表文献复制比：<span class="n_red_bold"><span
+                                        id="Label_SameAuthor">27%</span></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table width="640" id="Table3" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr class="n_table_b_cos">
+                            <td width="26"><img style="border: currentColor; border-image: none;" alt=""
+                                    src="./static/jie_dans.gif">
+                            </td>
+                            <td class="n_text_block_b6" colspan="3">单篇最大文字复制比：<span class="n_red_bold"><span
+                                        id="Label_Single_Max_Similar">5.9%</span></span><a class="maxlink"
+                                    id="HyperLink_MaxCopy" target="_blank"></a> </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table width="640" class="n_table_a1" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr class="n_qubr_fzb">
+                            <td width="52" height="25" class="n_text_Gm">&nbsp;
+                            </td>
+                            <td width="158" class="n_text_Gm">重复字数：<span
+                                    class="n_text_block_bss">&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;<span
+                                        id="Label_All_CopyWords">776</span>
+                                    &nbsp;]</span>
+                            </td>
+                            <td width="176" class="n_text_Gm">总字数：<span
+                                    class="n_text_block_bss">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;<span
+                                        id="Label_All_Words">2869</span>&nbsp;]</span>
+                            </td>
+                            <td width="133" class="n_text_Gm"><span id="Label1">单篇最大重复字数：</span>
+                            </td>
+                            <td width="110" class="n_text_Gm"><span class="n_text_block_bss">[&nbsp;<span
+                                        id="Label_Single_Max_Length">168</span>&nbsp;]</span>
+                            </td>
+                        </tr>
+                        <tr class="n_qubr_fzb">
+                            <td width="52" height="25" class="n_text_Gm">&nbsp;
+                            </td>
+                            <td width="158" class="n_text_Gm">总段落数：<span
+                                    class="n_text_block_bss">&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;<span
+                                        id="Label_All_Section">1</span>
+                                    &nbsp;]</span>
+                            </td>
+                            <td width="176" class="n_text_Gm">前部重合字数：<span class="n_text_block_bss">[&nbsp;<span
+                                        id="lb_qcf">267</span>&nbsp;]</span>
+                            </td>
+                            <td width="133" class="n_text_Gm"><span id="Label2">疑似段落最大重合字数：</span>
+                            </td>
+                            <td width="110" class="n_text_Gm"><span class="n_text_block_bss">[&nbsp;<span
+                                        id="lb_yszdcf">776</span>&nbsp;]</span> </td>
+                        </tr>
+                        <tr class="n_qubr_fzb">
+                            <td width="52" height="25" class="n_text_Gm">&nbsp;
+                            </td>
+                            <td width="158" class="n_text_Gm">疑似段落数：<span class="n_text_block_bss">[&nbsp;<span
+                                        id="lb_yszj">1</span>
+                                    &nbsp;]</span> </td>
+                            <td width="176" class="n_text_Gm">后部重合字数：<span class="n_text_block_bss">[&nbsp;<span
+                                        id="lb_hcf">509</span>&nbsp;]</span>
+                            </td>
+                            <td width="243" class="n_text_Gm" colspan="2">
+                                <div id="danpian">疑似段落最小重合字数：&nbsp;<span class="n_text_block_bss">[&nbsp;<span
+                                            id="lb_yszxcf">776</span>&nbsp;]</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table width="640" class="n_table_a2" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr class="n_qubr_fzb">
+                            <td width="101" height="25" class="n_text_red_a_zb">指&nbsp;&nbsp;&nbsp;&nbsp;标：
+                            </td>
+                            <td width="20"><img id="Image_Standard5" style="border-width: 0px;" src="./static/wu.gif">
+                            </td>
+                            <td width="80" class="n_text_Gm">疑似剽窃观点 </td>
+                            <td width="20"><img id="Image_Standard4" style="border-width: 0px;" src="./static/you.gif">
+                            </td>
+                            <td width="80" class="n_text_Gm ">疑似剽窃文字表述 </td>
+                            <td width="20"><img id="Image_Standard3" style="border-width: 0px;" src="./static/wu.gif">
+                            </td>
+                            <td width="80" class="n_text_Gm ">疑似自我剽窃 </td>
+                            <td width="20"></td>
+                            <td class="n_text_Gm "></td>
+                        </tr>
+                        <tr class="n_qubr_fzb">
+                            <td>&nbsp; </td>
+                            <td><img id="Image_Standard6" style="border-width: 0px;" src="./static/wu.gif">
+                            </td>
+                            <td class="n_text_Gm">一稿多投 </td>
+                            <td><img id="Image_Standard7" style="border-width: 0px;" src="./static/wu.gif">
+                            </td>
+                            <td class="n_text_Gm">过度引用 </td>
+                            <td><img id="Image_Standard1" style="border-width: 0px;" src="./static/wu.gif">
+                            </td>
+                            <td class="n_text_Gm ">疑似整体剽窃 </td>
+                            <td width="20"><img id="Image_Standard2" style="border-width: 0px;" src="./static/wu.gif">
+                            </td>
+                            <td class="n_text_Gm">重复发表
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table width="640" class="n_table_a3" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td width="101" class="n_table_a3_l">表格： </td>
+                            <td width="73" class="n_table_a3_r"><span id="Label_Table_Number">0</span>
+                            </td>
+                            <td width="90" class="n_table_a3_l">脚注与尾注： </td>
+                            <td width="237" class="n_table_a3_r"><span id="Label_Note_Number">0</span>
+                            </td>
+                            <td width="117" class="n_table_a3_l">&nbsp; </td>
+                            <td width="22" class="n_table_a3_r">&nbsp;
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="n_table_a" border="0" cellspacing="0" cellpadding="0"></table>
+                <div class="n_k3" id="imgdiv">
+                    <div class="n_pic"><img id="Image1" style="border-width: 0px;" src="./static/RedImage5AZJL5B7.png">
+                    </div>
+                    <table width="640" class="n_table_zs" border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr id="huanse">
+                                <td class="n_text_block_b">（注释： </td>
+                                <td width="6"><img alt="" src="./static/20120320_b.gif" border="0">
+                                </td>
+                                <td width="150" class="n_text_block_b">无问题部分
+                                </td>
+                                <td width="6"><img alt="" src="./static/20120320_c.gif" border="0">
+                                </td>
+                                <td width="150" class="n_text_block_b">文字复制比部分
+                                </td>
+                                <td width="6"><img alt="" src="./static/20120320_a.gif" border="0">
+                                </td>
+                                <td width="150" class="n_text_block_b">引用部分）
+                                </td>
+                                <td width="60" class="n_text_block_b"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="n_bodymid">
+            <div class="n_bodymid_bf">
+                <table width="640" class="n_table_jiebf" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td width="25" height="30" class="n_bf_bt">
+                            </td>
+                            <td width="499" class="n_text_block_bs"><a name="65166928_000"></a>
+                                {{report_reference.reference_title}}
+                            </td>
+                            <td width="116" class="n_table_jiebf_zzs">总字数：<span
+                                    class="n_text_block_bs">{{report_reference.reference_wordnumber}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <table width="640" class="n_table_jiebfs" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                        <tr>
+                                            <td width="90" style="text-indent: 1em;">相似文献列表
+                                            </td>
+                                            <td width="150" class="n_table_jiebf_fzb"
+                                                v-for="item in report_reference.reference_data">
+                                                {{item.key}}{{item.value}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="n_xu" v-for="(item,index) in report_reference.reference_list">
+                    <table class="n_table_a" border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td width="20" class="n_xu_a n_text_back_a">
+                                    {{index+1}}
+                                </td>
+                                <td width="500" class="n_text_G2" v-html="item.title">
+                                </td>
+                                <td width="100" class="n_xu_d n_text_red_d">{{item.percent}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="n_text_block_b">
+                                    {{item.book}}
+                                </td>
+                                <td width="100" class="n_xu_da">
+                                    是否引证：
+                                    <span class="n_text_yz" v-if="item.is_reference">是</span>
+                                    <span class="n_text_yz" v-else>否</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="n_qwdz_ywnr">
+                <table class="n_bgd_biao" id="table2" style="border-collapse: collapse; table-layout: fixed;" border="0"
+                    cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr id="Repeater1_ctl00_tr_item">
+                            <td width="330" class="n_bgd_biao_b" colspan="2">原文内容
+                            </td>
+                            <td width="310" class="n_bgd_biao_bs">相似内容来源
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="n_bgd_biao" id="table3" style="border-collapse: collapse; table-layout: fixed;" border="0"
+                    cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr v-for="(item,index) in report_diff">
+                            <td class="n_table_xu_a">
+                                {{index+1}}
+                            </td>
+                            <td class="n_bgd_biao_KU" style="width: 309px; vertical-align: top;">
+                                <div class="n_text_red_ax" v-html="item.origin_tips">
+
+                                </div>
+                                <div class="n_bgd_biao_KUa n_red huanhang" v-html="item.origin_html">
+
+                                </div>
+                            </td>
+                            <td class="n_bgd_biao_KU" style="width: 310px; vertical-align: top;">
+                                <table v-for="(subitem,subindex) in item.similar">
+                                    <tbody>
+                                        <tr>
+                                            <td class="n_bgd_biao_c" v-html="subitem.similar_tips">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="n_bgd_biao_KUa huanhang n_red"
+                                                    v-html="subitem.similar_html">
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <table width="640" class="n_table_jiebf" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <td colspan="3">
+                            <table width="640" class="n_table_jiebfs" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td width="120" class="n_table_jiebf_fzb">跨语言检测结果：
+                                        </td>
+                                        <td width="58">
+                                            <div class="n_jcjg_am">0%
+                                            </div>
+                                        </td>
+                                        <td width="61">&nbsp;
+                                        </td>
+                                        <td width="25">&nbsp;
+                                        </td>
+                                        <td width="388">&nbsp;
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="n_qwdz_ywnr">
+                <table class="n_bgd_biao" id="table_item_list" style="border-collapse: collapse; table-layout: fixed;"
+                    border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr id="Repeater1_ctl00_Repeater13_ctl00_ff">
+                            <td width="330" class="n_bgd_biao_b" colspan="2">原文内容
+                            </td>
+                            <td width="310" class="n_bgd_biao_bs">相似内容来源
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="n_bgd_biao" id="table_ce_list" style="border-collapse: collapse; table-layout: fixed;"
+                    border="0" cellspacing="0" cellpadding="0"></table>
+            </div>
+            <div class="n_ymnr_bz" id="Repeater1_ctl00_Standard_Content">
+                <div class="n_ymnr_top">指&nbsp;&nbsp;&nbsp;&nbsp;标
+                </div>
+                <div class="n_ymnr_top_s">
+                    <table width="620" class="n_table_bz" border="0" cellspacing="0" cellpadding="0">
+                    </table>
+                    <table width="620" class="n_table_bz" border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td class="n_table_bz_gdh" colspan="2">疑似剽窃文字表述
+                                </td>
+                            </tr>
+                            <tr v-for="(item,index) in report_similar">
+                                <td width="25" class="n_table_bz_mark" style="vertical-align: top;">{{index+1}}.
+                                </td>
+                                <td class="n_table_bz_gd">
+                              
+                                   {{item}}
+                                   
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="n_bodyfooter">
+            <div id="isjianjieY"></div>
+            <table width="640" class="n_sm_table" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <td width="43" class="n_sm">说明： </td>
+                        <td class="n_sms" colspan="5">1.仅可用于检测期刊编辑部来稿，不得用于其他用途。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="43" class="n_sm"></td>
+                        <td class="n_sms" colspan="5">2.总文字复制比：被检测文章总重合字数在总字数中所占的比例。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="43" class="n_sm"></td>
+                        <td class="n_sms" colspan="5">3.去除引用文献复制比：去除系统识别为引用的文献后，计算出来的重合字数在总字数中所占的比例。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="43" class="n_sm"></td>
+                        <td class="n_sms" colspan="5">4.去除本人已发表文献复制比：去除作者本人已发表文献后，计算出来的重合字数在总字数中所占的比例。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="43" class="n_sm"></td>
+                        <td class="n_sms" colspan="5">5.指标是由系统根据《学术期刊论文不端行为的界定标准》自动生成的。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="43" class="n_sm"></td>
+                        <td class="n_sms" colspan="5">6.<span class="n_red2">红色</span>文字表示文字复制部分<span
+                                id="huansequchu">;<span class="n_yes">绿色</span>文字表示引用部分</span>。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="43" class="n_sm"></td>
+                        <td class="n_sms" colspan="5">7.本报告单仅对您所选择比对资源范围内检测结果负责。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="43" class="n_sm"></td>
+                        <td width="160" class="n_sms">8.Email：<a href="mailto:amlc@cnki.net"
+                                target="_blank">amlc@cnki.net</a> </td>
+                        <td width="25" class="n_sms"><img src="./static/sina.gif">
+                        </td>
+                        <td width="200" class="n_sms"><a href="http://e.weibo.com/u/3194559873"
+                                target="_blank">http://e.weibo.com/u/3194559873</a>
+                        </td>
+                        <td width="25" class="n_sms"><img src="./static/tx.gif">
+                        </td>
+                        <td class="n_sms"><a href="http://t.qq.com/CNKI_kycx"
+                                target="_blank">http://t.qq.com/CNKI_kycx</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table width="640" class="n_sm_tables" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <td width="40"></td>
+                        <td width="20"><img title="打印" class="n_print" src="./static/n_btn_print.gif">
+                        </td>
+                        <td width="40"><a class="n_table_prints n_print" href="javascript:print();">打印</a>
+                        </td>
+                        <td width="20"><img title="保存" class="n_print" src="./static/n_btn_save.gif">
+                        </td>
+                        <td width="40"><a class="n_table_prints  n_print" href="javascript:s();">保存</a> </td>
+                        <td width="340"></td>
+                        <td><a class="n_dz" href="http://check.cnki.net/" target="_blank">http://check.cnki.net/</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+   
+    <script>
+        var mockdata = {
+            "success": true,
+            "data": {
+                "createtime": "2019-08-15 09:51:03",
+                "report_number": "",
+                "article_name": "1029-1023国学1200JZGA03-10五虎上将-马超.doc",
+                "article_author": "",
+                "time_range": "1900-01-01至2019-07-26",
+                "report_result": [
+                    {
+                        "key": "总文字复制比",
+                        "value": "24.2%"
+                    },
+                    {
+                        "key": "跨语言检测结果",
+                        "value": "0%"
+                    },
+                    {
+                        "key": "总文字复制比",
+                        "value": "16.0%"
+                    }
+                ],
+                "report_diff": [
+                   
+                        {
+                            "origin_html": `<em>五虎上将-马超，戎马一生，却郁郁寡欢而死</em>`,
+                            "origin_tips": `此处有10字相似`,
+                            "similar_html": ``,
+                            "similar_tips": `来源：`,
+                            "similar": [
+                                     
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2016&#24180;6&#26376;23&#26085;&#160;-&#160;</span><em>&#20116;&#34382;&#19978;&#23558;&#39532;&#36229;&#19968;&#29983;&#25102;&#39532;</em>&#25112;&#22330;<em>,&#21364;</em>&#20026;&#20309;&#33268;&#27515;&#19981;&#34987;&#37325;&#29992;?...&#24551;&#37057;&#33267;&#27515;&#12290;<em>&#39532;&#36229;</em>&#30340;&#24551;&#37057;&#26377;&#24456;&#22810;&#21407;&#22240;&#12290;&#39318;&#20808;<em>&#39532;&#36229;</em>&#19968;&#23478;...&#30340;&#8220;&#38182;<em>&#39532;&#36229;</em>&#8221;&#21464;&#25104;&#20102;&#27809;&#29273;&#30340;&#32769;&#34382;,&#26368;&#21518;<em>&#37057;&#37057;&#32780;</em>&#32456;...</div>`,
+                                    "similar_tips": `来源：&#20116;&#34382;&#19978;&#23558;&#39532;&#36229;&#19968;&#29983;&#25102;&#39532;&#25112;&#22330;,&#21364;&#20026;&#20309;&#33268;&#27515;&#19981;&#34987;&#37325;&#29992;?_&#20154;&#25991;&#39057;&#36947;_&#19996;&#26041;&#22836;&#26465;`
+                                },
+                                           
+                            ]
+                        },
+                 
+                        {
+                            "origin_html": `蜀国刘备的手下有五大上将。<em>分别是义字当头的关羽、英勇无畏的张飞和常胜将军赵子龙。</em>还有两个就是黄忠老将军与本文的传奇人物__马超。作为刘备五将之一的马超也是有着一段传奇的人生经历。`,
+                            "origin_tips": `此处有18字相似`,
+                            "similar_html": ``,
+                            "similar_tips": `来源：`,
+                            "similar": [
+                                     
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;6&#26376;29&#26085;&#160;-&#160;</span>&#25112;&#31070;&#21525;&#24067;,&#31070;&#26426;&#22937;&#31639;&#35832;&#33883;&#20142;<em>,&#24120;&#32988;&#23558;&#20891;&#36213;&#23376;&#40857;,</em>&#25925;&#32780;&#22823;&#23478;&#37117;&#26159;&#39038;&#21517;&#24605;<em>&#20041;</em>&#23601;&#30693;&#36947;&#20102;&#20182;&#20204;&#26159;...&#20063;&#26377;&#30340;&#19968;&#20123;&#20154;&#35828;,&#36213;&#20113;&#19981;&#22914;<em>&#20851;&#32701;&#21644;&#24352;&#39134;</em>&#20986;&#25112;&#30340;&#22810;,&#22833;&#36133;&#33258;&#28982;&#26159;&#23569;&#20102;&#24456;&#22810;,&#20877;&#21152;&#19978;&#20182;&#25171;...</div>`,
+                                    "similar_tips": `来源：&#24120;&#32988;&#23558;&#20891;&#36213;&#20113;,&#21040;&#24213;&#26159;&#19981;&#26159;&#30495;&#27491;&#30340;&#24120;&#32988;,&#20182;&#21385;&#23475;&#22312;&#21738;&#37324;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;7&#26376;12&#26085;&#160;-&#160;</span>&#20851;&#20844;&#38500;&#20102;&#24544;&#20041;&#20043;&#22806;,<em>&#36824;&#26377;</em>&#19968;&#28857;&#33258;&#36523;&#30340;&#23567;&#27611;&#30149;,&#37027;<em>&#23601;&#26159;</em>&#35797;...&#22312;<em>&#40644;&#24544;</em>&#34987;&#21016;&#22791;&#25910;&#20837;&#40638;&#19979;&#30340;&#26102;&#20505;,&#21016;&#22791;&#32473;&#20182;&#23553;&#20102;&#20010;&#21518;<em>&#23558;&#20891;</em>...&#19981;&#36807;,&#34429;&#28982;&#20851;&#32701;&#23545;&#20110;<em>&#40644;&#24544;&#21644;&#39532;&#36229;&#20004;&#20010;</em>&#20154;&#30340;&#24577;&#24230;&#24182;&#19981;&#24590;&#20040;...</div>`,
+                                    "similar_tips": `来源：&#20851;&#32701;&#21313;&#20998;&#20658;&#24930;,&#19981;&#25226;&#40644;&#24544;&#21644;&#39532;&#36229;&#25918;&#22312;&#30524;&#37324;,&#20026;&#20160;&#20040;&#20250;&#23545;&#36213;&#20113;&#21313;&#20998;&#20329;&#26381;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;4&#26376;21&#26085;&#160;-&#160;</span>&#21363;&#20351;&#22312;&#27721;&#20013;&#20043;&#25112;&#20013;<em>&#20063;&#26159;</em>&#25171;&#37233;&#27833;,&#24182;&#27809;&#26377;&#20160;&#20040;&#25112;&#21151;,&#20043;&#21518;<em>&#21016;&#22791;</em>&#20026;&#20851;&#32701;&#25253;&#20167;&#25915;&#25171;&#19996;&#21556;&#12289;&#35832;&#33883;&#20142;&#21335;&#19979;&#24179;&#23450;&#23391;&#33719;&#31561;&#34542;&#22839;,&#36825;&#20123;&#24222;&#22823;&#30340;&#25112;&#24441;&#20013;&#37117;&#27809;&#26377;&#20986;&#29616;<em>&#39532;&#36229;&#30340;</em>&#36523;&#24433;&#12290; &#22312;&#19977;&#22269;&#28436;&#20041;&#21407;&#33879;&#20013;,...</div>`,
+                                    "similar_tips": `来源：&#20316;&#20026;&#20116;&#34382;&#19978;&#23558;&#20043;&#19968;&#30340;&#39532;&#36229;,&#25112;&#26007;&#21147;&#21040;&#24213;&#25490;&#31532;&#20960;?`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class="m">&#26368;&#20339;&#31572;&#26696;: </span>&#20116;&#34382;<em>&#19978;&#23558;</em>&#20998;&#21035;&#20026;&#20851;&#32701;&#12289;&#24352;&#39134;&#12289;&#39532;&#36229;&#12289;&#40644;&#24544;&#12289;&#36213;&#20113;&#12290; 1&#12289;&#20851;&#32701;(?-220&#24180;),&#23383;&#20113;&#38271;,&#27827;&#19996;&#35299;&#33391;&#20154;,&#26089;&#26399;&#36319;&#38543;<em>&#21016;&#22791;</em>&#36759;&#36716;&#21508;&#22320;,&#26366;&#34987;&#26361;&#25805;&#29983;&#25810;,&#20110;&#30333;&#39532;&#22369;&#26025;&#26432;&#34945;&#32461;&#22823;&#23558;&#39068;&#33391;,...</div>`,
+                                    "similar_tips": `来源：&#21016;&#22791;&#25163;&#19979;&#26377;&#20116;&#34382;&#19978;&#23558;.&#35831;&#38382;&#26159;&#21738;&#20116;&#20301;?_&#30334;&#24230;&#30693;&#36947;`
+                                },
+                                           
+                            ]
+                        },
+                 
+                        {
+                            "origin_html": `马超是东汉开国名将马援的后代。然而，马超以及其父并没有受到祖上多大的庇佑。<em>马超出生之时，其父马腾看见异相。看见一只白猊从房中跑出来。马腾欣喜，</em><em>认为自己的儿子必将有一番大作为。随机为自己的儿子取名马超。</em>马超的母亲是羌族人。母族族长说：“此子不凡，乃是文殊菩萨坐下狻猊下凡。可惜命犯孤星，煞星，前途未知 ”。`,
+                            "origin_tips": `此处有32字相似`,
+                            "similar_html": ``,
+                            "similar_tips": `来源：`,
+                            "similar": [
+                                     
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2019&#24180;2&#26376;5&#26085;&#160;-&#160;</span><em>&#39532;&#36229;&#20986;&#29983;&#20043;&#26102;,&#20854;&#29238;&#39532;&#33150;</em>&#26366;&#35265;<em>&#19968;&#21482;</em>&#36890;&#20307;&#38634;&#30333;&#30340;&#29435;<em>&#29450;</em>(&#20063;&#23601;&#26159;&#29422;&#23376;)&#22868;&#20837;<em>&#25151;&#20013;</em>&#21518;&#20415;&#28040;&#22833;&#19981;&#35265;&#20102;<em>,&#39532;&#33150;</em>&#22823;&#21916;,&#30693;&#36947;&#36825;&#20035;&#22825;&#38477;&#24322;&#20806;,&#27492;&#23376;&#24517;&#23450;&#19981;&#20961;,&#24453;&#24471;&#39532;&#36229;&#38477;&#20020;&#26102;<em>,&#39532;&#33150;</em>&#29978;&#26159;...</div>`,
+                                    "similar_tips": `来源：&#26377;&#36259;&#30340;&#19977;&#22269;&#37326;&#21490;&#31070;&#35805; &#20108;&#21313;&#20845; [&#36716;&#36733;] - &#31616;&#20070;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;10&#26376;31&#26085;&#160;-&#160;</span><em>&#39532;&#36229;</em>,&#26159;&#19996;&#27721;&#26102;&#26399;&#19968;&#20010;&#21355;&#23561;&#39532;&#33150;<em>&#30340;&#20799;&#23376;</em>&#12290;&#19996;&#27721;176&#24180;,<em>&#39532;&#36229;</em>&#20986;&#29983;,&#19968;&#29983;&#24182;&#27809;&#26377;&#20160;&#20040;&#22823;&#25104;&#23601;&#30340;&#39532;&#33150;,&#23601;&#37027;<em>&#20799;&#23376;&#21462;&#21517;&#20026;&#39532;&#36229;</em>&#12290;&#24076;&#26395;&#20799;&#23376;&#21487;&#20197;&#33021;&#22815;&#21019;&#36896;&#20986;<em>&#19968;&#30058;</em>&#20107;&#19994;,&#36229;&#36807;<em>&#33258;&#24049;</em>&#26377;&#25152;&#25104;&#23601;&#12290;&#21487;...</div>`,
+                                    "similar_tips": `来源：&#20116;&#34382;&#23558;&#39532;&#36229;,&#22312;&#21016;&#22791;&#25163;&#19979;&#26368;&#32456;&#19981;&#34987;&#37325;&#29992;,&#25233;&#37057;&#25104;&#30142;&#32780;&#27515;&#30340;&#37326;&#24515;&#23478;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class="m">&#26368;&#20339;&#31572;&#26696;: </span>&#39532;&#36229;(176-222)&#23383;&#23391;&#36215;,&#25206;&#39118;&#33538;&#38517;(&#20170;&#38485;&#35199;&#20852;&#24179;)&#20154;&#12290;&#19977;&#22269;&#26102;&#26399;&#34560;&#27721;<em>&#21517;&#23558;</em>&#12290;<em>&#39532;&#36229;&#26159;&#19996;&#27721;</em>&#21021;&#24180;&#20239;&#27874;&#23558;&#20891;<em>&#39532;&#25588;&#30340;</em>&#21518;&#20154;,&#36215;&#21021;&#38543;&#29238;&#20146;&#39532;&#33150;&#22312;&#35199;&#20937;&#20026;&#19968;&#26041;&#20891;&#38400;,&#21518;&#19982;&#38889;&#36930;&#19968;&#21516;&#36827;&#25915;...<br/><a href="http://zhidao.baidu.com/q?ct=17&amp;pn=0&amp;tn=ikaslist&amp;rn=10&amp;word=%E9%A9%AC%E8%B6%85%E6%98%AF%E4%B8%9C%E6%B1%89%E5%BC%80%E5%9B%BD%E5%90%8D%E5%B0%86%E9%A9%AC%E6%8F%B4%E7%9A%84%E5%90%8E%E4%BB%A3%E3%80%82%E7%84%B6%E8%80%8C%2C%E9%A9%AC%E8%B6%85%E4%BB%A5%E5%8F%8A%E5%85%B6%E7%88%B6%E5%B9%B6%E6%B2%A1%E6%9C%89%E5%8F%97%E5%88%B0%E7%A5%96%E4%B8%8A%E5%A4%9A%E5%A4%A7%E7%9A%84%E5%BA%87%E4%BD%91%E3%80%82" target="_blank" class="c">&#26356;&#22810;&#20851;&#20110;&#39532;&#36229;&#26159;&#19996;&#27721;&#24320;&#22269;&#21517;&#23558;&#39532;&#25588;&#30340;&#21518;&#20195;&#12290;&#28982;&#32780;,&#39532;&#36229;&#20197;&#21450;&#20854;&#29238;&#24182;&#27809;&#26377;&#21463;&#21040;&#31062;&#19978;&#22810;&#22823;&#30340;&#24199;&#20305;&#12290;&#30340;&#38382;&#39064;&gt;&gt;</a></div>`,
+                                    "similar_tips": `来源：&#19996;&#27721;&#39532;&#36229;&#26159;&#39532;&#25588;&#30340;&#21518;&#20154;&#21527;?_&#30334;&#24230;&#30693;&#36947;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class="m">&#26368;&#20339;&#31572;&#26696;: </span>&#19977;&#22269;&#26102;&#26399;&#30340;<em>&#39532;&#36229;&#26159;</em>&#22240;&#30149;&#36893;&#19990;&#30340;&#12290; &#34560;&#27721;&#31456;&#27494;&#20108;&#24180;(222&#24180;)<em>,&#39532;&#36229;</em>&#24739;&#20102;&#37325;&#30149;,&#19978;&#30095;&#32473;&#21016;&#22791;:&#8220;&#33251;&#23447;&#26063;&#38376;&#19979;&#20108;&#30334;&#21475;<em>&#20154;,</em>&#34987;&#26361;&#25805;&#35803;&#26432;&#27526;&#23613;,&#21482;&#21097;&#19979;&#20174;&#24351;&#39532;&#23729;,&#24403;&#20197;&#25105;&#21329;&#24494;...<br/><a href="http://zhidao.baidu.com/q?ct=17&amp;pn=0&amp;tn=ikaslist&amp;rn=10&amp;word=%E9%A9%AC%E8%B6%85%E7%9A%84%E6%AF%8D%E4%BA%B2%E6%98%AF%E7%BE%8C%E6%97%8F%E4%BA%BA%E3%80%82%E6%AF%8D%E6%97%8F%E6%97%8F%E9%95%BF%E8%AF%B4%3A%E2%80%9C%E6%AD%A4%E5%AD%90%E4%B8%8D%E5%87%A1%2C%E4%B9%83%E6%98%AF%E6%96%87%E6%AE%8A%E8%8F%A9%E8%90%A8%E5%9D%90%E4%B8%8B%E7%8B%BB%E7%8C%8A%E4%B8%8B%E5%87%A1%E3%80%82" target="_blank" class="c">&#26356;&#22810;&#20851;&#20110;&#39532;&#36229;&#30340;&#27597;&#20146;&#26159;&#32652;&#26063;&#20154;&#12290;&#27597;&#26063;&#26063;&#38271;&#35828;:&#8220;&#27492;&#23376;&#19981;&#20961;,&#20035;&#26159;&#25991;&#27530;&#33769;&#33832;&#22352;&#19979;&#29435;&#29450;&#19979;&#20961;&#12290;&#30340;&#38382;&#39064;&gt;&gt;</a></div>`,
+                                    "similar_tips": `来源：&#19977;&#22269;&#26102;&#26399;&#30340;&#39532;&#36229;&#26159;&#24590;&#20040;&#27515;&#30340;_&#30334;&#24230;&#30693;&#36947;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2012&#24180;4&#26376;16&#26085;&#160;-&#160;</span></div>`,
+                                    "similar_tips": `来源：&#19977;&#22269;&#20247;&#31070;&#23558;&#20256;&#35828;-&#19996;&#26041;&#29305;&#27931;&#20234;&#25112;&#20105;(&#23454;&#22312;&#26159;&#31934;&#24425;,&#36716;&#26469;...`
+                                },
+                                           
+                            ]
+                        },
+                 
+                        {
+                            "origin_html": `马腾更加喜悦。认为自己儿子身负疑禀。却忽略煞星，前途未知一项。马家尚武，马超被父亲重视自小习武，却未使他习文明理。马腾在当时被朝廷重用，任命为军从事。后升为军司马。后来势力膨胀，与韩遂等族叛乱，割据一方。<em>马腾后被任命为征西将军，成了关内大军阀。</em>`,
+                            "origin_tips": `此处有22字相似`,
+                            "similar_html": ``,
+                            "similar_tips": `来源：`,
+                            "similar": [
+                                     
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2017&#24180;2&#26376;15&#26085;&#160;-&#160;</span>&#26446;&#20629;&#12289;&#37101;&#27740;&#31561;&#20154;&#25484;&#26435;&#20043;&#38469;,<em>&#39532;&#33150;&#34987;&#20219;&#21629;&#20026;&#24449;&#35199;&#23558;&#20891;,</em>&#20174;&#27492;<em>&#39532;&#33150;&#25104;&#20102;&#20851;&#20869;&#22823;&#20891;&#38400;</em>,&#19982;&#38889;&#36930;&#21183;&#21147;&#19981;&#30456;&#19978;&#19979;&#12290; &#35805;&#35828;&#39532;&#28373;&#22312;&#35199;&#20937;&#21344;&#20102;&#21322;&#22721;&#27743;&#23665;<em>&#21518;</em>,&#19968;&#30452;&#22244;&#31215;&#20853;&#39532;,&#19996;&#27721;&#27668;&#25968;&#23558;...</div>`,
+                                    "similar_tips": `来源：&#12304;&#19977;&#22269;&#20256;&#35828;-11&#12305;&#36196;&#20820;&#39532;&#30340;&#30495;&#30456;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class="m">&#26368;&#20339;&#31572;&#26696;: </span>&#33891;&#21331;&#26089;&#24180;&#20026;&#27721;&#23558;,&#22312;&#35199;&#26041;&#24179;&#23450;&#23569;&#25968;&#27665;&#26063;<em>&#21467;&#20081;,&#21518;&#26469;</em>&#21448;&#21442;&#21152;&#35752;&#20240;&#40644;&#24062;&#36215;&#20041;,&#25968;&#27425;&#20853;&#36133;,&#21364;&#20381;&#28982;<em>&#21319;&#20026;</em>&#21069;&#23558;&#20891;,&#25484;&#31649;&#37325;&#20853;&#12290;&#33891;&#21331;&#25317;&#20853;&#33258;&#37325;,&#39547;&#20853;&#20110;&#27827;&#19996;,&#19981;&#32943;&#25509;&#21463;&#26397;&#24311;&#30340;&#24449;&#21484;&#32780;...<br/><a href="http://zhidao.baidu.com/q?ct=17&amp;pn=0&amp;tn=ikaslist&amp;rn=10&amp;word=%E4%BB%BB%E5%91%BD%E4%B8%BA%E5%86%9B%E4%BB%8E%E4%BA%8B%E3%80%82%E5%90%8E%E5%8D%87%E4%B8%BA%E5%86%9B%E5%8F%B8%E9%A9%AC%E3%80%82%E5%90%8E%E6%9D%A5%E5%8A%BF%E5%8A%9B%E8%86%A8%E8%83%80%2C%E4%B8%8E%E9%9F%A9%E9%81%82%E7%AD%89%E6%97%8F%E5%8F%9B%E4%B9%B1%2C%E5%89%B2%E6%8D%AE%E4%B8%80%E6%96%B9%E3%80%82" target="_blank" class="c">&#26356;&#22810;&#20851;&#20110;&#20219;&#21629;&#20026;&#20891;&#20174;&#20107;&#12290;&#21518;&#21319;&#20026;&#20891;&#21496;&#39532;&#12290;&#21518;&#26469;&#21183;&#21147;&#33192;&#32960;,&#19982;&#38889;&#36930;&#31561;&#26063;&#21467;&#20081;,&#21106;&#25454;&#19968;&#26041;&#12290;&#30340;&#38382;&#39064;&gt;&gt;</a></div>`,
+                                    "similar_tips": `来源：&#33891;&#21331;&#21644;&#39532;&#33150;&#12289;&#38889;&#38567;&#37117;&#26159;&#35199;&#20937;&#20891;,&#20182;&#20204;&#20043;&#38388;&#26159;&#20160;&#20040;&#20851;&#31995;?_&#30334;&#24230;&#30693;&#36947;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2008&#24180;7&#26376;2&#26085;&#160;-&#160;</span></div>`,
+                                    "similar_tips": `来源：&#25991;&#20154;&#27494;&#20384; :&#24352;&#24443;&#19982;&#32993;&#37329;&#38120; &#39035;&#20848;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2008&#24180;11&#26376;19&#26085;&#160;-&#160;</span></div>`,
+                                    "similar_tips": `来源：&#12304;&#21442;&#32771;&#12305;&#19977;&#22269;&#28436;&#20041;[&#30333;&#35805;&#29256;]`
+                                },
+                                           
+                            ]
+                        },
+                 
+                        {
+                            "origin_html": `在征战羌人部落时，马腾屡次碰壁。马超在父亲面前毛遂自荐，愿意为父分忧解难。自愿出征讨伐羌族。马超整顿军队之时，将自己的两个徒儿，一个叫李彦的瘦子，一个叫童渊博胖子跟随相助，在玉真人的徒儿的协助下，从白马羌为突破口，杀死了白马羌人头领先零钵和联合之长的北宫伯玉。最终一举攻下羌族部落。`,
+                            "origin_tips": `此处有0字相似`,
+                            "similar_html": ``,
+                            "similar_tips": `来源：`,
+                            "similar": [
+                                     
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class="m">&#26368;&#20339;&#31572;&#26696;: </span><em>&#24449;&#25112;</em>&#38605;&#24182; &#12288;&#12288;&#24314;&#23433;&#20116;&#24180;-&#24314;&#23433;&#20845;&#24180;(200&#24180;-201&#24180;),&#12288;&#12288;&#26361;&#25805;&#19982;&#34945;&#32461;&#23637;&#24320;&#23448;&#28193;&#20043;&#25112;&#12290;&#20026;&#23433;&#25242;<em>&#39532;&#33150;</em>&#12289;&#38889;&#36930;,&#26242;&#26102;&#32531;&#21644;&#21518;&#39038;&#20043;&#24551;,&#26397;&#24311;&#21484;&#25308;&#33150;&#20026;&#24449;&#21335;&#23558;&#20891;&#12289;&#38889;&#36930;&#20026;&#24449;&#35199;...<br/><a href="http://zhidao.baidu.com/q?ct=17&amp;pn=0&amp;tn=ikaslist&amp;rn=10&amp;word=%E5%9C%A8%E5%BE%81%E6%88%98%E7%BE%8C%E4%BA%BA%E9%83%A8%E8%90%BD%E6%97%B6%2C%E9%A9%AC%E8%85%BE%E5%B1%A1%E6%AC%A1%E7%A2%B0%E5%A3%81%E3%80%82%E9%A9%AC%E8%B6%85%E5%9C%A8%E7%88%B6%E4%BA%B2%E9%9D%A2%E5%89%8D%E6%AF%9B%E9%81%82%E8%87%AA%E8%8D%90%2C%E6%84%BF%E6%84%8F%E4%B8%BA%E7%88%B6%E5%88%86%E5%BF%A7%E8%A7%A3%E9%9A%BE%E3%80%82" target="_blank" class="c">&#26356;&#22810;&#20851;&#20110;&#22312;&#24449;&#25112;&#32652;&#20154;&#37096;&#33853;&#26102;,&#39532;&#33150;&#23649;&#27425;&#30896;&#22721;&#12290;&#39532;&#36229;&#22312;&#29238;&#20146;&#38754;&#21069;&#27611;&#36930;&#33258;&#33616;,&#24895;&#24847;&#20026;&#29238;&#20998;&#24551;&#35299;&#38590;&#12290;&#30340;&#38382;&#39064;&gt;&gt;</a></div>`,
+                                    "similar_tips": `来源：&#39532;&#36229;&#26377;&#21738;&#20123;&#32463;&#20856;&#25112;&#24441;_&#30334;&#24230;&#30693;&#36947;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class="c-gray"/>&#20182;&#30340;&#21517;&#21495;&#26159;&#32456;&#24093;,&#20294;&#21518;&#20154;&#19968;&#30452;&#21483;&#20182;&#36213;&#20113;&#22823;&#24093;&#12290; &#26412;&#31449;&#25552;&#31034;...&#31532;&#19968;&#30334;<em>&#20108;</em>&#21313;&#19968;&#31456; &#24072;&#29238;<em>&#31461;&#28170;</em> &#31532;&#19968;&#30334;<em>&#20108;</em>&#21313;&#20116;&#31456; &#20113;&#35265;&#36807;...&#31532;&#19968;&#30334;&#20116;&#21313;&#19968;&#31456; &#24182;&#24030;<em>&#26446;&#24422;</em>(&#38450;&#30423;&#29256;) &#31532;&#19968;&#30334;&#20116;&#21313;<em>&#20108;</em>&#31456;...<p class="c-gray"><span>&#26368;&#26032;&#31456;&#33410;&#65306;&#160;</span><a href="http://www.baidu.com/link?url=Z50EDVCAvgLfB3okhu0ZBWUuEo6aEL5bhxn-FxujgRToGoRBfw4Bukqqs4MlO6ahJ7PMlzh7k3F8QUuNjRpzt_" target="_blank">&#31532;&#19977;&#21313;&#20843;&#31456; &#23553;&#20803;&#24069;&#23450;&#29237;&#20301;&#30333;&#26085;&#39134;&#21319;&#65288;&#20840;&#20070;&#23436;&#65289;</a></p></div>`,
+                                    "similar_tips": `来源：&#36213;&#20113;&#26080;&#24377;&#31383;_&#36213;&#20113;&#26368;&#26032;&#31456;&#33410;&#21015;&#34920;_&#31508;&#36259;&#38401;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2016&#24180;12&#26376;26&#26085;&#160;-&#160;</span><em>&#39532;&#36229;&#25972;&#39039;</em>&#23436;<em>&#20891;&#38431;</em>,&#27491;&#20934;&#22791;&#35201;&#20986;&#21457;<em>&#20043;&#26102;,</em>&#31361;&#28982;&#19968;&#20010;&#28216;&#26041;...&#39532;&#36229;&#24102;&#30528;&#28009;&#28009;&#33633;&#33633;&#30340;&#20154;&#39532;,&#21521;<em>&#32652;&#26063;&#20891;&#38431;</em>&#30340;&#39547;&#25166;&#22320;&#36827;&#21457;&#12290;...&#20551;&#22825;&#21629;&#36935;&#21040;&#30495;&#22825;&#21629;),&#32852;&#21512;&#20102;&#22810;&#20010;<em>&#32652;&#26063;</em>&#37096;&#33853;,&#35201;<em>&#35752;&#20240;</em>...</div>`,
+                                    "similar_tips": `来源：&#39532;&#36229;&#30340;&#20256;&#35828;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2013&#24180;9&#26376;24&#26085;&#160;-&#160;</span>&#21016;&#38271;&#25119; (&#20809;&#24433;&#27969;&#36830;) 2013-08-02 16:38:00  &#37101;&#22025;&#34987;&#21561;&#30340;&#22826;&#21385;&#23475;&#20102;,&#35201;&#35760;&#20303;&#35851;&#22763;<em>&#19982;</em>&#32479;&#24069;&#30340;&#21306;&#21035;,&#35851;&#22763;&#30340;&#35745;&#31574;&#38543;&#20415;&#20986;,&#29275;&#36924;&#30340;&#37117;&#34987;&#35760;&#19979;&#26469;&#20102;,&#27700;&#30340;&#21017;&#19981;&#34987;&#25552;&#21450;,&#32479;&#24069;&#39035;&#20026;...</div>`,
+                                    "similar_tips": `来源：&#27700;&#38236;&#20808;&#29983;&#26366;&#32463;&#21578;&#35819;&#35832;&#33883;&#20142;&#12289;&#24464;&#24246;&#12289;&#24222;&#32479;&#19977;&#20154;:&#8220;&#22857;&#23389;...`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract">(&#19979;) &#31532;216&#31456; &#22823;&#30772;&#23609;&#38596; &#31532;217&#31456; &#21462;&#19978;&#35895; &#31532;218&#31456; <em>&#30333;&#39532;</em>&#20041;&#20174;&#20043;&#36133;(&#19978;) &#31532;...&#27665;&#20026;&#27700;&#21531;&#20026;&#33311; &#31532;277&#31456; &#25910;&#32426;&#28789; &#31532;278&#31456; &#24352;&#29141;&#30340;&#20915;&#23450; &#31532;279&#31456; &#25972;&#27835;&#28436;&#27494;&#22530; &#31532;...</div>`,
+                                    "similar_tips": `来源：&#37325;&#29983;&#20043;&#25112;&#31070;&#21525;&#24067;&#31456;&#33410;&#21015;&#34920;|&#23567;&#35828;&#37325;&#29983;&#20043;&#25112;&#31070;&#21525;&#24067;&#20840;&#25991;&#20813;&#36153;&#38405;&#35835;`
+                                },
+                                           
+                            ]
+                        },
+                 
+                        {
+                            "origin_html": `相传马超也是精通音韵的一个天才。马超的萧曲和吴国的周瑜可并提而论。相当初，周瑜与孙权因为音律得到乔公和二乔的赏识，才如愿以偿的娶得了娇妻。可见周瑜的音律的高超技艺。有一成语“琴箫和鸣”说的便是此二人。<em>曾有诗云“风起西凉地，将军夜吹箫”。不可料想，一个武将，还竟有如此之才。</em>可惜，汉朝的音律重在古筝，这一绝世之音并未记录于音律史册，成为后代进一步了解马超的一大遗憾。`,
+                            "origin_tips": `此处有16字相似`,
+                            "similar_html": ``,
+                            "similar_tips": `来源：`,
+                            "similar": [
+                                     
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2011&#24180;5&#26376;13&#26085;&#160;-&#160;</span>&#19968;&#21548;&#21040;&#25105;&#21644;&#32769;&#38472;&#30340;&#21517;&#23383;,&#25105;&#20960;&#20046;&#26159;&#24819;&#37117;&#27809;&#24819;&#20415;&#20914;&#36827;&#24080;...&#21681;&#20204;&#20937;&#24030;&#30340;&#26376;&#20142;,&#23450;&#26159;&#26377;&#39746;&#30340;,&#19981;&#28982;&#20937;&#24030;&#26376;&#24590;&#20040;&#20250;<em>&#22914;&#27492;</em>...<em>&#39118;&#36215;&#35199;&#20937;&#22320;,&#23558;&#20891;&#22812;&#21561;&#31659;</em>&#12290;&#23558;&#20891;&#30340;&#31659;&#22768;,&#26366;&#26159;&#22810;&#23569;...</div>`,
+                                    "similar_tips": `来源：&#25105;&#30340;&#30701;&#31687;&#23567;&#35828;&#8212;&#8212;&#35199;&#39118;&#30772;_&#22696;&#20992;&#38182;&#38155;_&#26032;&#28010;&#21338;&#23458;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;6&#26376;1&#26085;&#160;-&#160;</span>&#20598;&#28982;&#21548;&#35828;&#20122;&#32654;&#23612;&#20122;&#26377;<em>&#19968;</em>&#20010;&#24456;&#29305;&#21035;&#30340;&#22995;&#27663;,&#21483;&#39532;&#31859;&#31185;&#23612;&#25196;,&#20182;&#20204;&#30340;&#31062;&#20808;&#26159;&#20174;&#20013;&#22269;&#26469;&#30340;,&#20063;&#22995;&#39532;,&#39532;&#35760;&#32773;&#20415;&#21435;&#28145;&#20837;<em>&#20102;&#35299;</em>&#20102;<em>&#19968;</em>&#19979;&#20182;&#20204;,&#21407;&#26469;,&#39532;&#31859;&#31185;&#23612;&#25196;&#23478;&#26063;&#30340;&#22987;&#31062;&#39532;&#25239;&#26159;<em>&#39532;&#36229;&#30340;&#21518;&#20195;</em>,...</div>`,
+                                    "similar_tips": `来源：&#19977;&#22269;&#28781;&#20129;&#21518;,&#39532;&#36229;&#27809;&#26377;&#34987;&#28781;&#26063;,&#20182;&#30340;&#21518;&#20154;&#36867;&#21435;&#32654;&#27954;,&#36824;&#22312;&#37027;&#25104;&#20026;&#33521;&#38596;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class="m">&#26368;&#20339;&#31572;&#26696;: </span>&#19968;&#12289;&#31206;&#31581;&#38485;&#35199;&#27966; &#12298;&#21490;&#35760;&#183; &#26446;&#26031;&#21015;&#20256;&#12299;&#36733;&#26446;&#26031;&#35855;&#31206;&#22987;&#30343;&#20070;&#26352;:&#8220;&#22827;&#20987;&#29934;&#21481;&#32566;<em>,</em>&#24377;&#31581;&#25615;&#39616;<em>,</em>&#32780;&#27468;&#21628;&#21596;&#21596;<em>,</em>&#24555;&#32819;&#30446;&#32773;<em>,</em>&#30495;&#31206;&#20043;&#22768;&#20063;&#12290;&#8221;&#36825;&#35828;&#26126;<em>,</em>&#26089;&#22312;&#20844;&#20803;&#21069;&#20108;&#30334;&#22810;&#24180;...<br/><a href="http://zhidao.baidu.com/q?ct=17&amp;pn=0&amp;tn=ikaslist&amp;rn=10&amp;word=%E5%8F%AF%E6%83%9C%2C%E6%B1%89%E6%9C%9D%E7%9A%84%E9%9F%B3%E5%BE%8B%E9%87%8D%E5%9C%A8%E5%8F%A4%E7%AD%9D%2C%E8%BF%99%E4%B8%80%E7%BB%9D%E4%B8%96%E4%B9%8B%E9%9F%B3%E5%B9%B6%E6%9C%AA%E8%AE%B0%E5%BD%95%E4%BA%8E%E9%9F%B3%E5%BE%8B%E5%8F%B2%E5%86%8C%2C" target="_blank" class="c">&#26356;&#22810;&#20851;&#20110;&#21487;&#24796;,&#27721;&#26397;&#30340;&#38899;&#24459;&#37325;&#22312;&#21476;&#31581;,&#36825;&#19968;&#32477;&#19990;&#20043;&#38899;&#24182;&#26410;&#35760;&#24405;&#20110;&#38899;&#24459;&#21490;&#20876;,&#30340;&#38382;&#39064;&gt;&gt;</a></div>`,
+                                    "similar_tips": `来源：&#21476;&#31581;&#30340;&#38899;&#24459;&#33539;&#22260;_&#30334;&#24230;&#30693;&#36947;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;8&#26376;28&#26085;&#160;-&#160;</span>[&#25910;&#34255;&#27492;&#31456;&#33410;] [&#19979;&#36733;] [&#20030;&#25253;]  <em>&#29748;&#31659;&#21644;&#40483;</em>&#35269;&#30693;&#38899; ...&#20449;&#23432;&#25215;&#35834;,&#35828;&#35201;&#21644;&#26354;&#27915;&#23398;&#20064;<em>&#38899;&#24459;</em>,&#31532;&#20108;&#22825;&#20415;&#20934;&#22791;&#21069;&#24448;...&#26519;&#24179;&#20043;&#20063;&#19981;&#22312;&#24847;,&#36319;&#30528;&#20182;&#20204;<em>&#20108;&#20154;</em>&#19968;&#36335;&#36208;&#36827;&#20102;&#21548;&#29748;&#36713;&#12290;&#26354;...</div>`,
+                                    "similar_tips": `来源：&#29748;&#31659;&#21644;&#40483;&#35269;&#30693;&#38899; - &#12298;&#19996;&#26041;&#19981;&#36133;&#20043;&#31505;&#21270;&#20113;&#22825;&#12299;&#39118;&#36920;&#35878; ^&#31532;..._&#26187;&#27743;&#25991;&#23398;&#22478;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2017&#24180;6&#26376;6&#26085;&#160;-&#160;</span>6.&#20511;&#19996;&#39118;:&#35832;&#33883;&#20142;<em>&#19982;&#21608;&#29788;</em>&#21046;&#23450;&#20102;&#28779;&#25915;&#26361;&#33829;&#30340;&#35745;&#21010;,&#20294;&#36830;...&#26432;&#21518;&#23613;&#36215;&#20840;&#22269;&#20043;&#20853;&#21435;&#35752;&#20240;<em>&#21556;&#22269;,</em>&#20294;&#34987;&#21556;&#28779;&#28903;&#36830;&#33829;,&#22823;&#36133;...&#33901;&#33804;&#20851;&#22812;&#25112;<em>&#39532;&#36229;,</em>&#19968;&#25903;&#19976;&#20843;&#34503;&#30683;&#21191;&#20896;&#19977;&#20891;&#12290;&#20026;&#26367;...</div>`,
+                                    "similar_tips": `来源：&#35838;&#26631;&#25512;&#33616;&#21450;&#35838;&#22806;&#38405;&#35835;&#22797;&#20064;.doc`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class="m">&#26368;&#20339;&#31572;&#26696;: </span>&#24314;&#23433;&#19977;&#24180;(&#20844;&#20803;198&#24180;)<em>,&#21608;&#29788;</em>&#38543;&#20174;&#23385;&#31574;&#25915;&#30772;&#30358;&#22478;(&#20170;&#23433;&#24509;&#28508;&#23665;&#21439;&#26757;&#22478;&#38215;)&#26102;<em>,&#20197;</em>&#24449;&#26381;&#32773;&#30340;&#23039;&#24577;<em>&#24471;&#21040;</em>&#20004;&#20010;&#22269;&#33394;&#22825;&#39321;&#30340;&#8220;&#25112;&#21033;&#21697;&#8221;,&#19968;&#20010;&#21483;&#22823;&#20052;,&#19968;&#20010;&#21483;&#23567;&#20052;&#12290; &#22823;&#20052;&#23233;&#32473;&#20102;...<br/><a href="http://zhidao.baidu.com/q?ct=17&amp;pn=0&amp;tn=ikaslist&amp;rn=10&amp;word=%E5%91%A8%E7%91%9C%E4%B8%8E%E5%AD%99%E6%9D%83%E5%9B%A0%E4%B8%BA%E9%9F%B3%E5%BE%8B%E5%BE%97%E5%88%B0%E4%B9%94%E5%85%AC%E5%92%8C%E4%BA%8C%E4%B9%94%E7%9A%84%E8%B5%8F%E8%AF%86%2C%E6%89%8D%E5%A6%82%E6%84%BF%E4%BB%A5%E5%81%BF%E7%9A%84%E5%A8%B6%E5%BE%97%E4%BA%86%E5%A8%87%E5%A6%BB%E3%80%82" target="_blank" class="c">&#26356;&#22810;&#20851;&#20110;&#21608;&#29788;&#19982;&#23385;&#26435;&#22240;&#20026;&#38899;&#24459;&#24471;&#21040;&#20052;&#20844;&#21644;&#20108;&#20052;&#30340;&#36175;&#35782;,&#25165;&#22914;&#24895;&#20197;&#20607;&#30340;&#23094;&#24471;&#20102;&#23047;&#22971;&#12290;&#30340;&#38382;&#39064;&gt;&gt;</a></div>`,
+                                    "similar_tips": `来源：&#21608;&#29788;&#21644;&#23567;&#20052;&#26159;&#24590;&#20040;&#30456;&#35782;&#30340;??_&#30334;&#24230;&#30693;&#36947;`
+                                },
+                                           
+                            ]
+                        },
+                 
+                        {
+                            "origin_html": `<em>话说马超得知自己乃是狻猊转世，称自己为西凉之王，但他也仅有吕布之勇，</em>却无得天下之相。被诸葛亮生计被招降，成为蜀国一员大将。相传，<em>马超自身带的煞气，被诸葛亮运用阴阳之术，去掉了马超身上的煞气，</em>使他对刘备大军，特别重视。曹操也运用此招，但却身边无这等晓畅阴阳之术的能人，使得他妄图收西凉军于麾下的计谋自行消散。最终只能输给了诸葛亮。<em>历史上还有一段马超战许褚。许褚和马超一战，打了230回。</em>有一成语“马马虎虎”，其实是说的就是两人不相上下。可见，马超也是有着将士之才能的。`,
+                            "origin_tips": `此处有52字相似`,
+                            "similar_html": ``,
+                            "similar_tips": `来源：`,
+                            "similar": [
+                                     
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2017&#24180;2&#26376;15&#26085;&#160;-&#160;</span><em>&#39532;&#36229;&#24471;&#30693;&#33258;&#24049;&#20035;&#26159;&#29435;&#29450;&#36716;&#19990;,</em>&#24515;&#20013;&#37326;&#24515;&#22823;&#28072;,&#24403;&#20102;<em>&#35199;&#20937;&#20043;&#29579;,</em>&#28982;&#21518;&#20415;&#20225;&#22270;&#36880;&#40575;&#20013;&#21407;,&#28982;&#32780;...&#31639;&#21040;&#39532;&#36229;&#20035;&#26159;&#29435;&#29450;&#36716;&#19990;,&#20415;&#21644;&#21016;&#22791;&#35828;&#20102;&#19968;&#21477;,&#27492;&#20154;<em>&#26377;&#21525;&#24067;&#20043;&#21191;,</em>&#32780;&#19988;&#33021;&#25307;&#38477;...</div>`,
+                                    "similar_tips": `来源：&#12304;&#19977;&#22269;&#20256;&#35828;-14&#12305;&#39532;&#36229;&#20026;&#20160;&#20040;&#34987;&#21016;&#22791;&#30452;&#25509;&#25171;&#20837;&#20919;&#23467;,&#20174;&#26410;&#37325;&#29992;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;12&#26376;9&#26085;&#160;-&#160;</span>&#160; <em>&#35832;&#33883;&#20142;</em>&#24471;&#30693;&#35199;&#20937;&#38182;<em>&#39532;&#36229;&#20043;</em>&#21517;&#21518;,&#25488;&#25351;&#19968;&#31639;,&#24471;&#30693;...&#21738;&#30693;&#36947;<em>&#35832;&#33883;&#20142;</em>&#31532;&#20108;&#26085;&#35265;<em>&#39532;&#36229;&#36523;&#19978;&#29022;&#27668;</em>&#20173;&#28982;&#20914;&#22825;<em>,&#29022;&#27668;</em>&#23578;...&#20854;&#23454;&#26159;&#29992;&#22320;&#29425;&#37324;&#30340;&#38452;&#27668;&#22909;&#22909;&#27927;&#21435;&#29435;&#29450;<em>&#36523;&#19978;&#30340;&#29022;&#27668;,</em>...</div>`,
+                                    "similar_tips": `来源：&#35832;&#33883;&#20142;&#20043;&#21069;&#19990;&#20170;&#29983;&#12298;&#19979;&#12299; - &#31616;&#20070;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2019&#24180;2&#26376;14&#26085;&#160;-&#160;</span><em>&#35768;&#35098;</em>&#27985;&#36523;&#28909;&#34880;&#27832;&#33150;,&#25293;&#39532;&#22238;&#38453;,&#21368;&#20102;&#30420;&#30002;,&#36196;&#20307;&#25552;&#20992;,&#21448;&#19982;<em>&#39532;&#36229;&#22823;&#25112;</em>30&#20313;&#21512;,...&#26082;&#28982;<em>&#35768;&#35098;&#21644;&#39532;&#36229;</em>&#20132;&#25112;&#33021;<em>&#25171;230</em>&#22238;&#21512;,&#24466;&#25163;&#30828;&#29983;&#29983;&#25303;&#26029;&#39532;&#36229;&#26538;&#26438;,&#32780;&#20026;&#20309;&#19982;&#36213;&#20113;&#30456;&#26007;...</div>`,
+                                    "similar_tips": `来源：&#35768;&#35098;&#33021;&#21644;&#39532;&#36229;&#22812;&#25112;230&#22238;&#21512;,&#20026;&#20309;&#21644;&#36213;&#20113;&#30456;&#26007;30&#22238;&#21512;&#23601;&#33853;&#36133;..._&#32593;&#26131;&#35746;&#38405;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;6&#26376;19&#26085;&#160;-&#160;</span><em>&#35832;&#33883;&#20142;</em>&#28176;&#28176;&#34987;&#31070;&#21270;,&#25104;&#20102;&#19968;&#20010;&#27809;&#26377;&#36807;&#38169;,&#39044;&#30693;&#26410;&#26469;&#30340;&#20154;&#29289;<em>,&#20294;&#26159;&#35832;&#33883;&#20142;</em>&#20020;&#27515;&#21069;&#20570;&#20102;&#19968;&#20214;&#20107;&#24773;,&#33268;&#20351;<em>&#34560;&#22269;</em>&#30333;&#30333;&#20002;&#20102;<em>&#19968;&#21592;&#22823;&#23558;,</em>&#23548;&#33268;&#20102;&#34560;&#27721;&#21518;&#26399;<em>&#26080;&#22823;&#23558;,</em>&#24278;&#21270;&#20805;&#24403;&#20808;&#38155;...</div>`,
+                                    "similar_tips": `来源：&#32874;&#26126;&#19968;&#29983;&#30340;&#35832;&#33883;&#20142;, &#27515;&#21069;&#20570;&#30340;&#26368;&#38169;&#35823;&#30340;&#20107;&#24773;, &#35753;&#34560;&#22269;&#20002;&#22833;&#19968;&#21592;&#22823;&#23558;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;1&#26085;&#160;-&#160;</span>&#27491;&#38754;&#20132;&#25112;&#20197;&#21518;,&#21016;&#22791;&#21644;&#20043;&#21069;&#26377;&#20160;&#20040;&#21464;&#21270;<em>,&#26361;&#25805;&#20063;</em>&#24515;&#30693;&#32922;&#26126;&#12290;&#21487;&#20197;&#35828;,&#21016;&#22791;&#30340;&#19968;&#20030;&#19968;&#21160;&#37117;&#29301;&#21160;&#30528;&#26361;&#25805;&#30340;&#24515;&#31070;&#12290;&#21487;&#26159;,&#20026;&#20160;&#20040;<em>&#23545;&#20110;&#21016;&#22791;</em>&#24471;&#21040;&#35832;&#33883;&#20142;&#36825;&#20040;&#37325;&#35201;&#30340;&#20107;<em>,&#26361;&#25805;&#21364;</em>...</div>`,
+                                    "similar_tips": `来源：&#26361;&#25805;&#23545;&#21016;&#22791;&#37027;&#20040;&#37325;&#35270;,&#20026;&#20160;&#20040;&#27809;&#35780;&#20215;&#36807;&#35832;&#33883;&#20142;&#12304;&#19977;&#22269;&#21543;&#12305;_&#30334;&#24230;&#36148;&#21543;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2017&#24180;1&#26376;31&#26085;&#160;-&#160;</span>&#20854;&#32467;&#26524;&#26159;&#20135;&#29983;&#20102;&#35768;&#22810;&#21069;&#21518;&#30683;&#30462;&#30340;&#25112;&#20363;,<em>&#20351;&#24471;</em>&#27611;&#26412;&#19977;&#22269;&#30340;...&#20010;&#36229;&#24378;&#32988;&#32489;,&#21525;&#24067;&#27494;&#21147;&#32473;&#20154;&#30340;&#24863;&#35273;&#37117;&#20940;&#39550;&#20110;&#20854;&#20182;&#36229;&#19968;&#27969;...&#8220;&#20004;&#20891;&#22278;&#38453;,&#21525;&#24067;&#35270;&#35199;&#20937;&#29467;&#23558;&#26446;&#20629;&#21450;<em>&#40638;&#19979;</em>&#20004;&#19977;...</div>`,
+                                    "similar_tips": `来源：&#36716;&#12298;&#22025;&#38742;&#29256;&#19977;&#22269;&#20116;&#30334;&#20301;&#27494;&#23558;&#27494;&#21147;&#20998;&#26512;&#12299; &#20316;&#32773;:burrjiang&#12304;..._&#30334;&#24230;&#36148;&#21543;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class="m">&#26368;&#20339;&#31572;&#26696;: </span>&#20320;&#19981;&#33021;&#34987;&#32599;&#24573;&#24736;&#32473;&#24573;&#24736;&#20102;&#12290;&#21490;&#23454;<em>&#39532;&#36229;</em>&#20063;&#27809;&#26377;&#24471;&#21040;&#30340;&#37325;&#29992;,&#26377;&#36825;&#20040;&#20960;&#20010;&#21407;&#22240;:1.<em>&#39532;&#36229;</em>&#20026;&#20154;&#21191;&#27494;,&#24515;&#33016;&#29421;&#31364;2.&#35199;&#20937;&#19968;&#30452;&#24456;&#20081;,&#20108;&#39532;&#27663;&#23478;&#26063;&#23545;&#35199;&#20937;&#32652;&#20154;,&#23588;&#20854;&#26159;<em>&#39532;&#36229;</em>&#22312;&#20854;&#20013;...</div>`,
+                                    "similar_tips": `来源：&#39532;&#36229;&#24402;&#38477;&#21016;&#22791;&#21518;&#20026;&#20160;&#20040;&#27809;&#31435;&#36807;&#22823;&#21151;?_&#30334;&#24230;&#30693;&#36947;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class="m">&#26368;&#20339;&#31572;&#26696;: </span><em>&#26377;&#19968;</em>&#20010;&#31168;&#25165; &#24178;&#20160;&#20040;&#29305;&#21035;&#19981;&#19987;&#24515; &#26377;&#19968;&#22825;&#20182;&#30011;&#30011; &#20808;&#30011;&#20102;&#19968;&#20010;&#39532;&#22836; &#28982;&#21518;&#23601;&#20986;&#21435;&#20102; &#22238;&#26469;&#30340;&#26102;&#20505;&#21448;&#24819;&#30011;&#34382; &#20110;&#26159;&#21448;&#25509;&#20102;&#19968;&#20010;&#34382;&#30340;&#36523;&#23376; &#20182;&#30340;&#29238;&#20146;&#38382;&#20182;&#37027;&#26159; &#20160;&#20040; &#20182;...<br/><a href="http://zhidao.baidu.com/q?ct=17&amp;pn=0&amp;tn=ikaslist&amp;rn=10&amp;word=%E6%9C%89%E4%B8%80%E6%88%90%E8%AF%AD%E2%80%9C%E9%A9%AC%E9%A9%AC%E8%99%8E%E8%99%8E%E2%80%9D%2C%E5%85%B6%E5%AE%9E%E6%98%AF%E8%AF%B4%E7%9A%84%E5%B0%B1%E6%98%AF%E4%B8%A4%E4%BA%BA%E4%B8%8D%E7%9B%B8%E4%B8%8A%E4%B8%8B%E3%80%82%E5%8F%AF%E8%A7%81%2C" target="_blank" class="c">&#26356;&#22810;&#20851;&#20110;&#26377;&#19968;&#25104;&#35821;&#8220;&#39532;&#39532;&#34382;&#34382;&#8221;,&#20854;&#23454;&#26159;&#35828;&#30340;&#23601;&#26159;&#20004;&#20154;&#19981;&#30456;&#19978;&#19979;&#12290;&#21487;&#35265;,&#30340;&#38382;&#39064;&gt;&gt;</a></div>`,
+                                    "similar_tips": `来源：&#39532;&#39532;&#34382;&#34382;&#26159;&#25104;&#35821;&#21527;?_&#30334;&#24230;&#30693;&#36947;`
+                                },
+                                           
+                            ]
+                        },
+                 
+                        {
+                            "origin_html": `<em>话说曹操灭了西凉后联合张鲁欲打刘璋。还想吃下西川于是联合了张鲁打刘璋。</em>而马超刚好为刘璋守西川。在周瑜的二计分国的计谋下，无能为力的马超权衡利弊，没有将西川送于孙权，而是把西川献给了蜀国刘备。并且帮助刘备夺得刘璋的权，使得刘备的疆土又扩大一部分，蜀国势力也在不断增强。最终刘备重用马超，<em>并将他封为五虎上将之的大将，由马超统领的西凉军，</em>在刘备以后的征讨魏国、吴国的战场上发挥着不可替代的作用。最终成为历史上一个著名的上将。`,
+                            "origin_tips": `此处有56字相似`,
+                            "similar_html": ``,
+                            "similar_tips": `来源：`,
+                            "similar": [
+                                     
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2015&#24180;11&#26376;10&#26085;&#160;-&#160;</span>&#39532;&#36229;&#36827;&#20102;&#35199;&#24029;&#21518;,<em>&#35805;&#35828;&#26361;&#25805;&#28781;&#20102;&#35199;&#20937;&#21518;&#36824;&#24819;&#21507;&#19979;&#35199;&#24029;&#20110;&#26159;&#32852;&#21512;&#20102;&#24352;&#40065;&#25171;&#21016;&#29835;</em>,&#39532;&#36229;&#19968;&#30475;&#28781;&#38376;&#20982;&#25163;&#21534;&#20102;&#33258;&#24049;&#30340;&#35199;&#20937;&#23621;&#28982;&#36824;&#35201;&#21534;&#35199;&#24029;,&#20110;&#26159;&#24590;&#20040;&#30340;&#20063;&#35201;&#23432;&#20303;&#35199;&#24029;,&#35805;&#35828;&#37027;<em>...</em></div>`,
+                                    "similar_tips": `来源：&#25991;&#20197;&#20256;&#24773; &#19977;&#22269;&#22855;&#24322;&#20256; &#20116;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;12&#26376;25&#26085;&#160;-&#160;</span><em>&#39532;&#36229;</em>&#19968;&#24320;&#22987;&#23646;&#20110;<em>&#35199;&#20937;&#20891;&#32479;&#39046;,</em>&#22312;&#24403;&#26102;&#31639;&#26159;&#26377;&#23567;&#23567;&#30340;&#31934;&#38160;...&#20026;&#34560;&#22269;&#24449;&#25112;&#27801;&#22330;,&#24314;&#31435;&#21151;&#21171;&#26080;&#25968;,&#34987;&#21016;&#22791;<em>&#23553;&#20026;&#20116;&#34382;&#19978;&#23558;</em>&#12290;...&#20294;&#26159;<em>&#39532;&#36229;</em>&#20316;&#20026;&#34560;&#22269;<em>&#22823;&#23558;,</em>&#30861;&#20110;&#23616;&#21183;,&#20182;&#21482;&#33021;&#30524;...</div>`,
+                                    "similar_tips": `来源：&#20116;&#34382;&#19978;&#23558;&#20013;&#23646;&#20182;&#19979;&#22330;&#20932;&#24808;,&#20840;&#23478;&#20154;&#36973;&#26361;&#25805;&#26432;&#23475;,&#22971;&#23376;&#34987;&#20154;&#29609;&#24324;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2012&#24180;4&#26376;15&#26085;&#160;-&#160;</span>&#32780;&#30333;&#39532;&#32652;&#20035;&#26159;&#30333;&#23376;<em>,&#39532;&#36229;</em>&#24046;&#28857;&#33853;&#20102;&#30333;&#39532;&#32652;&#30340;&#22871;,&#20170;&#26085;&#20182;...&#21644;&#21556;&#22269;&#30340;<em>&#21608;&#29788;</em>&#24182;&#32937;,&#29978;&#33267;&#36824;&#26377;&#19968;&#20010;&#25104;&#35821;&#21483;&#20570;&#29748;&#31659;&#21644;&#35856;,...&#19982;&#27492;&#21516;&#26102;<em>&#39532;&#36229;&#20026;&#21016;&#29835;&#23432;&#35199;&#24029;,&#39532;&#36229;&#23432;</em>&#23478;&#30340;&#26412;&#20107;&#19981;...</div>`,
+                                    "similar_tips": `来源：&#19977;&#22269;&#39532;&#36229;_&#22825;&#28079;&#26434;&#35848;_&#35770;&#22363;_&#22825;&#28079;&#31038;&#21306;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class="m">&#26368;&#20339;&#31572;&#26696;: </span>&#12288;&#12288;&#32654;&#22269;<em>&#21382;&#21490;&#19978;</em>&#26377;10&#20301;&#20116;&#26143;<em>&#19978;&#23558;</em>,&#20854;&#20013;&#21807;&#19968;&#24403;&#19978;&#24635;&#32479;&#30340;&#30340;&#20116;&#26143;<em>&#19978;&#23558;</em>&#26159;&#33406;&#26862;&#35946;&#23041;&#23572;&#12290; &#12288;&#12288;&#33406;&#26862;&#35946;&#23041;&#23572;,1952&#24180;&#20316;&#20026;&#20849;&#21644;&#20826;&#24635;&#32479;&#20505;&#36873;&#20154;&#21442;&#21152;&#31454;&#36873;&#24635;&#32479;&#33719;&#32988;,<em>&#25104;&#20026;</em>&#32654;&#22269;&#31532;34&#20219;...<br/><a href="http://zhidao.baidu.com/q?ct=17&amp;pn=0&amp;tn=ikaslist&amp;rn=10&amp;word=%E6%9C%80%E7%BB%88%E6%88%90%E4%B8%BA%E5%8E%86%E5%8F%B2%E4%B8%8A%E4%B8%80%E4%B8%AA%E8%91%97%E5%90%8D%E7%9A%84%E4%B8%8A%E5%B0%86%E3%80%82" target="_blank" class="c">&#26356;&#22810;&#20851;&#20110;&#26368;&#32456;&#25104;&#20026;&#21382;&#21490;&#19978;&#19968;&#20010;&#33879;&#21517;&#30340;&#19978;&#23558;&#12290;&#30340;&#38382;&#39064;&gt;&gt;</a></div>`,
+                                    "similar_tips": `来源：&#21382;&#21490;&#19978;&#21807;&#19968;&#24403;&#19978;&#20116;&#26143;&#32423;&#19978;&#23558;&#30340;&#26159;?_&#30334;&#24230;&#30693;&#36947;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;8&#26376;19&#26085;&#160;-&#160;</span>&#36319;<em>&#21556;&#22269;</em>&#26159;&#23478;&#24680;,&#25152;&#20197;&#24212;&#35813;&#21435;<em>&#24449;&#35752;&#39759;&#22269;</em>&#20026;&#19981;&#26159;&#21435;&#25915;&#25171;<em>&#21556;&#22269;,</em>&#20294;&#26159;<em>&#21016;&#22791;</em>&#25298;&#32477;&#20102;,&#20026;&#20102;&#24110;&#21161;&#20851;&#32701;&#22797;&#20167;,&#20294;&#26159;&#30475;&#36215;&#26469;&#24456;&#24819;&#25915;&#19979;&#19996;&#21556;&#30340;<em>&#21016;&#22791;</em>&#21364;&#19981;&#24102;&#19978;&#35832;&#33883;&#20142;&#21644;&#36213;&#20113;,&#24102;&#30528;&#19968;&#32676;&#24378;...</div>`,
+                                    "similar_tips": `来源：&#21016;&#22791;&#19968;&#23450;&#19981;&#20250;&#21435;&#25915;&#25171;&#39759;&#22269;!&#20182;&#21435;&#25171;&#21556;&#22269;&#21482;&#26159;&#25302;&#24310;&#26102;&#38388;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class="m">&#26368;&#20339;&#31572;&#26696;: </span>&#20854;&#19968;,&#20837;&#33394;&#30456;&#25152;&#35328;<em>,&#21016;&#22791;</em>&#26410;&#24517;&#27604;<em>&#21016;&#29835;</em>&#24369;&#23567;&#12290;<em>&#21016;&#22791;</em>&#34429;&#21021;&#23450;&#33606;&#21335;,&#20294;&#26159;&#39318;&#20808;,&#33606;&#24030;<em>&#27809;&#26377;</em>&#32463;&#21382;&#40644;&#24062;&#25171;&#20081;,&#32780;&#19988;&#27721;&#26411;&#37027;&#20010;&#31532;&#19968;&#21517;&#22763;&#21016;&#34920;&#34429;&#28982;&#24449;&#20240;&#22825;&#19979;&#19981;&#34892;,&#20294;&#26159;&#23432;&#22303;&#36824;&#26159;&#21487;&#20197;&#30340;,&#19981;...<br/><a href="http://zhidao.baidu.com/q?ct=17&amp;pn=0&amp;tn=ikaslist&amp;rn=10&amp;word=%E6%B2%A1%E6%9C%89%E5%B0%86%E8%A5%BF%E5%B7%9D%E9%80%81%E4%BA%8E%E5%AD%99%E6%9D%83%2C%E8%80%8C%E6%98%AF%E6%8A%8A%E8%A5%BF%E5%B7%9D%E7%8C%AE%E7%BB%99%E4%BA%86%E8%9C%80%E5%9B%BD%E5%88%98%E5%A4%87%E3%80%82%E5%B9%B6%E4%B8%94%E5%B8%AE%E5%8A%A9%E5%88%98%E5%A4%87%E5%A4%BA%E5%BE%97%E5%88%98%E7%92%8B%E7%9A%84%E6%9D%83%2C" target="_blank" class="c">&#26356;&#22810;&#20851;&#20110;&#27809;&#26377;&#23558;&#35199;&#24029;&#36865;&#20110;&#23385;&#26435;,&#32780;&#26159;&#25226;&#35199;&#24029;&#29486;&#32473;&#20102;&#34560;&#22269;&#21016;&#22791;&#12290;&#24182;&#19988;&#24110;&#21161;&#21016;&#22791;&#22842;&#24471;&#21016;&#29835;&#30340;&#26435;,&#30340;&#38382;&#39064;&gt;&gt;</a></div>`,
+                                    "similar_tips": `来源：&#35831;&#38382;&#21016;&#22791;&#22914;&#20309;&#21462;&#24471;&#35199;&#24029;&#30340;?_&#30334;&#24230;&#30693;&#36947;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class="m">&#26368;&#20339;&#31572;&#26696;: </span>&#33258;&#20174;<em>&#39532;&#36229;</em>&#24402;&#39034;<em>&#34560;&#22269;</em>&#20197;&#21518;,&#38182;<em>&#39532;&#36229;</em>&#22909;&#20687;&#22312;&#22823;&#23478;&#30340;&#30524;&#29699;&#28176;&#28176;&#28040;&#22833;&#20102;&#12290;&#21807;&#26377;&#24429;?&#36896;&#21453;&#30340;&#26102;&#20505;&#20986;&#20102;&#20986;&#22330;&#12290;&#20223;&#20315;<em>&#39532;&#36229;</em>&#21807;&#19968;&#30340;&#20219;&#21153;&#23601;&#26159;&#25269;&#24481;&#32652;&#20853;&#20102;&#12290;&#20165;&#20165;&#30041;&#20182;&#20316;&#20026;&#23432;&#23558;&#26159;&#21542;&#19981;&#24688;&#24403;(...<br/><a href="http://zhidao.baidu.com/q?ct=17&amp;pn=0&amp;tn=ikaslist&amp;rn=10&amp;word=%E4%BD%BF%E5%BE%97%E5%88%98%E5%A4%87%E7%9A%84%E7%96%86%E5%9C%9F%E5%8F%88%E6%89%A9%E5%A4%A7%E4%B8%80%E9%83%A8%E5%88%86%2C%E8%9C%80%E5%9B%BD%E5%8A%BF%E5%8A%9B%E4%B9%9F%E5%9C%A8%E4%B8%8D%E6%96%AD%E5%A2%9E%E5%BC%BA%E3%80%82%E6%9C%80%E7%BB%88%E5%88%98%E5%A4%87%E9%87%8D%E7%94%A8%E9%A9%AC%E8%B6%85%2C" target="_blank" class="c">&#26356;&#22810;&#20851;&#20110;&#20351;&#24471;&#21016;&#22791;&#30340;&#30086;&#22303;&#21448;&#25193;&#22823;&#19968;&#37096;&#20998;,&#34560;&#22269;&#21183;&#21147;&#20063;&#22312;&#19981;&#26029;&#22686;&#24378;&#12290;&#26368;&#32456;&#21016;&#22791;&#37325;&#29992;&#39532;&#36229;,&#30340;&#38382;&#39064;&gt;&gt;</a></div>`,
+                                    "similar_tips": `来源：&#20026;&#20160;&#20040;&#34560;&#22269;&#19981;&#37325;&#29992;&#39532;&#36229;?_&#30334;&#24230;&#30693;&#36947;`
+                                },
+                                           
+                            ]
+                        },
+                 
+                    ],
+                "report_reference": {
+                    "reference_title": "全文",
+                "reference_wordnumber": "1219",
+                "reference_data": [
+
+                ],
+                "reference_list": [
+                
+                {
+                       
+                        "title": "&#25991;&#20197;&#20256;&#24773; &#19977;&#22269;&#22855;&#24322;&#20256; &#20116;",
+                        "percent": "2.63%"
+                    },
+                
+                {
+                       
+                        "title": "&#12304;&#19977;&#22269;&#20256;&#35828;-14&#12305;&#39532;&#36229;&#20026;&#20160;&#20040;&#34987;&#21016;&#22791;&#30452;&#25509;&#25171;&#20837;&#20919;&#23467;,&#20174;&#26410;&#37325;&#29992;",
+                        "percent": "1.89%"
+                    },
+                
+                {
+                       
+                        "title": "&#12304;&#19977;&#22269;&#20256;&#35828;-11&#12305;&#36196;&#20820;&#39532;&#30340;&#30495;&#30456;",
+                        "percent": "1.39%"
+                    },
+                
+                {
+                       
+                        "title": "&#35832;&#33883;&#20142;&#20043;&#21069;&#19990;&#20170;&#29983;&#12298;&#19979;&#12299; - &#31616;&#20070;",
+                        "percent": "1.07%"
+                    },
+                
+                {
+                       
+                        "title": "&#26377;&#36259;&#30340;&#19977;&#22269;&#37326;&#21490;&#31070;&#35805; &#20108;&#21313;&#20845; [&#36716;&#36733;] - &#31616;&#20070;",
+                        "percent": "1.07%"
+                    },
+                
+                {
+                       
+                        "title": "&#20116;&#34382;&#19978;&#23558;&#20013;&#23646;&#20182;&#19979;&#22330;&#20932;&#24808;,&#20840;&#23478;&#20154;&#36973;&#26361;&#25805;&#26432;&#23475;,&#22971;&#23376;&#34987;&#20154;&#29609;&#24324;",
+                        "percent": "1.07%"
+                    },
+                
+                {
+                       
+                        "title": "&#24120;&#32988;&#23558;&#20891;&#36213;&#20113;,&#21040;&#24213;&#26159;&#19981;&#26159;&#30495;&#27491;&#30340;&#24120;&#32988;,&#20182;&#21385;&#23475;&#22312;&#21738;&#37324;",
+                        "percent": "0.98%"
+                    },
+                
+                {
+                       
+                        "title": "&#19977;&#22269;&#39532;&#36229;_&#22825;&#28079;&#26434;&#35848;_&#35770;&#22363;_&#22825;&#28079;&#31038;&#21306;",
+                        "percent": "0.9%"
+                    },
+                
+                {
+                       
+                        "title": "&#20116;&#34382;&#23558;&#39532;&#36229;,&#22312;&#21016;&#22791;&#25163;&#19979;&#26368;&#32456;&#19981;&#34987;&#37325;&#29992;,&#25233;&#37057;&#25104;&#30142;&#32780;&#27515;&#30340;&#37326;&#24515;&#23478;",
+                        "percent": "0.9%"
+                    },
+                
+                {
+                       
+                        "title": "&#25105;&#30340;&#30701;&#31687;&#23567;&#35828;&#8212;&#8212;&#35199;&#39118;&#30772;_&#22696;&#20992;&#38182;&#38155;_&#26032;&#28010;&#21338;&#23458;",
+                        "percent": "0.9%"
+                    },
+                
+                    
+                ]
+                },
+                "report_similar":[
+                    "",
+                ]
+            }
+        }
+        var app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    createtime: "",
+                    report_number: "",
+                    article_name: "",
+                    article_author: "",
+                    time_range: "",
+                    report_result: [],
+                    report_diff: [],
+                    report_reference: {},
+                    report_similar:[]
+                }
+            },
+            methods: {
+                init: function () {
+                    if (mockdata.success) {
+                        this.createtime = mockdata.data.createtime
+                        this.report_number = mockdata.data.report_number
+                        this.article_name = mockdata.data.article_name
+                        this.article_author = mockdata.data.article_author
+                        this.time_range = mockdata.data.time_range
+                        this.report_result = mockdata.data.report_result
+                        this.report_diff = mockdata.data.report_diff
+                        this.report_reference = mockdata.data.report_reference
+                        this.report_similar = mockdata.data.report_similar
+                    }
+                    console.log('init')
+                }
+            },
+            created() {
+
+            },
+            mounted() {
+                this.init()
+
+            }
+        })
+    </script>
+</body>
+<style>
+    body {
+        text-align: left;
+        font-size: 12px;
+        color: #292929;
+        background: url(images/n_bg.gif) repeat;
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+     em {
+    color:red;
+    }
+
+    #app {
+        width: 640px;
+        min-height: 600px;
+        background-color: #FFF;
+        background-repeat: repeat-y;
+        height: auto !important;
+        margin: 0px auto 0 auto;
+    }
+
+    .n_main {
+        width: 640px;
+        min-height: 600px;
+        background-color: #FFF;
+        background-repeat: repeat-y;
+        height: auto !important;
+        margin: 0px auto 0 auto;
+    }
+
+    * {
+        text-align: left;
+    }
+
+    html,
+    body {
+        text-align: left;
+        font-size: 12px;
+        color: #292929;
+        background: url(images/n_bg.gif) repeat;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    @media print {
+        .n_print {
+            display: none;
+        }
+    }
+
+    .n_table_prints {
+        font-weight: bold;
+        font-size: 12px;
+        color: #2e2f2e;
+    }
+
+    .n_table_prints:hover {
+        color: #760605;
+    }
+
+    .n_title {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        width: 640px;
+    }
+
+    .n_logo_left {
+        text-align: left;
+        padding-left: 20px;
+    }
+
+    .n_logo_left img {
+        border: none;
+    }
+
+    .n_logo_right img {
+        border: none;
+    }
+
+    .n_bfb {
+        font-weight: bold;
+    }
+
+    .n_logo_right {
+        text-align: right;
+        padding-right: 20px;
+    }
+
+    .n_title_left {
+        float: left;
+        width: 190px;
+        height: 46px;
+        background: url(images/jie_amlc.gif) no-repeat;
+        margin-left: 10px;
+        display: inline;
+    }
+
+    .n_title_right {
+        float: right;
+        width: 185px;
+        height: 62px;
+        background: url(images/jie_zw.gif) no-repeat;
+        margin-right: 10px;
+        display: inline;
+    }
+
+    .n_bodytop {
+        width: 640px;
+        margin: 0px auto;
+    }
+
+    .n_clear {
+        clear: both;
+    }
+
+    .n_bt {
+        text-align: center;
+        height: 30px;
+        line-height: 30px;
+        overflow: hidden;
+        font-size: 24px;
+        font-weight: bold;
+        border-bottom: solid 1px #035d03;
+        margin-bottom: 1px;
+    }
+
+    .n_jie {
+        font-size: 12px;
+        font-weight: normal;
+    }
+
+    .n_no {
+        height: 30px;
+        background: #f4f9ef;
+        width: 640px;
+        margin: 0px auto;
+        line-height: 30px;
+        color: #750606;
+        text-align: left;
+        font-size: 12px;
+    }
+
+    .n_bgd_k1 {
+        width: 640px;
+        height: auto;
+        padding-top: 10px;
+        font-size: 12px;
+    }
+
+    .n_yes {
+        color: #009900;
+    }
+
+    .n_table_a {
+        color: #000;
+        font-size: 12px;
+        border: 0;
+    }
+
+    .n_table_a_cos {
+        background-color: #f4f9ef;
+        height: 26px;
+    }
+
+    .n_table_a_cosa {
+        background-color: #f4f9ef;
+        height: 20px;
+    }
+
+    .n_text_green {
+        color: #1a5f02;
+        text-align: right;
+        line-height: 26px;
+        font-weight: bold;
+    }
+
+    .n_text_block_b {
+        line-height: 20px;
+        padding-left: 8px;
+        color: #7a7a7a;
+    }
+
+    .n_text_block_bm {
+        line-height: 20px;
+        font-size: 12px;
+        text-align: left;
+    }
+
+    .n_text_block_a {
+        text-align: left;
+        line-height: 26px;
+    }
+
+    .n_bgd_k2 {
+        font-size: 12px;
+    }
+
+    .n_table_b {
+        width: 640px;
+        border-top: 2px #035d03 solid;
+    }
+
+    .n_text_Gm {
+        color: #035d03;
+    }
+
+    .n_text_Gm a {
+        color: #035d03;
+    }
+
+    .n_text_Gm a:hover {
+        color: #7bab7c;
+    }
+
+    .s_new_hui {
+        color: #666;
+    }
+
+    .n_text_red_a {
+        color: #860505;
+        line-height: 26px;
+        font-size: 12px;
+        font-weight: bold;
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    .n_text_red_a_zb {
+        color: #860505;
+        line-height: 26px;
+        font-size: 12px;
+        font-weight: bold;
+        text-align: left;
+        text-align: right;
+    }
+
+    .n_text_Gs {
+        color: #860505;
+        border-top: 1px #035d03 dotted;
+    }
+
+    .n_table_b_cos {
+        background: #f3f9ef;
+    }
+
+    .n_red_bold {
+        color: #000;
+        font-weight: bold;
+    }
+
+    .n_text_block_b6 {
+        color: #7e7c7c;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    .n_table_b1 {
+        background: #f3f9ef;
+    }
+
+    .n_table_a1 {
+        background: #f3f9ef;
+        line-height: 20px;
+        border-bottom: 1px #035d03 dotted;
+    }
+
+    .n_table_a2 {
+        background: #f3f9ef;
+        line-height: 20px;
+    }
+
+    .n_table_a3 {
+        background: #f3f9ef;
+        line-height: 25px;
+        border-bottom: 1px #035d03 solid;
+        border-top: 1px #035d03 solid;
+    }
+
+    .n_table_a3_l {
+        text-align: right;
+    }
+
+    .n_table_a3_r {
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .n_table_a3_ra {
+        color: #292929;
+    }
+
+    .n_table_a3_ra:hover {
+        color: #750606;
+    }
+
+    .n_text_block_bs {
+        text-align: left;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .n_text_block_bss {
+        text-align: left;
+        color: #666;
+    }
+
+    .n_text_block_bsm {
+        font-weight: bold;
+    }
+
+    .n_text_GT {
+        border-bottom: 1px #035d03 dotted;
+        font-weight: bold;
+        padding-left: 6px;
+        color: #860505;
+    }
+
+    .n_text_GTs {
+        font-weight: bold;
+        padding-left: 10px;
+    }
+
+    .n_qubr_fzb {
+        border-bottom: 1px #1a5f02 solid;
+    }
+
+    .n_table_a_cosa {
+        border-bottom: 1px #1a5f02 solid;
+    }
+
+    .n_biao {
+        text-align: right;
+    }
+
+    .n_bgd_biao {
+        width: 640px;
+    }
+
+    .n_text_block_a2 a {
+        color: #292929;
+    }
+
+    .n_text_block_a2 a:hover {
+        color: #860505;
+    }
+
+    .n_jcjg_a {
+        width: 48px;
+        height: 17px;
+        background-image: url(images/pmlc12_icon1.gif);
+        background-repeat: no-repeat;
+        text-align: left;
+        line-height: 17px;
+        padding-left: 10px;
+        color: #333;
+    }
+
+    .n_jcjg_ap {
+        width: 48px;
+        height: 17px;
+        background-image: url(images/n_re.gif);
+        background-repeat: no-repeat;
+        text-align: left;
+        line-height: 17px;
+        padding-left: 10px;
+        color: #333;
+    }
+
+    .n_jcjg_am {
+        width: 48px;
+        height: 17px;
+        /*background-image: url(images/n_ye.gif);*/
+        background-repeat: no-repeat;
+        text-align: left;
+        line-height: 17px;
+        color: #333;
+    }
+
+    .n_jcjg_al {
+        width: 48px;
+        height: 17px;
+        background-image: url(images/n_jh.gif);
+        background-repeat: no-repeat;
+        text-align: left;
+        line-height: 17px;
+        padding-left: 10px;
+        color: #333;
+    }
+
+    .n_k3 {
+        background: #f7f7f7;
+        overflow: hidden;
+    }
+
+    .n_pic {
+        width: 602px;
+        height: 15px;
+        margin: 5px auto 10px auto;
+    }
+
+    .n_table_zs {
+        margin: 0px auto;
+    }
+
+    .n_bodymid {
+        width: 640px;
+        margin: 0px auto;
+        font-size: 12px;
+        overflow: hidden;
+    }
+
+    .n_bodymid_bf {
+        margin-top: 5px;
+    }
+
+    .n_table_jiebf {
+        background: #f3f9ef;
+        border-top: 2px #035d03 solid;
+    }
+
+    .n_table_jiebfs {
+        background: #f3f9ef;
+        border-top: 1px #035d03 solid;
+        border-bottom: 1px #035d03 solid;
+    }
+
+    .n_table_jiebf_zzs {
+        padding-left: 40px;
+    }
+
+    .n_table_jiebf_fzb {
+        font-weight: bold;
+        text-align: right;
+        color: #760605;
+        height: 25px;
+        line-height: 25px;
+    }
+
+    .n_jcjg_as {
+        float: left;
+        width: 48px;
+        height: 17px;
+        background-image: url(images/pmlc12_icon1.gif);
+        background-repeat: no-repeat;
+        text-align: center;
+        line-height: 17px;
+        color: #333;
+    }
+
+    .n_xu {
+        width: 640px;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: #CCCCCC;
+    }
+
+    .n_xu_a {
+        width: 20px;
+        height: 20px;
+        background-color: #fcfaf1;
+        text-align: center;
+        border-bottom: 1px #ccc solid;
+        border-right: 1px #ccc solid;
+    }
+
+    .n_text_back_a {
+        font-size: 12px;
+        text-align: center;
+        color: #333;
+        padding-left: 2px;
+        line-height: 20px;
+    }
+
+    .n_text_G2 {
+        color: #333;
+        font-size: 12px;
+        text-align: left;
+        padding-left: 8px;
+        line-height: 20px;
+    }
+
+    .n_text_G2 a {
+        color: #2e2f2e;
+    }
+
+    .n_text_G2 a:hover {
+        color: #800613;
+    }
+
+    .n_xu_a {
+        width: 20px;
+        height: 20px;
+        background-color: #fcfaf1;
+        text-align: center;
+        border-right-width: 1px;
+        border-bottom-width: 1px;
+        border-right-style: solid;
+        border-bottom-style: solid;
+        border-right-color: #CCCCCC;
+        border-bottom-color: #CCCCCC;
+    }
+
+    .n_text_red_d {
+        color: #8b0411;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .n_xu_d {
+        width: 100px;
+        height: 20px;
+        text-align: center;
+        border-left-width: 1px;
+        border-left-style: solid;
+        border-left-color: #CCCCCC;
+        border-bottom: 1px #ccc dotted;
+    }
+
+    .n_xu_da {
+        width: 100px;
+        height: 20px;
+        text-align: center;
+        border-left-width: 1px;
+        border-left-style: solid;
+        border-left-color: #CCCCCC;
+        color: #7a7a7a;
+    }
+
+    .n_bodylast {
+        width: 640px;
+        margin: 5px auto;
+        height: 30px;
+        background-color: #f3f9ef;
+    }
+
+    .n_bodyfooter {
+        color: #666;
+        border-top: 2px #1b5e01 solid;
+        height: auto;
+        width: 640px;
+        margin: 5px auto;
+        font-size: 12px;
+        line-height: 20px;
+    }
+
+    .n_footer_sm {
+        float: left;
+        font-weight: bold;
+    }
+
+    .n_footer_sms {
+        float: left;
+    }
+
+    .n_footer_smr {
+        float: right;
+    }
+
+    .n_footer_smr:hover {
+        color: #800811;
+    }
+
+    .n_bodymid_ywnr {
+        border-top: 1px #1b5e01 solid;
+        height: auto;
+        margin-top: 5px;
+    }
+
+    .n_table_ywtop {
+        background: #ddf0ce;
+    }
+
+    .n_ywnr {
+        height: 26px;
+        line-height: 26px;
+        font-weight: bold;
+        padding-left: 22px;
+    }
+
+    .n_ywnr_content {
+        line-height: 180%;
+        height: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 5px;
+    }
+
+    .n_ywnr_content p {
+        text-indent: 2em;
+        margin: 0px auto;
+    }
+
+    .n_ywnr_content p.n_new_hui {
+        color: #666;
+    }
+
+    .n_ywnr_content p img {
+        width: 550px;
+        height: 250px;
+    }
+
+    .n_new_red {
+        color: red;
+    }
+
+    .n_new_ye {
+        color: #e28a05;
+    }
+
+    .n_red2 {
+        color: Red;
+    }
+
+    .red_font {
+        color: #d90808;
+    }
+
+    .n_ymnr_bz {
+        border-top: 1px #1b5e01 solid;
+        height: auto;
+    }
+
+    .n_ymnr_top {
+        height: 26px;
+        background: #ddf0ce;
+        line-height: 26px;
+        font-weight: bold;
+        text-indent: 15px;
+    }
+
+    .n_ymnr_top_s {
+        width: 620px;
+        margin: 5px auto;
+        background: #f7f7f7;
+    }
+
+    .n_table_bz_gd {
+        background: #f7f7f7;
+        padding: 5px;
+        line-height: 150%;
+        color: #8b0411;
+    }
+
+    .n_table_bz_mark {
+        background: #f7f7f7;
+        line-height: 25px;
+        font-weight: bold;
+        text-indent: 18px;
+    }
+
+    .n_jz {
+        border-top: 1px #1b5e01 solid;
+        height: auto;
+    }
+
+    .n_jz_nr {
+        background: #ddf0ce;
+        font-weight: bold;
+        padding-left: 10px;
+    }
+
+    .n_jz_nrs {
+        padding-left: 10px;
+        line-height: 180%;
+    }
+
+    .n_xzgf_bg {
+        margin: 5px auto 5px 0px;
+    }
+
+    .n_xzgf_bgs {
+        margin: 5px auto;
+    }
+
+    .content01 {
+        background: #ffffff;
+        line-height: 20px;
+        font-weight: bold;
+    }
+
+    .content02 {
+        text-align: center;
+        background: #ffffff;
+        line-height: 20px;
+    }
+
+    .content05 {
+        text-align: left;
+        background: #ffffff;
+        line-height: 20px;
+    }
+
+    .content03 {
+        background: #ffffff;
+        line-height: 20px;
+    }
+
+    .n_ywnr_pic {
+        width: 482px;
+        margin: auto;
+    }
+
+    .n_table_bz_gds {
+        padding-left: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .n_ye {
+        color: #aeb81b;
+    }
+
+    .n_sm {
+        color: #000;
+        font-weight: bold;
+    }
+
+    .n_sm_tables {
+        background: #f7f7f7;
+        line-height: 30px;
+    }
+
+    .n_dz {
+        color: #2e2f2e;
+    }
+
+    .n_dz:hover {
+        color: #79100d;
+        font-size: 12px;
+    }
+
+    .n_bgd_biao_b,
+    .n_bgd_biao_bs {
+        overflow: hidden;
+        background: #ddf0ce;
+        border-bottom: 1px #999 solid;
+        line-height: 26px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .n_bgd_biao_bs {
+        border-left: 1px #999 solid;
+    }
+
+    .n_qwdz_ywnr {
+        border-top: 1px #999 solid;
+        margin-top: 5px;
+    }
+
+    .n_text_red_ax {
+        color: #860505;
+        line-height: 26px;
+        font-size: 12px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .n_table_xu_a {
+        width: 20px;
+        background: #fdfaf3;
+        font-weight: bold;
+        text-align: center;
+        border-bottom: 1px #999 solid;
+    }
+
+    .n_qwdz_k {
+        background: #f3f9ef;
+        border-bottom: 1px #999 solid;
+    }
+
+    .n_bgd_biao_KU {
+        overflow: hidden;
+        border-left: 1px #999 solid;
+        border-bottom: 1px #999 solid;
+    }
+
+    .n_bgd_biao_c {
+        background: #fef4f5;
+        line-height: 150%;
+        padding: 5px;
+        margin: 5px;
+    }
+
+    .n_text_Gr {
+        border-bottom: 1px #1d5e02 dotted;
+    }
+
+    .n_bgd_biao_KUa {
+        margin: 6px;
+        margin-top: 0px;
+        line-height: 18px;
+    }
+
+    .n_bgd_biao_KUas {
+        line-height: 180%;
+        text-align: center;
+    }
+
+    .n_bgd_biao_KUas a {
+        color: #2e2f2e;
+    }
+
+    .n_bgd_biao_KUas a:hover {
+        color: #7b100a;
+    }
+
+    .n_bgd_biao_KUm {
+        font-weight: bold;
+        text-align: center;
+        background: #ddf0ce;
+        line-height: 26px;
+    }
+
+    .n_bgd_biao_KUr {
+        height: auto;
+        min-height: 30px;
+        border-bottom: 1px #999 solid;
+        border-left: 1px #999 solid;
+    }
+
+    .n_bgd_biao_KUu {
+        border-bottom: 1px #999 solid;
+    }
+
+    .n_qwdz_bz {
+        line-height: 180%;
+        color: #d90808;
+    }
+
+    .n_qwdz_bz a {
+        color: #2e2f2e;
+    }
+
+    .n_qwdz_bz a:hover {
+        color: #7b100a;
+    }
+
+    .n_qwdz_xxdz {
+        font-size: 12px;
+    }
+
+    .n_jcxxjg {
+        font-weight: bold;
+        line-height: 25px;
+    }
+
+    .n_bgxxjc {
+        background: #f3f9ef;
+        line-height: 30px;
+        border-top: 2px #1d5e02 solid;
+    }
+
+    .n_bz {
+        font-weight: bold;
+    }
+
+    .n_bgxxjcs {
+        text-align: center;
+        padding: 5px;
+    }
+
+    .n_bgxxjcm {
+        background: #fef4f5;
+        line-height: 18px;
+    }
+
+    .n_pic_dz {
+        text-align: right;
+    }
+
+    .n_bf_bt {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .n_table_bz_gdh {
+        color: #2d2d2c;
+        height: 20px;
+        line-height: 20px;
+        text-indent: 18px;
+        font-weight: bold;
+        border-bottom: 1px #1b5e01 dotted;
+    }
+
+    .n_table_pqbt {
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .n_new_czb {
+        text-align: center;
+    }
+
+    .n_new_czb_red {
+        text-align: center;
+        color: #ff0000;
+    }
+
+    .n_new_bgl {
+        font-weight: bold;
+        text-align: right;
+        line-height: 22px;
+    }
+
+    .n_text_block_b6 a {
+        color: #666;
+    }
+
+    .n_text_block_b6 a:hover {
+        color: #860505;
+    }
+
+    .n_new_pqgdims {
+        background: #f3f9ef;
+        font-weight: bold;
+        padding-left: 10px;
+        border-top: 2px #1a5f02 solid;
+        line-height: 25px;
+    }
+
+    .n_new_pqgdimx {
+        width: 620px;
+        margin: 5px auto;
+        background: #f7f7f7;
+    }
+
+    .n_new_bg_lb table {
+        text-align: left;
+    }
+
+    .n_new_bgx {
+        border-bottom: 1px #1d5e02 dotted;
+    }
+
+    .n_new_bgx img {
+        float: left;
+    }
+
+    .n_new_pqgd_lie {
+        text-align: right;
+    }
+
+    .n_sms a {
+        color: #666;
+    }
+
+    .n_sms a:hover {
+        color: #90050b;
+    }
+
+    /******************全文*******************/
+    .n_qwdz_ywnr {
+        border-top: 1px #999 solid;
+        margin-top: 5px;
+    }
+
+    .qw_bgd_biao {
+        width: 640px;
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+
+    .qw_bgd_biao_b {
+        height: 25px;
+        text-align: center;
+        border-top: 1px solid #999;
+        border-right: 1px solid #999;
+        border-bottom: 1px solid #999;
+        line-height: 25px;
+        background-color: #DDF0CE;
+        color: #000;
+    }
+
+    .qw_bgd_biao_bs {
+        height: 25px;
+        text-align: center;
+        border-top: 1px solid #999;
+        border-left: 1px solid #999;
+        border-bottom: 1px solid #999;
+        line-height: 25px;
+        background-color: #DDF0CE;
+        color: #000;
+    }
+
+    .qw_bgd_biao_KU {
+        border-right: 1px solid #999;
+        border-bottom: 1px solid #999;
+        padding-left: 5px;
+        padding-right: 5px;
+        vertical-align: top;
+        text-align: left;
+    }
+
+    .qw_bgd_biao_KUa {
+        width: 280px;
+        padding: 5px;
+        vertical-align: top;
+        text-align: left;
+    }
+
+    .qw_text_red_b {
+        color: #d90808;
+        line-height: 20px;
+        font-size: 12px;
+        text-align: left;
+    }
+
+    .qw_bgd_biao_c {
+        line-height: 18px;
+        background-color: #FDF4F2;
+        text-align: left;
+        margin-top: 5px;
+        color: #000;
+    }
+
+    .qw_table_xu_a {
+        background-color: #fcfaf1;
+        text-align: center;
+        border-right: 1px dashed #999;
+        border-top: 1px solid #999;
+        border-left: 1px solid #999;
+        border-bottom: 1px solid #999;
+    }
+
+    .qw_table_xu_b {
+        width: 18px;
+        background-color: #DDF0CE;
+        text-align: center;
+        border-top: 1px solid #999;
+        border-left: 1px solid #999;
+        border-bottom: 1px solid #999;
+    }
+
+    .qw_text_red_ax {
+        color: #860505;
+        line-height: 26px;
+        font-size: 12px;
+        font-weight: bold;
+        text-align: center;
+        padding-left: 10px;
+    }
+
+    /******************全文*******************/
+    .table_check_rsR table {
+        border: solid 1px #cccccc;
+        border-collapse: collapse;
+        word-break: break-all;
+        word-wrap: break-word;
+    }
+
+    .table_check_rsR table td,
+    th {
+        border: solid 1px #cccccc;
+        padding: 0px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .t_text_red_a {
+        color: #920e0a;
+    }
+
+    .Font_Color_Red {
+        text-decoration: underline;
+    }
+
+    .Font_Color_Green {
+        text-decoration: underline;
+        font-style: oblique;
+    }
+
+    .item_title {
+        border-top: 2px #035d03 solid;
+        font-size: 14px;
+        font-weight: bold;
+        padding-left: 10px;
+        line-height: 24px;
+        background-color: #f4f9ef;
+    }
+
+    .n_text_green_normal {
+        color: #1a5f02;
+        line-height: 26px;
+    }
+
+    a.maxlink {
+        color: #860505;
+    }
+
+    a.maxlink:visited {
+        color: #860505;
+    }
+</style>
+
+</html>

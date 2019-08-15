@@ -1,0 +1,120 @@
+body_report {
+	margin: 0px; width: auto; height: auto; background-color: rgb(204, 204, 204); size: auto;
+}
+@media print
+{
+.clear_report {
+	display: none;
+}
+}
+#container_report {
+	margin: 0px auto; width: 750px; height: auto; background-color: rgb(255, 255, 255);
+}
+#header_report {
+	margin: 0px auto; border: 0px currentColor; border-image: none; width: 640px; height: 70px;
+}
+.text1_report {
+	width: 640px; height: auto; margin-right: auto; margin-left: auto;
+}
+.text2_report {
+	margin: 10px auto; border: 1px solid rgb(153, 0, 0); border-image: none; width: 638px; height: auto;
+}
+.text3_report {
+	margin: 0px auto 5px; border: 1px solid rgb(153, 0, 0); border-image: none; width: 638px; height: auto;
+}
+#mainbody_report {
+	width: 640px; height: auto; margin-right: auto; margin-left: auto;
+}
+#footer_report {
+	width: 640px; height: auto; margin-right: auto; margin-bottom: 20px; margin-left: auto;
+}
+.h1_report {
+	margin: 30px auto 10px; text-align: center; color: rgb(153, 0, 0); font-family: "Times New Roman" , Times, serif, "宋体"; font-size: 22px; font-weight: bold;
+}
+.h2_report {
+	margin: 0px; color: rgb(153, 0, 0); line-height: 18px; font-family: "Times New Roman" , Times, serif, "宋体"; font-size: 12px; font-weight: lighter;
+}
+.h3_report {
+	margin: 0px; text-align: left; color: rgb(119, 119, 119); line-height: 18px; font-family: "Times New Roman" , Times, serif, "宋体"; font-size: 12px; font-weight: bold;
+}
+.h3_report1 {
+	margin: 3px auto; text-align: center; color: rgb(78, 78, 78); line-height: 18px; font-family: "Times New Roman" , Times, serif, "宋体"; font-size: 12px; font-weight: bold;
+}
+.h4_report {
+	margin: 0px; text-align: left; color: rgb(85, 85, 85); line-height: 18px; font-family: "Times New Roman" , Times, serif, "宋体"; font-size: 12px; font-weight: bold;
+}
+.h4_report1 {
+	margin: 3px auto 3px 15px; color: rgb(78, 78, 78); line-height: 18px; font-family: "Times New Roman" , Times, serif, "宋体"; font-size: 12px; font-weight: lighter;
+}
+.h5_report {
+	margin: 0px; color: rgb(51, 51, 51); line-height: 18px; font-family: "Times New Roman" , Times, serif, "宋体"; font-size: 14px; font-weight: bold;
+}
+.h5_report1 {
+	margin: 3px auto 3px 15px; color: rgb(255, 255, 255); letter-spacing: 1em; font-family: "Times New Roman" , Times, serif, "宋体"; font-size: 14px; font-weight: bold;
+}
+.h6_report {
+	margin: 0px; text-align: right; color: rgb(255, 255, 255); line-height: 24px; font-family: "Times New Roman" , Times, serif, "宋体"; font-size: 12px; font-weight: lighter; background-color: rgb(102, 102, 102);
+}
+.p_report {
+	margin: 0px; text-align: left; color: rgb(102, 102, 102); line-height: 18px; font-family: "Times New Roman" , Times, serif, "宋体"; font-size: 12px; font-weight: lighter;
+}
+.p2_report {
+	margin: 0px; text-align: left; color: rgb(85, 85, 85); line-height: 18px; font-family: "Times New Roman" , Times, serif, "宋体"; font-size: 12px; font-weight: bold;
+}
+.p3_report {
+	margin: 0px; color: rgb(153, 0, 0); font-family: "Times New Roman" , Times, serif, "宋体"; font-size: 12px; font-weight: bold;
+}
+.p4_report {
+	margin: 0px; text-align: left; color: rgb(0, 0, 0); line-height: 18px; font-family: "Times New Roman" , Times, serif, "宋体"; font-size: 14px; font-weight: lighter;
+}
+.p5_report {
+	margin: 0px; text-align: left; color: rgb(0, 0, 0); line-height: 18px; font-family: "Times New Roman" , Times, serif, "宋体"; font-size: 12px; font-weight: lighter;
+}
+.p5_report p {
+	margin: 0px; padding: 0px; line-height: 20px; text-indent: 2em;
+}
+.p6_report {
+	margin: 0px; text-align: left; color: rgb(153, 0, 0); line-height: 20px; font-family: "Times New Roman" , Times, serif, "宋体"; font-size: 14px; font-weight: bold;
+}
+.p7_report {
+	margin: 0px; text-align: left; color: rgb(51, 51, 51); line-height: 18px; font-family: "Times New Roman" , Times, serif, "宋体"; font-size: 14px; font-weight: bold;
+}
+.table_report {
+	border-top-color: currentColor; border-bottom-color: rgb(153, 153, 153); border-top-width: 0px; border-bottom-width: 1px; border-top-style: none; border-bottom-style: solid;
+}
+.jcbg_report {
+	width: 100%; text-align: left; line-height: 28px; font-size: 14px;
+}
+.table0_report {
+	border-width: 0px 1px 1px; border-style: solid; border-color: rgb(225, 225, 225);
+}
+.table1_report {
+	border-width: 0px 1px 1px 0px; border-style: solid; border-color: rgb(225, 225, 225);
+}
+.table2_report {
+	border: 1px solid rgb(225, 225, 225); border-image: none; height: 20px; text-align: center; background-image: url("../../images/bg01.gif");
+}
+.table3_report {
+	border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.table4_report {
+	border-right-color: rgb(204, 204, 204); border-right-width: 1px; border-right-style: solid;
+}
+.table5_report {
+	border: 1px solid rgb(225, 225, 225); border-image: none; background-image: url("../../images/bg02.gif");
+}
+.table6_report {
+	border-top-color: rgb(204, 204, 204); border-top-width: 1px; border-top-style: solid; background-image: url("../../images/jb.gif");
+}
+.table7_report {
+	color: rgb(204, 0, 0);
+}
+.table8_report {
+	background: url("../../images/bg04.gif") no-repeat; border-top-color: rgb(255, 255, 255); border-top-width: 2px; border-top-style: solid;
+}
+.table9_report {
+	background: url("../../images/jb.gif"); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-right-width: 1px; border-bottom-width: 1px; border-right-style: solid; border-bottom-style: dashed;
+}
+.RedFont_report {
+	color: red; text-decoration: underline;
+}

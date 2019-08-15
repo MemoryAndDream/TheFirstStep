@@ -20,9 +20,9 @@ class BaiduCraw:
 
     def keyword_search(self,keyword):
         baidu_record_list = self.baidu_keyword_search(keyword)
-        sogou_record_list = self.sougou_search(keyword)
-        if sogou_record_list and len(sogou_record_list[0][1])>len(baidu_record_list[0][1]):
-            return sogou_record_list
+        # sogou_record_list = self.sougou_search(keyword)
+        # if sogou_record_list and len(sogou_record_list[0][1])>len(baidu_record_list[0][1]):
+        #     return sogou_record_list
         return baidu_record_list
 
     def baidu_keyword_search(self,keyword):
@@ -32,14 +32,18 @@ class BaiduCraw:
         rsp = r.text
         segments = self.getXpath('//div[@class="result c-container "]', rsp)  #
         for segment in segments:
-            records = self.getXpath('//div[@class ="c-abstract"]//text()',segment)
-            record = self.extractorText(records)
-
+            records = self.getXpath('//div[@class ="c-abstract"]',segment)
+            # record = self.extractorText(records)
+            record = ''.join(records)
+            title = self.extractorText( self.getXpath('//div[@class="result c-container "]/h3/a',segment))
             ems = self.getXpath('//div[@class ="c-abstract"]//em/text()',segment)
+            # 标红的过滤一下才是相似的
+            ems = [em for em in ems if len(em)>4 ]
+
             em = self.extractorText(ems)
             sim_url = self.getXpath('//div[@class="f13"]/a[@class="c-showurl"]/@href',segment)
             sim_url = sim_url[0] if sim_url else ''
-            record_list.append((record,em,sim_url))
+            record_list.append((record,em,sim_url,title))
 
         return record_list
 
@@ -89,5 +93,5 @@ class BaiduCraw:
 if __name__ == '__main__':
     rs = BaiduCraw().keyword_search('在《三国》中，司马懿一出场就自命非凡')
     for r in rs :
-        print r[0],r[1],r[2]
+        print r[0],r[1],r[2],r[3]
     pass

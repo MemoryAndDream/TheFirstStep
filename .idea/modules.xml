@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/TheFirstStep.iml" filepath="$PROJECT_DIR$/.idea/TheFirstStep.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../py3/.idea/py3.iml" filepath="$PROJECT_DIR$/../py3/.idea/py3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../taobao_requests/.idea/taobao_requests.iml" filepath="$PROJECT_DIR$/../taobao_requests/.idea/taobao_requests.iml" />
+      <module fileurl="file://D:/untitled/.idea/untitled.iml" filepath="D:/untitled/.idea/untitled.iml" />
     </modules>
   </component>
 </project>

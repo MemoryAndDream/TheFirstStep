@@ -12,8 +12,10 @@ from win32com import client as wc
 import docx
 import re
 import threadpool
-from rend_html import render_html
+from rend_html import render_html,render_html2
+import datetime
 import math
+import zipfile
 if not os.path.exists(u'检测报告'):
     os.mkdir(u'检测报告')
 
@@ -42,21 +44,32 @@ class ArticleAnalyse:
         lines = []
         extra_info={}
         extra_info['name']=file_name
+        extra_info['createtime'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         analyse_lines = []
+        word_count = 0
         for p in doc.paragraphs:
+            word_count+=len(p.text)
+            if word_count >5000:
+                break
             analyse_lines.append(p.text)
         lines = self.multithread_craw(analyse_lines)
         extra_info['word_count']=0
         extra_info['similar_count'] = 0
+
+        ref_dict = {}
+
         for line in lines:
-            for sentence in line:
-                extra_info['similar_count']+=sentence['similar_count']
-                extra_info['word_count'] += sentence['word_count']
+            extra_info['similar_count'] += line['similar_count']
+            extra_info['word_count'] += line['word_count']
+            for similar_data in line['similar_datas']:
+                title = similar_data['title']
+                similar_count = similar_data['similar_count']
+                ref_dict[title] = ref_dict.get(title,0) + similar_count
+        ref_list = [{'title':title,'similar_count':round(ref_dict[title]*100.0/extra_info['word_count'] if extra_info['word_count'] else 0,2) } for title in ref_dict]
+        ref_list = sorted(ref_list, key=lambda d: d['similar_count'],reverse=True)
+        extra_info['ref_list'] = ref_list
         html_path = os.path.join(u'检测报告\\', '.'.join(file_name.split('.')[:-1])+'.html') # 后面还是单独建个文件夹的好
         sum_similar_rate = self.save_html(html_path,lines,extra_info)
-
-
-
         return {"sum_similar_rate":sum_similar_rate,'sum_word_count':extra_info['word_count'] ,'sum_similar_count':extra_info['similar_count']}
 
     def txt_analyse(self):
@@ -65,19 +78,32 @@ class ArticleAnalyse:
         extra_info={}
         extra_info['name']=file_name
         extra_info['word_count']=0
+        extra_info['similar_rate'] = 0
         extra_info['similar_count'] = 0
         lines = []
         analyse_lines = []
+        word_count = 0
         with open(filepath) as f:
             for line in f:
                 analyse_lines.append(line)
+                word_count += len(line)
+                if word_count > 5000:
+                    break
         lines = self.multithread_craw(analyse_lines)
+        ref_dict = {}
+
         for line in lines:
-            for sentence in line:
-                extra_info['similar_count'] += sentence['similar_count']
-                extra_info['word_count'] += sentence['word_count']
-        html_path = os.path.join(u'检测报告\\', '.'.join(file_name.split('.')[:-1])+'.html') # 后面还是单独建个文件夹的好
-        sum_similar_rate = self.save_html(html_path,lines,extra_info)
+            extra_info['similar_count'] += line['similar_count']
+            extra_info['word_count'] += line['word_count']
+            for similar_data in line['similar_datas']:
+                title = similar_data['title']
+                similar_count = similar_data['similar_count']
+                ref_dict[title] = ref_dict.get(title, 0) + similar_count
+        ref_list = [{'title': title, 'similar_count': round(ref_dict[title]*100.0/extra_info['word_count'] if extra_info['word_count'] else 0,2)} for title in ref_dict]
+        ref_list = sorted(ref_list, key=lambda d: d['similar_count'], reverse=True)
+        extra_info['ref_list'] = ref_list
+        html_path = os.path.join(u'检测报告\\', '.'.join(file_name.split('.')[:-1]) + '.html')  # 后面还是单独建个文件夹的好
+        sum_similar_rate = self.save_html(html_path, lines, extra_info)
         return {"sum_similar_rate":sum_similar_rate,'sum_word_count':extra_info['word_count'] ,'sum_similar_count':extra_info['similar_count']}
 
     def multithread_craw(self,lines):
@@ -89,7 +115,7 @@ class ArticleAnalyse:
             task_pool.putRequest(req)
         task_pool.wait()
         rs = sorted(self.craw_result,key = lambda d: d['line_no'])
-        return [r['result'] for r in rs]
+        return rs # "origin_data":line,"similar_data":new_line
 
 
     def doc_to_docx(self,doc_path, docx_path):
@@ -108,17 +134,59 @@ class ArticleAnalyse:
         word.Quit()
 
     def save_html(self,html_path,lines,extra_info={}):
-        with open(html_path,'w') as html:
-            print html_path
+        html_path1 = html_path.replace(u'.html',u'文本复制检测报告单（全文对照）.html')
+        html_path2 = html_path.replace(u'.html',u'文本复制检测报告单（全文标明引文）.html')
+        with open(html_path1,'w') as html:
             content, sum_similar_rate = render_html(lines,extra_info)
             html.write(content)
-            return sum_similar_rate
+        with open(html_path2,'w') as html:
+            content, sum_similar_rate = render_html2(lines,extra_info)
+            html.write(content)
+        self.make_tmp_dir([html_path1,html_path2])
+        self.zip_dir('tmp',html_path.replace(u'.html',u'.zip'))
+        return sum_similar_rate
+
+    def make_tmp_dir(self,files,dest='tmp'):
+        import shutil
+        shutil.rmtree("tmp")
+        os.mkdir(u'tmp')
+        shutil.copytree("static", r"tmp\static")
+        for file in files:
+            shutil.copy(file, r"tmp")
+            os.remove(file)
+
+
+
+
+
+    def zip_dir(self,dirname, zipfilename): # 打包一整个文件夹
+        filelist = []
+        if os.path.isfile(dirname):
+            filelist.append(dirname)
+        else:
+            for root, dirs, files in os.walk(dirname):
+                for name in files:
+                    filelist.append(os.path.join(root, name))
+        zf = zipfile.ZipFile(zipfilename, "w", zipfile.zlib.DEFLATED)
+        for tar in filelist:
+            arcname = tar[len(dirname):]
+            # print arcname
+            zf.write(tar, arcname)
+        zf.close()
 
 
     def baidu_analyse(self,line,line_no=0):
+        # 分析一行语句
         from baidu_craw import BaiduCraw
         sentences = self.line_split(line)
-        new_line = []
+        try:
+            line = line.decode('utf8')
+        except:
+            line = line.decode('GBK')
+        if not line.strip():
+            return
+        sentence_results = []
+        origin_line = ''
         while sentences:
             keyword = sentences.pop(0)
             while sentences and len(keyword+sentences[0])<= 38: # 这里有bug，一行丢掉最后一段算了
@@ -129,7 +197,9 @@ class ArticleAnalyse:
             except:
                 keyword_result = BaiduCraw().keyword_search(keyword.decode('GBK').encode('utf8'))
             if not keyword_result:continue
-            record,em,sim_url = keyword_result[0]
+            record,em,sim_url,title = keyword_result[0]
+
+
             score = 0
             try:
                 keyword = keyword.decode('utf8')
@@ -137,21 +207,43 @@ class ArticleAnalyse:
                 keyword = keyword.decode('GBK')
             keyword = keyword.replace('\n','').replace('\r','')
             for word in keyword:
-                if word in em:
+                if word in em:  # 判断相似 连续标红长度大于
                     score+=1
             similar_rate = score*1.0/len(keyword)
-            similar_rate =(math.pow(similar_rate*100, 1.5)) / 985
+            if similar_rate>0.3:
+                origin_line += '<em>' + keyword + '</em>'
+            else:
+                origin_line += keyword
             print keyword,similar_rate,sim_url
             sentence = {}
             sentence['origin_content'] = keyword
             sentence['similar_content'] = record
             sentence['similar_url'] = sim_url
-            sentence['similar_rate'] = similar_rate
             sentence['similar_count'] = score
+            sentence['title'] = title
             sentence['word_count'] = len(keyword)
+            sentence_results.append(sentence)
 
-            new_line.append(sentence)
-        self.craw_result.append({"line_no":line_no,"result":new_line})
+        title_dict = {}
+        for sentence in sentence_results:
+            title = sentence['title']
+            if not title in title_dict:
+                title_dict[title] = sentence
+            else:
+                title_dict[title]['similar_content'] += '\n' + sentence['similar_content']
+                title_dict[title]['similar_count'] += sentence['similar_count']
+        titles_data = [title_dict[title] for title in title_dict]
+
+        new_line = {}
+        similar_datas = sorted(titles_data, key=lambda d:d['similar_count'] , reverse=True)
+        new_line['similar_datas'] = similar_datas
+        new_line['origin_content'] = origin_line
+        new_line["similar_count"] = 0
+        for data in similar_datas:
+            new_line["similar_count"] += data['similar_count']
+        new_line['word_count'] = len(line)
+        new_line['line_no'] = line_no
+        self.craw_result.append(new_line)
         return new_line
 
     def line_split(self,line):
@@ -163,10 +255,11 @@ class ArticleAnalyse:
 
 
 if __name__ == '__main__':
-    #a = ArticleAnalyse(ur'D:\github\TheFirstStep\congfujiance\test_docs\1029-1023国学1200JZGA10-10国魏晋南北朝时期最厉害的家族.doc')
-    #a.doc_analyse()
-    a = ArticleAnalyse(ur'D:\github\TheFirstStep\congfujiance\test_docs\1.txt')
-    a.txt_analyse()
+
+    a = ArticleAnalyse(ur'F:\work\aliyun_meng\TheFirstStep\congfujiance\test_docs\1029-1023国学1200JZGA03-10五虎上将-马超.doc')
+    a.doc_analyse()
+    # a = ArticleAnalyse(ur'F:\github\TheFirstStep\congfujiance\test_docs\1.txt')
+    # a.txt_analyse()
     pass
     #a.baidu_analyse(u'蜀国刘备的手下有五大上将。分别是义字当头的关羽、英勇无畏的张飞和常胜将军常山赵子龙。还有两个就是黄忠老将军与本文的传奇人物__马超。作为刘备五将之一的马超也是有着一段传奇的人生经历。 ')
 

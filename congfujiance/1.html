@@ -1,0 +1,495 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>report</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="main">
+        <div class="report">
+            <div class="report-title">文本复制检测报告单</div>
+            <div class="report-info">
+                <span class="report-number"></span>
+                <span class="report-date"></span>
+            </div>
+            <div class="report-result">
+                <div class="report-result-title">检测结果</div>
+                <div class="report-result-content">
+                    <!-- <div class="report-result-item">
+                        <div class="key">总文字复制比</div>
+                        <div class="value">24.2%</div>
+                    </div>
+                    <div class="report-result-item">
+                        <div class="key">总文字复制比</div>
+                        <div class="value">24.2%</div>
+                    </div>
+                    <div class="report-result-item">
+                        <div class="key">总文字复制比</div>
+                        <div class="value">24.2%</div>
+                    </div>
+                    <div class="report-result-item">
+                        <div class="key">总文字复制比</div>
+                        <div class="value">24.2%</div>
+                    </div>
+                    <div class="report-result-item">
+                        <div class="key">总文字复制比</div>
+                        <div class="value">24.2%</div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="report-reference">
+                <div class="report-reference-title">
+                    <span class="title"></span>
+                    <span class="word-number">总字数<b></b></span>
+                </div>
+                <div class="report-reference-sub">相似文献列表</div>
+                <div class="report-reference-data">
+                    <!-- <div class="report-data-item">
+                            <div class="key">去除本人已发表文献复制比：</div>
+                            <div class="value">15.8%(1602)</div>
+                        </div>
+                        <div class="report-data-item">
+                            <div class="key">文字复制比:</div>
+                            <div class="value">15.8%(1602)</div>
+                        </div>
+                        <div class="report-data-item">
+                            <div class="key">疑似剽窃观点</div>
+                            <div class="value">（0）</div>
+                        </div> -->
+                </div>
+                <div class="report-reference-content">
+                    <!-- <div class="report-reference-item">
+                            <div class="report-item-left">
+                                <div class="index">1</div>
+                                <div class="reference-content">
+                                    <div class="title">死亡提醒对吸烟者吸烟态度的影响研究</div>
+                                </div>
+                            </div>
+                            <div class="report-item-right">
+                                <div class="percent">2.3%（234）</div>
+                            </div>
+                        </div> -->
+                </div>
+            </div>
+            <div class="report-content">
+                <div class="report-diff-content">
+                    <div class="report-diff-title">
+                        <div class="origin">原文内容</div>
+                        <div class="similar">相似内容来源</div>
+                    </div>
+                    <!-- <div class="report-diff-item">
+                        <div class="origin-item">
+                            <div class="item-index">1</div>
+                            <div class="origin-content">
+                                <div class="tips">此处有 31 字相似</div>
+                                <div class="html">
+                                    内隐态度测量中对保健品的偏好显著高于一般药品，但外显态度测量中并未出现显著差异。
+                                    （2）老年消费者对保健品和一般药品的态度<span
+                                        class="similar-color-danger">并未出现内隐态度与外显态度的分离，证实了内隐态度和外显态度存在高相关</span>。
+                                    （3）不同依恋类型老年被试在不同情绪情景下对保健品的内隐态度并不相同，拒绝依恋被试在不同情绪中对保健品给
+                                </div>
+                            </div>
+                        </div>
+                        <div class="similar-item">
+                            <div class="similar-content">
+                                <div class="tips">来源：http://www.360doc.co</div>
+                                <div class="html">
+                                    1. 27390 .618628表4外显品牌态度与内隐品牌态度相关关系(N=31)
+                                    <span class="similar-color-danger">
+                                        问题品牌外显态度问题品牌内隐态度优秀品牌外显态度优秀品牌内隐态度问题品牌外显态度间题品牌内隐态度优秀品牌外显态度优秀品牌内隐态度</span>
+                                    10 .0020 .2480 .019 l0 .299一0 .389‘0 .077从表3和表4显示的数据
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script>
+    var mockdata = {
+        "success": true,
+        "data": {
+           "createtime": "{{extra_info.createtime}}",
+            "report_number": "{{extra_info.name}}",
+            "report_result": [
+                {
+                    "key": "总文字复制比",
+                    "value": "{{extra_info.similar_rate}}%",
+                }
+            ],
+            "report_diff": [
+                        {% for line in lines %}
+                        {
+                            "origin_html": `{{line.origin_content}}`,
+                            "origin_tips": `此处有{{line.similar_count}}字相似`,
+                            "similar_html": ``,
+                            "similar_tips": `来源：{{line.title}}`,
+                            "similar": [
+                                     {% for similar_data in line.similar_datas %}
+                                {
+                                    "similar_html": `{{similar_data.similar_content}}`,
+                                    "similar_tips": `来源：{{similar_data.title}}`
+                                },
+                                           {% endfor %}
+                            ]
+                        },
+                 {% endfor %}
+               ],
+            "report_reference": {
+                "reference_title": "文章绪论",
+                "reference_wordnumber": "5412",
+                "reference_data": [
+
+                ],
+                "reference_list": [
+                    {
+                        "title": "死亡提醒对吸烟者吸烟态度的影响研究",
+                        "percent": "2.3%（234）"
+                    },
+                ]
+            }
+        }
+    }
+    $(function () {
+        var pub = {}
+        pub.init = function () {
+            this.getReportData()
+        }
+        pub.getReportData = function () {
+            // var postData = {
+            //     id: 123
+            // }
+            // $.ajax({
+            //     type: "POST",
+            //     url: "https://www.easy-mock.com/mock/5b237705b541690d6ed33ba2/crm_v2/ajax_get_refund_reasons",
+            //     data: JSON.stringify(postData),
+            //     dataType: 'json',
+            //     success: function (res) {
+            //         console.log(res)
+            //     }
+            // })
+
+            setTimeout(() => {
+                //模拟数据，到时可以把setTimeout中内容放入到上面的ajax中
+                console.log(mockdata)
+                var result_html = ''
+                var diff_html = ''
+                if (mockdata.success) {
+                    if (mockdata.data.report_result && mockdata.data.report_result.length > 0) {
+                        mockdata.data.report_result.forEach(function (item) {
+                            result_html += '<div class="report-result-item">' +
+                                '<div class="key">' + item.key + '</div>' +
+                                '<div class="value">' + item.value + '</div>' +
+                                '</div>'
+                        })
+                        $('.report-result-content').html(result_html)
+                    }
+                    if (mockdata.data.report_diff && mockdata.data.report_diff.length > 0) {
+                        mockdata.data.report_diff.forEach(function (item, index) {
+                            diff_html = diff_html + `<div class="report-diff-item">
+                        <div class="origin-item">
+                            <div class="item-index">${index + 1}</div>
+                            <div class="origin-content">
+                                <div class="tips">${item.origin_tips}</div>
+                                <div class="html">
+                                    ${item.origin_html}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="similar-item">
+                            <div class="similar-content">`
+                            item.similar.forEach(function (sitem) {
+                                diff_html = diff_html + `<div class="tips">${sitem.similar_tips}</div>
+                                <div class="html">
+                                    ${sitem.similar_html}
+                                </div>`
+                            })
+                            diff_html = diff_html + `</div>
+                        </div>
+                    </div>`
+                        })
+                        $('.report-diff-content').append(diff_html)
+                    }
+                    if (mockdata.data.createtime) {
+                        $('.report-date').text('检测时间:' + mockdata.data.createtime)
+                    }
+                    if (mockdata.data.report_number) {
+                        $('.report-number').text('No:' + mockdata.data.report_number)
+                    }
+                    if (mockdata.data.report_reference) {
+                        $('.report-reference-title .title').text(mockdata.data.report_reference.reference_title)
+                        $('.report-reference-title .word-number b').text(mockdata.data.report_reference.reference_wordnumber)
+                        var reference_data_html = ''
+                        var reference_list_html = ''
+                        if (mockdata.data.report_reference.reference_data && mockdata.data.report_reference.reference_data.length > 0) {
+                            mockdata.data.report_reference.reference_data.forEach(function (item) {
+                                reference_data_html += `<div class="report-data-item">
+                                        <div class="key">${item.key}</div>
+                                        <div class="value">${item.value}</div>
+                                    </div>`
+                            })
+                            $('.report-reference-data').html(reference_data_html)
+                        }
+                        if (mockdata.data.report_reference.reference_list && mockdata.data.report_reference.reference_list.length > 0) {
+                            mockdata.data.report_reference.reference_list.forEach(function (item, index) {
+                                reference_list_html += `<div class="report-reference-item">
+                                        <div class="report-item-left">
+                                            <div class="index">${index + 1}</div>
+                                            <div class="reference-content">
+                                                <div class="title">${item.title}</div>
+                                            </div>
+                                        </div>
+                                        <div class="report-item-right">
+                                            <div class="percent">${item.percent}</div>
+                                        </div>
+                                    </div>`
+                            })
+                            $('.report-reference-content').html(reference_list_html)
+                        }
+
+                    }
+                }
+            }, 500)
+        }
+        pub.init()
+    })
+</script>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+    }
+
+    .main {
+        width: 660px;
+        min-height: 800px;
+        background: #fff;
+        margin: 0 auto;
+        border: 1px solid #eee;
+    }
+
+    .report-title {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        padding: 18px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .report-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        height: 36px;
+        border-bottom: 1px solid #eee;
+        border-top: none;
+        background: #f4f9ef;
+    }
+
+    .report-number {
+        padding-left: 10px;
+    }
+
+    .report-date {
+        padding-right: 10px;
+    }
+
+    .report-result-title {
+        height: 30px;
+        line-height: 30px;
+        background: #e6fffc;
+        padding-left: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .report-result-content {
+        border-bottom: 1px solid #eee;
+        padding: 10px 10px 0 10px;
+        display: flex;
+        flex-wrap: wrap;
+        background: #f7f7f7;
+    }
+
+    .report-result-item {
+        display: flex;
+        width: 50%;
+        padding-bottom: 10px;
+    }
+
+    .report-result-item .key {
+        padding-right: 20px;
+    }
+
+    .report-diff-title {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+    }
+
+    .report-diff-title>div {
+        flex: 1;
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        font-size: 14px;
+        background: #e6fffc;
+    }
+
+    .report-diff-title>div:first-child {
+        border-right: 1px solid #eee;
+    }
+
+    .report-diff-item {
+        display: flex;
+        border-bottom: 1px solid #eee;
+    }
+
+    .origin-item {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        border-right: 1px solid #eee;
+    }
+
+    .similar-item {
+        flex: 1;
+    }
+
+    .origin-item .item-index {
+        width: 20px;
+        background: #fff7e6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .origin-item .origin-content {
+        flex: 1;
+        padding: 10px;
+        border-left: 1px solid #eee;
+    }
+
+    .similar-item .similar-content {
+        padding: 10px;
+    }
+
+    .similar-color-danger {
+        color: #ff4d4f;
+    }
+
+    .similar-color-waring {
+        color: #ffa940;
+    }
+
+    .similar-color-tips {
+        color: #a0d911
+    }
+
+    .report-diff-item .tips {
+        color: #fa541c;
+        font-size: 12px;
+        font-weight: bold;
+        padding-bottom: 5px;
+        padding-top: 8px;
+    }
+
+    .report-reference {
+        width: 100%;
+    }
+
+    .report-reference-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px;
+        height: 30px;
+        background: #e6fffc;
+        border-bottom: 1px solid #eee;
+    }
+
+    .report-reference-title .title {
+        font-size: 14px;
+    }
+
+    .report-reference-title .word-number b {
+        padding-left: 10px;
+    }
+
+    .report-reference-sub {
+        padding: 0 10px;
+        height: 30px;
+        line-height: 30px;
+        background: #f7f7f7;
+        border-bottom: 1px solid #eee;
+    }
+
+    .report-reference-data {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        border-bottom: 1px solid #eee;
+        background: #f7f7f7;
+    }
+
+    .report-reference-data .report-data-item {
+        display: flex;
+        padding: 0 10px;
+    }
+
+    .report-reference-item {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .report-reference-item .report-item-left {
+        display: flex;
+        flex: 1;
+        height: 100%;
+        border-right: 1px solid #eee;
+    }
+
+    .report-reference-item .report-item-left .reference-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding-left: 20px;
+    }
+
+    .report-reference-item .report-item-left .index {
+        width: 20px;
+        border-right: 1px solid #eee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        background: #fff7e6;
+    }
+
+    .report-reference-item .report-item-right {
+        width: 150px;
+        text-align: center;
+    }
+
+    .report-reference-item .report-item-right .percent {
+        color: #ff4d4f;
+        font-size: 13px;
+    }
+</style>
+
+</html>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="myaliyun">
+    <serverData>
+      <paths name="myaliyun">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/root/py3_project" local="$PROJECT_DIR$/../py3" web="/" />
+            <mapping deploy="/root/project/TheFirstStep" local="$PROJECT_DIR$" />
+            <mapping deploy="/root/project/taobao_requests" local="$PROJECT_DIR$/../taobao_requests" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

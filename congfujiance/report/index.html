@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>report</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="main">
+        <div class="report">
+            <div class="report-title">文本复制检测报告单</div>
+            <div class="report-info">
+                <span class="report-number"></span>
+                <span class="report-date"></span>
+            </div>
+            <div class="report-result">
+                <div class="report-result-title">检测结果</div>
+                <div class="report-result-content">
+                    <!-- <div class="report-result-item">
+                        <div class="key">总文字复制比</div>
+                        <div class="value">24.2%</div>
+                    </div>
+                    <div class="report-result-item">
+                        <div class="key">总文字复制比</div>
+                        <div class="value">24.2%</div>
+                    </div>
+                    <div class="report-result-item">
+                        <div class="key">总文字复制比</div>
+                        <div class="value">24.2%</div>
+                    </div>
+                    <div class="report-result-item">
+                        <div class="key">总文字复制比</div>
+                        <div class="value">24.2%</div>
+                    </div>
+                    <div class="report-result-item">
+                        <div class="key">总文字复制比</div>
+                        <div class="value">24.2%</div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="report-content">
+                <div class="report-diff-content">
+                    <div class="report-diff-title">
+                        <div class="origin">原文内容</div>
+                        <div class="similar">相似内容来源</div>
+                    </div>
+                    <!-- <div class="report-diff-item">
+                        <div class="origin-item">
+                            <div class="item-index">1</div>
+                            <div class="origin-content">
+                                <div class="tips">此处有 31 字相似</div>
+                                <div class="html">
+                                    内隐态度测量中对保健品的偏好显著高于一般药品，但外显态度测量中并未出现显著差异。
+                                    （2）老年消费者对保健品和一般药品的态度<span
+                                        class="similar-color-danger">并未出现内隐态度与外显态度的分离，证实了内隐态度和外显态度存在高相关</span>。
+                                    （3）不同依恋类型老年被试在不同情绪情景下对保健品的内隐态度并不相同，拒绝依恋被试在不同情绪中对保健品给
+                                </div>
+                            </div>
+                        </div>
+                        <div class="similar-item">
+                            <div class="similar-content">
+                                <div class="tips">来源：http://www.360doc.co</div>
+                                <div class="html">
+                                    1. 27390 .618628表4外显品牌态度与内隐品牌态度相关关系(N=31)
+                                    <span class="similar-color-danger">
+                                        问题品牌外显态度问题品牌内隐态度优秀品牌外显态度优秀品牌内隐态度问题品牌外显态度间题品牌内隐态度优秀品牌外显态度优秀品牌内隐态度</span>
+                                    10 .0020 .2480 .019 l0 .299一0 .389‘0 .077从表3和表4显示的数据
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var mockdata = {
+        "success": true,
+        "data": {
+            "createtime": "2019-06-06 00:49:18",
+            "report_number": "ADBD2019R_2019040918295220190606004918807286474479",
+            "report_result": [
+                {
+                    "key": "总文字复制比",
+                    "value": "24.2%"
+                },
+                {
+                    "key": "总文字复制比",
+                    "value": "24.2%"
+                },
+                {
+                    "key": "总文字复制比",
+                    "value": "24.2%"
+                }
+            ],
+            "report_diff": [
+                {
+                    "origin_html": `<span class="similar-color-waring">内隐态度测量中对保健品的偏好显著高于一般药品</span>，但外显态度测量中并未出现显著差异。
+                （2）老年消费者对保健品和一般药品的态度<span
+                    class="similar-color-danger">并未出现内隐态度与外显态度的分离，证实了内隐态度和外显态度存在高相关</span>。
+                （3）不同依恋类型老年被试在不同情绪情景下对<span class="similar-color-tips">保健品的内隐态度并不相同<span>，拒绝依恋被试在不同情绪中对保健品给`,
+                    "origin_tips": "此处有 31 字相似",
+                    "similar_html": `1. 27390 .618628表4外显品牌态度与内隐品牌态度相关关系(N=31)
+                <span class="similar-color-danger">
+                    问题品牌外显态度问题品牌内隐态度优秀品牌外显态度优秀品牌内隐态度问题品牌外显态度间题品牌内隐态度优秀品牌外显态度优秀品牌内隐态度</span>
+                10 .0020 .2480 .019 l0 .299一0 .389‘0 .077从表3和表4显示的数据`,
+                    "similar_tips": "来源：http://www.360doc.co",
+                },
+                {
+                    "origin_html": `<span class="similar-color-waring">内隐态度测量中对保健品的偏好显著高于一般药品</span>，但外显态度测量中并未出现显著差异。
+                （2）老年消费者对保健品和一般药品的态度<span
+                    class="similar-color-danger">并未出现内隐态度与外显态度的分离，证实了内隐态度和外显态度存在高相关</span>。
+                （3）不同依恋类型老年被试在不同情绪情景下对<span class="similar-color-tips">保健品的内隐态度并不相同<span>，拒绝依恋被试在不同情绪中对保健品给`,
+                    "origin_tips": "此处有 31 字相似",
+                    "similar_html": `1. 27390 .618628表4外显品牌态度与内隐品牌态度相关关系(N=31)
+                <span class="similar-color-danger">
+                    问题品牌外显态度问题品牌内隐态度优秀品牌外显态度优秀品牌内隐态度问题品牌外显态度间题品牌内隐态度优秀品牌外显态度优秀品牌内隐态度</span>
+                10 .0020 .2480 .019 l0 .299一0 .389‘0 .077从表3和表4显示的数据`,
+                    "similar_tips": "来源：http://www.360doc.co",
+                },
+                {
+                    "origin_html": `<span class="similar-color-waring">内隐态度测量中对保健品的偏好显著高于一般药品</span>，但外显态度测量中并未出现显著差异。
+                （2）老年消费者对保健品和一般药品的态度<span
+                    class="similar-color-danger">并未出现内隐态度与外显态度的分离，证实了内隐态度和外显态度存在高相关</span>。
+                （3）不同依恋类型老年被试在不同情绪情景下对<span class="similar-color-tips">保健品的内隐态度并不相同<span>，拒绝依恋被试在不同情绪中对保健品给`,
+                    "origin_tips": "此处有 31 字相似",
+                    "similar_html": `1. 27390 .618628表4外显品牌态度与内隐品牌态度相关关系(N=31)
+                <span class="similar-color-danger">
+                    问题品牌外显态度问题品牌内隐态度优秀品牌外显态度优秀品牌内隐态度问题品牌外显态度间题品牌内隐态度优秀品牌外显态度优秀品牌内隐态度</span>
+                10 .0020 .2480 .019 l0 .299一0 .389‘0 .077从表3和表4显示的数据`,
+                    "similar_tips": "来源：http://www.360doc.co",
+                },
+                {
+                    "origin_html": `<span class="similar-color-waring">内隐态度测量中对保健品的偏好显著高于一般药品</span>，但外显态度测量中并未出现显著差异。
+                （2）老年消费者对保健品和一般药品的态度<span
+                    class="similar-color-danger">并未出现内隐态度与外显态度的分离，证实了内隐态度和外显态度存在高相关</span>。
+                （3）不同依恋类型老年被试在不同情绪情景下对<span class="similar-color-tips">保健品的内隐态度并不相同<span>，拒绝依恋被试在不同情绪中对保健品给`,
+                    "origin_tips": "此处有 31 字相似",
+                    "similar_html": `1. 27390 .618628表4外显品牌态度与内隐品牌态度相关关系(N=31)
+                <span class="similar-color-danger">
+                    问题品牌外显态度问题品牌内隐态度优秀品牌外显态度优秀品牌内隐态度问题品牌外显态度间题品牌内隐态度优秀品牌外显态度优秀品牌内隐态度</span>
+                10 .0020 .2480 .019 l0 .299一0 .389‘0 .077从表3和表4显示的数据`,
+                    "similar_tips": "来源：http://www.360doc.co",
+                },
+                {
+                    "origin_html": `<span class="similar-color-waring">内隐态度测量中对保健品的偏好显著高于一般药品</span>，但外显态度测量中并未出现显著差异。
+                （2）老年消费者对保健品和一般药品的态度<span
+                    class="similar-color-danger">并未出现内隐态度与外显态度的分离，证实了内隐态度和外显态度存在高相关</span>。
+                （3）不同依恋类型老年被试在不同情绪情景下对<span class="similar-color-tips">保健品的内隐态度并不相同<span>，拒绝依恋被试在不同情绪中对保健品给`,
+                    "origin_tips": "此处有 31 字相似",
+                    "similar_html": `1. 27390 .618628表4外显品牌态度与内隐品牌态度相关关系(N=31)
+                <span class="similar-color-danger">
+                    问题品牌外显态度问题品牌内隐态度优秀品牌外显态度优秀品牌内隐态度问题品牌外显态度间题品牌内隐态度优秀品牌外显态度优秀品牌内隐态度</span>
+                10 .0020 .2480 .019 l0 .299一0 .389‘0 .077从表3和表4显示的数据`,
+                    "similar_tips": "来源：http://www.360doc.co",
+                },
+            ]
+        }
+    }
+    $(function () {
+        var pub = {}
+        pub.init = function () {
+            this.getReportData()
+        }
+        pub.getReportData = function () {
+            // var postData = {
+            //     id: 123
+            // }
+            // $.ajax({
+            //     type: "POST",
+            //     url: "https://www.easy-mock.com/mock/5b237705b541690d6ed33ba2/crm_v2/ajax_get_refund_reasons",
+            //     data: JSON.stringify(postData),
+            //     dataType: 'json',
+            //     success: function (res) {
+            //         console.log(res)
+            //     }
+            // })
+
+            setTimeout(() => {
+                //模拟数据，到时可以把setTimeout中内容放入到上面的ajax中
+                console.log(mockdata)
+                var result_html = ''
+                var diff_html = ''
+                if (mockdata.success) {
+                    if (mockdata.data.report_result && mockdata.data.report_result.length > 0) {
+                        mockdata.data.report_result.forEach(function (item) {
+                            result_html += '<div class="report-result-item">' +
+                                '<div class="key">' + item.key + '</div>' +
+                                '<div class="value">' + item.value + '</div>' +
+                                '</div>'
+                        })
+                        $('.report-result-content').html(result_html)
+                    }
+                    if (mockdata.data.report_diff && mockdata.data.report_diff.length > 0) {
+                        mockdata.data.report_diff.forEach(function (item, index) {
+                            diff_html += '<div class="report-diff-item">' +
+                                '<div class="origin-item">' +
+                                '<div class="item-index">' + (index + 1) + '</div>' +
+                                '<div class="origin-content">' +
+                                '<div class="tips">' + item.origin_tips + '</div>' +
+                                ' <div class="html">' +
+                                item.origin_html +
+                                ' </div>' +
+                                ' </div>' +
+                                ' </div>' +
+                                ' <div class="similar-item">' +
+                                ' <div class="similar-content">' +
+                                '<div class="tips">' + item.similar_tips + '</div>' +
+                                '<div class="html">' +
+                                item.similar_html +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                ' </div>'
+                        })
+                        $('.report-diff-content').append(diff_html)
+                    }
+                    if (mockdata.data.createtime) {
+                        $('.report-date').text('检测时间:' + mockdata.data.createtime)
+                    }
+                    if (mockdata.data.report_number) {
+                        $('.report-number').text('No:' + mockdata.data.report_number)
+                    }
+                }
+            }, 500)
+        }
+        pub.init()
+    })
+</script>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+    }
+
+    .main {
+        width: 660px;
+        min-height: 800px;
+        background: #fff;
+        margin: 0 auto;
+        border: 1px solid #eee;
+    }
+
+    .report-title {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        padding: 18px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .report-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        height: 36px;
+        border-bottom: 1px solid #eee;
+        border-top: none;
+        background: #f4f9ef;
+    }
+
+    .report-number {
+        padding-left: 10px;
+    }
+
+    .report-date {
+        padding-right: 10px;
+    }
+
+    .report-result-title {
+        height: 30px;
+        line-height: 30px;
+        background: #e6fffc;
+        padding-left: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .report-result-content {
+        border-bottom: 1px solid #eee;
+        padding: 10px 10px 0 10px;
+        display: flex;
+        flex-wrap: wrap;
+        background: #f7f7f7;
+    }
+
+    .report-result-item {
+        display: flex;
+        width: 50%;
+        padding-bottom: 10px;
+    }
+
+    .report-result-item .key {
+        padding-right: 20px;
+    }
+
+    .report-diff-title {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+    }
+
+    .report-diff-title>div {
+        flex: 1;
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        font-size: 14px;
+        background: #e6fffc;
+    }
+
+    .report-diff-title>div:first-child {
+        border-right: 1px solid #eee;
+    }
+
+    .report-diff-item {
+        display: flex;
+        border-bottom: 1px solid #eee;
+    }
+
+    .origin-item {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        border-right: 1px solid #eee;
+    }
+
+    .similar-item {
+        flex: 1;
+    }
+
+    .origin-item .item-index {
+        width: 20px;
+        background: #fff7e6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .origin-item .origin-content {
+        flex: 1;
+        padding: 10px;
+        border-left: 1px solid #eee;
+    }
+
+    .similar-item .similar-content {
+        padding: 10px;
+    }
+
+    .similar-color-danger {
+        color: #ff4d4f;
+    }
+
+    .similar-color-waring {
+        color: #ffa940;
+    }
+
+    .similar-color-tips {
+        color: #a0d911
+    }
+
+    .report-diff-item .tips {
+        color: #fa541c;
+        font-size: 12px;
+        font-weight: bold;
+        padding-bottom: 5px;
+    }
+</style>
+
+</html>

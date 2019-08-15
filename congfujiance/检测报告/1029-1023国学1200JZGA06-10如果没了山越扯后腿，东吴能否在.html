@@ -1,343 +1,732 @@
 
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta http-equiv="content-type" content="text/html;charset=utf-8">
-    <title>分析报告</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>report</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 </head>
-<div >
 
-<div class="artical f16" style="width:50%;float:left">
-    <div class="tit_detail" style="padding:0 5px 40px 5px">
-		<span class="block a_left f12 reportinfo tahoma"> <b class="f14">查重检测</b><br>
-			<b><span class="vpcs-tips">检测结果： </span></b>总相似比：<b class="red tahoma">78.5%</b><br>
-			<b><span class="vpcs-tips">操作提示： </span></b>鼠标滑过带有颜色的文字查看相似片段详情 点击跳转相似内容位置
-		</span>
-    </div>
-    <div class="detail">
-
-
-        
-            <a href="http://www.baidu.com/link?url=myDFDHRnhgVXPaBZGCHW2My2mNXrVQ0FXt639oLDWMJ-_u2GBxpE8fVsj3bM1cULWKfClfaXmiLXJ5zUNE4bWa" 
-                 data-similar="2018年10月14日 - 从孙坚转战江东,到孙策奠基、孙权立国,一直到孙皓亡国,有一个挥之不去的阴影一直盘旋在东吴君臣的头顶,那就是山越。山越的叛乱此起彼伏,东吴与..." onmouseover="overShow(this)"><span style="color:
-                    green
-                ">如果没了山越扯后腿，东吴能否在三国中雄起呢</span></a><br/>
-                <br/>
-        
-
-        
-            <a href="http://www.baidu.com/link?url=8mD4krx1tJL4hYLMOLi0uGGQP40Dq3MqglPQsrRzBYAPIAteI2tzkA_KxCL8zu9ZQOe9OhHmBTO1AzvXCYeH2xrYWmllRaIALgaAdMvCLoG" 
-                 data-similar="2018年8月14日 - 孙权的父亲孙坚和兄长孙策,在东汉末年群雄割据中打下了江东基业。十九岁时兄长孙策遭刺杀身亡后,孙权继承了..." onmouseover="overShow(this)"><span style="color:
-                    orange
-                    ">东汉末年，聚焦吴国。自孙权的父亲孙坚开始转战江东，哥哥孙策奠定东吴基础，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=c7amQi87YuY4h5U6M8oMWL0vJxPPPu5-msF9iQZ0Ew9NLBZdP7gkoIWeXNnvIgmA3Ob6-2zAIqWR09jgJbF0fa" 
-                 data-similar="4天前 - 东汉末年,聚焦吴国。自孙权的父亲孙坚开始转战江东,哥哥孙策奠定东吴基础,再到孙权建立吴国,一直到孙皓亡国,吴国的命运一直是跌宕起伏。在于曹操、刘..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">再到孙权建立吴国，一直到孙皓亡国，吴国的命运一直是跌宕起伏。</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=x7GskKvNoJQfrt3QpoysCRSNF1M61CIGV4zIpZMEw6oXkSpmLxLkMck3fCQn7pGLGpjuiV84ikYuMQEMjsHiya" 
-                 data-similar="在于曹操、刘备的战争对抗中,尽管有周瑜、鲁肃、黄盖、吕蒙等杰出的人才相助外,但是吴国还是未能成就大业。有一贯穿整个东吴命运的矛盾就是山越这个地方。为什么,山..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">在于曹操、刘备的战争对抗中，尽管有周瑜、鲁肃、黄盖、吕蒙等杰出的人才相助外，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=dwXPX3jZORu3Qx7uq2Hgrr9tyDIEj5OEG8nk5ug_0KAmUl9vKVdhHzwIfl8Nk7C5zeqXhiHgALc3inrC9RMt6q" 
-                 data-similar="4天前 - 在于曹操、刘备的战争对抗中,尽管有周瑜、鲁肃、黄盖、吕蒙等杰出的人才相助外,但是吴国还是未能成就大业。有一贯穿整个东吴命运的矛盾就是山越这个地..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">但是吴国还是未能成就大业。有一贯穿整个东吴命运的矛盾就是山越这个地方。</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=OW9XW729kXl6wucjRnk_CHf45O9Y_lmnVxRTDlFRWL9xEsRcc2KDAejblARn2zgjCrNklQ-nPymz5SXrx5XfYq" 
-                 data-similar="4天前 - 为什么,山越的势力如此强大呢?牵制了吴国的步伐,使孙仲谋那样慧智的君主都头疼呢?  翻阅历史古书,山越在古书上是分布在东吴会稽、吴郡、丹阳、豫章、..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">为什么，山越的势力如此强大呢？牵制了吴国的步伐，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=35Yeo5zq3qRfeG78H8MJdGyQ4bbmoiiNcjibo4nXqRQDc82dC8YQi8ptw6zlbw7-EYPYNW8iUhUGz8E8NUAmKK" 
-                 data-similar="4天前 - 牵制了吴国的步伐,使孙仲谋那样慧智的君主都头疼呢?  翻阅历史古书,山越在古书上是分布在东吴会稽、吴郡、丹阳、豫章、庐陵、新都、鄱阳等地方,就是我..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">使孙仲谋那样慧智的君主都头疼呢？</span></a><br/>
-                <br/>
-        
-
-        
-
-        
-            <a href="" 
-                 data-similar="" onmouseover="overShow(this)"><span style="color:
-                    green
-                ">翻阅历史古书，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=UvdzZdFik6isJDYVVM7VxaF-d3pIN3GmSxe2ghfvX57aD1IEJ1BTAvxSCVYqb2PbrVo2aeCQpxRG-zs86sJDGK" 
-                 data-similar="4天前 - 翻阅历史古书,山越在古书上是分布在东吴会稽、吴郡、丹阳、豫章、庐陵、新都、鄱阳等地方,就是我们现在的江西、浙江、安徽、福建、苏州等省界交汇的地..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">山越在古书上是分布在东吴会稽、吴郡、丹阳、豫章、庐陵、新都、鄱阳等地方，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=w9_pX8KezispD2PE8bZ0J0grSB5FCM_GF8hPl54H1FnnFS3HHI7Pz0O7rJDW3p3QVHGQuDLQ3mvUytIvnc0as_" 
-                 data-similar="4天前 - 翻阅历史古书,山越在古书上是分布在东吴会稽、吴郡、丹阳、豫章、庐陵、新都、鄱阳等地方,就是我们现在的江西、浙江、安徽、福建、苏州等省界交汇的地..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">就是我们现在的江西、浙江、安徽、福建、苏州等省界交汇的地方，据推测，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=JcddxgyFIcRjxk4CTVns4et763myw14og_bpW7cKJZIxlzb7m-g7MOlFoazQdBaysbnobUQI8zEQVJaAxYyY7_" 
-                 data-similar="4天前 - 等省界交汇的地方,据推测,那里是一片丛林原始地带,山势险峻,不受官府的管辖。据相关书籍记载,山越一词可能只是对山贼的地域性称呼,而且与山贼、野寇同..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">那里是一片丛林原始地带，山势险峻，不受官府的管辖。据相关书籍记载，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=H0_zIoutLoLByoUM7afob06JCIWR1x6x2eki4Mt-gsC-vnav7NAf-CInNotaQACD_DVzKMEu6LJSQOOpsjHSQa" 
-                 data-similar="2017年10月31日 - 可见山越的称呼原因可能只是对山贼的地域性称呼。山越一词也常与山贼,山民等共同出现。这也解释了为何山越势力彼此并没有什么联系,而且为数众多,时而..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">山越一词可能只是对山贼的地域性称呼，而且与山贼、野寇同时出现。</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=ZxxCMoFsRGrTJdgqjGfn50aOMK-7vdioEH6SDkeExGCzyae7mm09AJJTN3U3UHIwgW29L7keNn27_fg50dkv-q" 
-                 data-similar="4天前 - 据相关书籍记载,山越一词可能只是对山贼的地域性称呼,而且与山贼、野寇同时出现。但这些山贼如同古希腊的政治一样,因为地势的阻隔,小国寡民,实行寡头..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">但这些山贼如同古希腊的政治一样，因为地势的阻隔，小国寡民，实行寡头政治。</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=YNYJlIqqQAv4b3K8bPkQh_iENDomYxrz9SNg9b6xR9YhSatWCRhwzB9XcUJgUPi51SWyIhCJT2LtOxSwnZQ7Aq" 
-                 data-similar="4天前 - 也就说,这些山越部落之间并没有相互联系,虽然众多,也是各占据一盘势力,因此双方的矛盾也是时隐时现。 山越部落各自占山为王,以传统农事生产为主,种植..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">也就说，这些山越部落之间并没有相互联系，虽然众多，也是各占据一盘势力，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=hk4dao0l-psBzo1VGOCWahmbLwmUz8rwoGksepaLC_hMYn6GO1ESE3wvlXvarNt_BBnv1ZtX9IHfiyoY33jDTK" 
-                 data-similar="4天前 - 也就说,这些山越部落之间并没有相互联系,虽然众多,也是各占据一盘势力,因此双方的矛盾也是时隐时现。 山越部落各自占山为王,以传统农事生产为主,种植..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">因此双方的矛盾也是时隐时现。</span></a><br/>
-                <br/>
-        
-
-        
-
-        
-            <a href="http://www.baidu.com/link?url=hKBZrdqk6LODZppbQFeKQTkNtelxzU4JpXV3sIBJJGoAYt_l490IG7ME6nQYuFzO0zpXoE-wXtxwmg0-CAg4Fq" 
-                 data-similar="4天前 - 山越部落各自占山为王,以传统农事生产为主,种植谷物、养蚕剿斯,自给自足。因据南方山脉地形,有色金属桐资源较为丰富,逐渐学会冶炼技术,休兵造甲,成为..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">山越部落各自占山为王，以传统农事生产为主，种植谷物、养蚕剿斯，自给自足。</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=A_8wWk4NFP6WTT8ZEESzHFi3N5xvD-XiXX4ackXhyrlWq1V0mMVL90DCdR5JoAdE917PsUFzFjn-29sUwAqQQ_" 
-                 data-similar="4天前 - 因据南方山脉地形,有色金属桐资源较为丰富,逐渐学会冶炼技术,休兵造甲,成为一股不可小觑的力量。 而他们也不受官家统治,可谓桃花源境界。孙权统治地区..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">因据南方山脉地形，有色金属桐资源较为丰富，逐渐学会冶炼技术，休兵造甲，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=HuQhbw9qGALYWGEIUFo_MYPShtrqnaEydsHNaMYkSIPbemKb7qOYykTJbaIU8viDFRXpVj9Nq8q41jJ4yx1UfWKhjberL0lHqwgzgoI8bJRFW9SNC7Pxvrr3jQH5WPHIzTbooriQah7tgzR-dNfhoR7osUZnxGahyPsW0-9pSOa" 
-                 data-similar="时至今日,自由会议口译已经成为一股不可小觑的力量。在官方以外的广大市场,是许多翻译需求方的不二选择。 Freelance professionals are now becoming a strong competi..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">成为一股不可小觑的力量。</span></a><br/>
-                <br/>
-        
-
-        
-
-        
-            <a href="http://www.baidu.com/link?url=klUuk9OSlnm-5VkZUf5uLBH94GsPe0yQQ2xNCTD_KI2Wcar23t9vYrYqx8fSjx5NC6VhMZNyNrmwtVsoeyq24K" 
-                 data-similar="4天前 - 因据南方山脉地形,有色金属桐资源较为丰富,逐渐学会冶炼技术,休兵造甲,成为一股不可小觑的力量。 而他们也不受官家统治,可谓桃花源境界。孙权统治地区..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">而他们也不受官家统治，可谓桃花源境界。</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=FBPIbrIY4MZhv3NwDtgT9JpU1KEVZBEFv7aZB5yqxgi4u8-DviSxXqbavt_Q4vyLQScXjeaAS29XdNJVNrJCGq" 
-                 data-similar="最佳答案: 1.当时的南中,是比较荒僻的。诸葛亮在《出师表》中称之是“五月渡沪,深入不毛”。诸葛亮这次南征,取用的是攻心为上的方针,要在使南人心服。当时...更多关于孙权统治地区中心的吴郡、会稽、建业等地,的问题>>" onmouseover="overShow(this)"><span style="color:
-                    green
-                ">孙权统治地区中心的吴郡、会稽、建业等地，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=WIxR7ihMCk_ve7RIJ-621wDy-2SvsijcwHvFCDTlUGUq1s7yiR2au7RZmk8EJcwWk7mhRDP8-PXwiQEV07CbA_" 
-                 data-similar="4天前 - 孙权统治地区中心的吴郡、会稽、建业等地,他们的存在对于东吴来讲是个眼中刺肉中钉,孙权想要成就大业,必定会扩大东吴疆土。而山越部落必是桀骜不驯的..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">他们的存在对于东吴来讲是个眼中刺肉中钉，孙权想要成就大业，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=jqpM70-pEXfiJQiVG_8lwKN01p6asxCz8GsYhpS1bjU0mICV7IJabdJ_nMdhhzLgnKjehEcxnCzwrenn5EXU9a" 
-                 data-similar="4天前 - 孙权统治地区中心的吴郡、会稽、建业等地,他们的存在对于东吴来讲是个眼中刺肉中钉,孙权想要成就大业,必定会扩大东吴疆土。而山越部落必是桀骜不驯的..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">必定会扩大东吴疆土。而山越部落必是桀骜不驯的。</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=2OxnsJHhbWPpSqL3nGEhBcw4VMcnD7ap_izZFJ3QPMUQrj7Atj7lB2D0dho5508UtecQ3MG4SmIqAbzNDz7wSK" 
-                 data-similar="4天前 - 因此东吴势必和山越之间必会有一场战争。 吴诸郡时常有山越部落作乱,在夷陵之战中,因为陆逊击败了山越部落里的定山越而被孙权赏识,成为孙权旁边的一名..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">因此东吴势必和山越之间必会有一场战争。</span></a><br/>
-                <br/>
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-            <a href="http://www.baidu.com/link?url=Q6C0XCpb6Thlp377Iq1C74wLBnUQP4zfXG7oeHScXYLe1UyeFJwXMioA4j7di72LoVHnD_sxt92ZWZP-GHH7H_" 
-                 data-similar="4天前 - 因此东吴势必和山越之间必会有一场战争。 吴诸郡时常有山越部落作乱,在夷陵之战中,因为陆逊击败了山越部落里的定山越而被孙权赏识,成为孙权旁边的一名..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">吴诸郡时常有山越部落作乱，在夷陵之战中，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=UvdzZdFik6isJDYVVM7VxaF-d3pIN3GmSxe2ghfvX57aD1IEJ1BTAvxSCVYqb2PbrVo2aeCQpxRG-zs86sJDGK" 
-                 data-similar="4天前 - 因此东吴势必和山越之间必会有一场战争。 吴诸郡时常有山越部落作乱,在夷陵之战中,因为陆逊击败了山越部落里的定山越而被孙权赏识,成为孙权旁边的一名..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">因为陆逊击败了山越部落里的定山越而被孙权赏识，成为孙权旁边的一名悍将。</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=BJS3fxzFz2VjboCEBj5SDjYrJ36ppcDBSmH-CbwvusPSGmQUok1mefB3RkCwP8FrOKx4dDSHjW7N6C8twsUFVa" 
-                 data-similar="4天前 - 而且在与后来的蜀国较量中,陆逊帮助孙权打败了刘备。从此平步青云,在历史上留下浓墨重彩的一笔。奸雄曹操,足智多谋,一眼瞅准了这个战机,还利用孙权与..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">而且在与后来的蜀国较量中，陆逊帮助孙权打败了刘备。从此平步青云，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=hKnFHrwwBpCKRxzttNi9beileKt3aKeiL492Y8dv-qGIHbWb7baSkLjQBo-K_eKVHbFwSLV97Hp452P4gqbZiK" 
-                 data-similar="4天前 - 从此平步青云,在历史上留下浓墨重彩的一笔。奸雄曹操,足智多谋,一眼瞅准了这个战机,还利用孙权与山越的矛盾,巧妙的加大矛盾,企图让孙权与山越两者鹬蚌..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">在历史上留下浓墨重彩的一笔。奸雄曹操，足智多谋，一眼瞅准了这个战机，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=0qdrw0m0oXMnJUkQv0rdhEcC5y0pY-uXsDc7NmwPmcNM7qSRHi4HGLKQk1gGjXIfdK5id3Kpzn7RhJJJiSkaKa" 
-                 data-similar="4天前 - 奸雄曹操,足智多谋,一眼瞅准了这个战机,还利用孙权与山越的矛盾,巧妙的加大矛盾,企图让孙权与山越两者鹬蚌相争,自己成为渔翁得利。阴险狡诈的袁术也看..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">还利用孙权与山越的矛盾，巧妙的加大矛盾，企图让孙权与山越两者鹬蚌相争，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=UIwWsFTbvMf64eQexy0JPgjgZwN5GJUpT2AnbsvLMQae2D4VWaN020wqYUOB2q-e6p3v8UHEDeK7h_H3QkuqeK" 
-                 data-similar="4天前 - 与山越的矛盾,巧妙的加大矛盾,企图让孙权与山越两者鹬蚌相争,自己成为渔翁得利...阴险狡诈的袁术也看到这一点,曾也以授予丹阳越部印章,激化孙权与丹阳..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">自己成为渔翁得利。阴险狡诈的袁术也看到这一点，曾也以授予丹阳越部印章，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=tPaB2m04X3tnVK_xM168BIw7zNylwf8xf9-aFUnIcKkfR5g8oEqInAnjyiSAD3Rj32tWr6tFPTlyWRVjBwmKlK" 
-                 data-similar="4天前 - 阴险狡诈的袁术也看到这一点,曾也以授予丹阳越部印章,激化孙权与丹阳的联盟,来分化孙策与丹阳部的矛盾,但最终被孙权破解,最终只能以失败告终。但,山越..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">激化孙权与丹阳的联盟，来分化孙策与丹阳部的矛盾，但最终被孙权破解，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=MAFYwQbLbbeWjbQqB5h4FB57l5v3uABD24-b6cbikkz3f3y3vzNxa57z4-tI02STeWTwgZaaftPQYYO0a2ekJK" 
-                 data-similar="4天前 - 与丹阳的联盟,来分化孙策与丹阳部的矛盾,但最终被孙权破解,最终只能以失败告终...但,山越部落最为一个矛盾体,是实打实的拖住了孙权的后腿。 哲学上的..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">最终只能以失败告终。但，山越部落最为一个矛盾体，是实打实的拖住了孙权的后腿。</span></a><br/>
-                <br/>
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-            <a href="http://www.baidu.com/link?url=WecpTDZDlPZDvOIPu9-NSAq468aWkx_0w3gyn0R2NrRtjaLYuj0pxwpaQsQOCxf079_gQrzFcLY93Z0g1NVZi6qil9QWImkt7LKkI1WuXJ3" 
-                 data-similar="最佳答案: D ②属于联系和发展的观点,不属于矛盾分析法。更多关于哲学上的矛盾分析法不是以一分为二的观点要我们看待问题吗?的问题>>" onmouseover="overShow(this)"><span style="color:
-                    green
-                ">哲学上的矛盾分析法不是以一分为二的观点要我们看待问题吗？</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=8amQ83j3TLKAQK6MBATATTc2lYzf1Ew9HsPL2hduh2H9BQtiiNwLIeDj04NK1QNpT88IGykkqZCO8qtJbhJ1N_" 
-                 data-similar="4天前 - 虽然山越的存在对于吴国来讲是一个头疼的问题,但是它的好处也是显而易现的。山越作为一股殷实的政治力量不可小觑,山越部落虽然只是山野之民,但是晓畅..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">虽然山越的存在对于吴国来讲是一个头疼的问题，但是它的好处也是显而易现的。</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=2Oo5VSRXoLEGZmmlJjM7XFwqR3bXw7ic3UE7AcTwyQp25DKKDwQ5WkiD2tMRjf1fVGJ6iB_ZMkdl6Akja1LSmq" 
-                 data-similar="4天前 - 山越作为一股殷实的政治力量不可小觑,山越部落虽然只是山野之民,但是晓畅山岭作战之术,射箭、马艺技术更是不在话下,这样精锐的部队也可以在野地里生存..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">山越作为一股殷实的政治力量不可小觑，山越部落虽然只是山野之民，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=G6a5m3NUfjoFt0N3TDuSntE-chataXMGo08cM79GSJvoLfsp5_ATVvh2E_kMLTzs0J5RBskIR49E63vKG4qApa" 
-                 data-similar="4天前 - 山越作为一股殷实的政治力量不可小觑,山越部落虽然只是山野之民,但是晓畅山岭作战之术,射箭、马艺技术更是不在话下,这样精锐的部队也可以在野地里生存..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">但是晓畅山岭作战之术，射箭、马艺技术更是不在话下，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=nOjBgY7z36MJlylMA_m5urgLCNrg5-ZwdWEmf1-a12YU4lt2TNwcbNrHFQ3mv2fgJkrjBKEsPoDaBMNlUMXqdK" 
-                 data-similar="4天前 - 山越部落虽然只是山野之民,但是晓畅山岭作战之术,射箭、马艺技术更是不在话下,这样精锐的部队也可以在野地里生存,在恶劣的环境,他们也可以克服艰难困..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">这样精锐的部队也可以在野地里生存，在恶劣的环境，他们也可以克服艰难困苦，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=vEt61xkBrZN6F9okQ4kX8bTi6eFN2PIAeWCybp95duXiNzF02L7Qr-mY0EcESaMahGIO9HJ083vKzfZjpG2KfK" 
-                 data-similar="4天前 - 精锐的部队也可以在野地里生存,在恶劣的环境,他们也可以克服艰难困苦,完好生存。在与孙家势力的抗争中,孙权不仅获得了一部分人才,而且积累了许多的作..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">完好生存。在与孙家势力的抗争中，孙权不仅获得了一部分人才，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=bmzxAC8xYqIhsKyXZswz5L-TrTBBK2GLk6MI1JVCRx-5_LTBang_xKEBI52r0s0zUsbNN6_2GMH_IGtWBHSccq" 
-                 data-similar="4天前 - 在与孙家势力的抗争中,孙权不仅获得了一部分人才,而且积累了许多的作战经验。尤其是使东吴积累了不少山地作战的战略谋策。而且,东吴也在征讨中获得了..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">而且积累了许多的作战经验。尤其是使东吴积累了不少山地作战的战略谋策。而且，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=QN5qEXPmE9mR35MY9Zk_UkIdc9iyhOSDDHvxU5voq5T_LegyaXNeOYSw89LODRw9hrErfUXFGTkogKF4yRA90a" 
-                 data-similar="4天前 - 尤其是使东吴积累了不少山地作战的战略谋策。而且,东吴也在征讨中获得了许多的俘虏。为东吴人马的壮大也增添了不少功劳。而且也为东吴提供粮草等后续..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">东吴也在征讨中获得了许多的俘虏。为东吴人马的壮大也增添了不少功劳。</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=y5oBHvOyPcO7nSMwvmoqzkvq4UXbMvhXOyDl5H2duf_3mPzPESCLW-bjzF_tC7VldYxxhaC21xpxfVK-PfeGYK" 
-                 data-similar="4天前 - 尤其是使东吴积累了不少山地作战的战略谋策。而且,东吴也在征讨中获得了许多的俘虏。为东吴人马的壮大也增添了不少功劳。而且也为东吴提供粮草等后续..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">而且也为东吴提供粮草等后续补给。</span></a><br/>
-                <br/>
-        
-
-        
-
-        
-            <a href="http://www.baidu.com/link?url=Z3BemrWg8ZEjfCggzVP7KZLPTtiV_ybAF4Z0nM4Tsu4RdQoVw8AVCA4UGDSxkliNF6Y0X7noGr00zhf87clbQK" 
-                 data-similar="4天前 - 因此吴国的战败不能局限于山越这个部落,毕竟成功是多方面的。天时地利人和,最终也只能尽人事听天命。 本文为一点号作者原创,未经授权不得转载 ..." onmouseover="overShow(this)"><span style="color:
-                    red
-                    ">因此吴国的战败不能局限于山越这个部落，毕竟成功是多方面的。天时地利人和，</span></a><br/>
-                <br/>
-        
-            <a href="http://www.baidu.com/link?url=4kZCAq87BmnGJcjYDZnn7qmvgGAbfw12xnnh5T2XL11AI_PYGJ9A8hmaHgXYwwMgrpNy6aIwkXWsJmuuR6psx_-RMJq_cGQiuE5WHIcypxy" 
-                 data-similar="最佳答案: 尽力做好自己的本分,但成不成功要靠老天了更多关于最终也只能尽人事听天命。的问题>>" onmouseover="overShow(this)"><span style="color:
-                    green
-                ">最终也只能尽人事听天命。</span></a><br/>
-                <br/>
-        
-
-
-</div>
-</div>
-<div class="side_bar" style="width:45%;float:left;padding:130px 20px 40px 5px">
-
-    <div class="content">
-        <div class="content-fixed" style="position: fixed;top:202px;">
-            <div class="content-fixed1" id="show_similar">
-                
+<body>
+    <div class="main">
+        <div class="report">
+            <div class="report-title">文本复制检测报告单</div>
+            <div class="report-info">
+                <span class="report-number"></span>
+                <span class="report-date"></span>
             </div>
+            <div class="report-result">
+                <div class="report-result-title">检测结果</div>
+                <div class="report-result-content">
+                    <!-- <div class="report-result-item">
+                        <div class="key">总文字复制比</div>
+                        <div class="value">24.2%</div>
+                    </div>
+                    <div class="report-result-item">
+                        <div class="key">总文字复制比</div>
+                        <div class="value">24.2%</div>
+                    </div>
+                    <div class="report-result-item">
+                        <div class="key">总文字复制比</div>
+                        <div class="value">24.2%</div>
+                    </div>
+                    <div class="report-result-item">
+                        <div class="key">总文字复制比</div>
+                        <div class="value">24.2%</div>
+                    </div>
+                    <div class="report-result-item">
+                        <div class="key">总文字复制比</div>
+                        <div class="value">24.2%</div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="report-reference">
+                <div class="report-reference-title">
+                    <span class="title"></span>
+                    <span class="word-number">总字数<b></b></span>
+                </div>
+                <div class="report-reference-sub">相似文献列表</div>
+                <div class="report-reference-data">
+                    <!-- <div class="report-data-item">
+                            <div class="key">去除本人已发表文献复制比：</div>
+                            <div class="value">15.8%(1602)</div>
+                        </div>
+                        <div class="report-data-item">
+                            <div class="key">文字复制比:</div>
+                            <div class="value">15.8%(1602)</div>
+                        </div>
+                        <div class="report-data-item">
+                            <div class="key">疑似剽窃观点</div>
+                            <div class="value">（0）</div>
+                        </div> -->
+                </div>
+                <div class="report-reference-content">
+                    <!-- <div class="report-reference-item">
+                            <div class="report-item-left">
+                                <div class="index">1</div>
+                                <div class="reference-content">
+                                    <div class="title">死亡提醒对吸烟者吸烟态度的影响研究</div>
+                                </div>
+                            </div>
+                            <div class="report-item-right">
+                                <div class="percent">2.3%（234）</div>
+                            </div>
+                        </div> -->
+                </div>
+            </div>
+            <div class="report-content">
+                <div class="report-diff-content">
+                    <div class="report-diff-title">
+                        <div class="origin">原文内容</div>
+                        <div class="similar">相似内容来源</div>
+                    </div>
+                    <!-- <div class="report-diff-item">
+                        <div class="origin-item">
+                            <div class="item-index">1</div>
+                            <div class="origin-content">
+                                <div class="tips">此处有 31 字相似</div>
+                                <div class="html">
+                                    内隐态度测量中对保健品的偏好显著高于一般药品，但外显态度测量中并未出现显著差异。
+                                    （2）老年消费者对保健品和一般药品的态度<span
+                                        class="similar-color-danger">并未出现内隐态度与外显态度的分离，证实了内隐态度和外显态度存在高相关</span>。
+                                    （3）不同依恋类型老年被试在不同情绪情景下对保健品的内隐态度并不相同，拒绝依恋被试在不同情绪中对保健品给
+                                </div>
+                            </div>
+                        </div>
+                        <div class="similar-item">
+                            <div class="similar-content">
+                                <div class="tips">来源：http://www.360doc.co</div>
+                                <div class="html">
+                                    1. 27390 .618628表4外显品牌态度与内隐品牌态度相关关系(N=31)
+                                    <span class="similar-color-danger">
+                                        问题品牌外显态度问题品牌内隐态度优秀品牌外显态度优秀品牌内隐态度问题品牌外显态度间题品牌内隐态度优秀品牌外显态度优秀品牌内隐态度</span>
+                                    10 .0020 .2480 .019 l0 .299一0 .389‘0 .077从表3和表4显示的数据
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+
         </div>
     </div>
-
-</div>
-</div>
 </body>
 <script>
+    var mockdata = {
+        "success": true,
+        "data": {
+           "createtime": "2019-07-19 20:20:40",
+            "report_number": "1029-1023国学1200JZGA06-10如果没了山越扯后腿，东吴能否在.doc",
+            "report_result": [
+                {
+                    "key": "总文字复制比",
+                    "value": "79.0%",
+                }
+            ],
+            "report_diff": [
+                        
+                        {
+                            "origin_html": `如果没了山越扯后腿，东吴能否在三国中雄起呢`,
+                            "origin_tips": `此处有0字相似`,
+                            "similar_html": ``,
+                            "similar_tips": `来源：`,
+                            "similar": [
+                                     
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;10&#26376;14&#26085;&#160;-&#160;</span>&#32763;&#38405;<em>&#19977;&#22269;</em>&#21382;&#21490;,&#20250;&#21457;&#29616;<em>&#26377;</em>&#19968;&#20010;&#35789;&#20960;&#20046;&#20276;&#38543;&#20102;&#25972;&#20010;<em>&#19996;&#21556;</em>&#21382;&#21490;&#12290;&#20174;&#23385;&#22362;&#36716;&#25112;&#27743;&#19996;,&#21040;&#23385;&#31574;&#22880;&#22522;&#12289;&#23385;&#26435;&#31435;&#22269;,&#19968;&#30452;&#21040;&#23385;&#30355;&#20129;&#22269;<em>,&#26377;</em>&#19968;&#20010;&#25381;&#20043;&#19981;&#21435;&#30340;&#38452;&#24433;&#19968;&#30452;&#30424;&#26059;&#22312;<em>&#19996;&#21556;</em>...</div>`,
+                                    "similar_tips": `来源：&#22914;&#26524;&#27809;&#20102;&#23665;&#36234;&#25199;&#21518;&#33151;,&#19996;&#21556;&#33021;&#21542;&#22312;&#19977;&#22269;&#20013;&#38596;&#36215;&#21602;?_&#20154;&#25991;&#39057;&#36947;_&#19996;&#26041;&#22836;&#26465;`
+                                },
+                                           
+                            ]
+                        },
+                 
+                        {
+                            "origin_html": `<em>东汉末年，聚焦吴国。自孙权的父亲孙坚开始转战江东，哥哥孙策奠定东吴基础，</em><em>再到孙权建立吴国，一直到孙皓亡国，吴国的命运一直是跌宕起伏。</em><em>在于曹操、刘备的战争对抗中，尽管有周瑜、鲁肃、黄盖、吕蒙等杰出的人才相助外，</em><em>但是吴国还是未能成就大业。有一贯穿整个东吴命运的矛盾就是山越这个地方。</em><em>为什么，山越的势力如此强大呢？牵制了吴国的步伐，</em><em>使孙仲谋那样慧智的君主都头疼呢？</em>`,
+                            "origin_tips": `此处有152字相似`,
+                            "similar_html": ``,
+                            "similar_tips": `来源：`,
+                            "similar": [
+                                     
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span><em>&#19996;&#27721;&#26411;&#24180;,&#32858;&#28966;&#21556;&#22269;</em>&#12290;<em>&#33258;&#23385;&#26435;&#30340;&#29238;&#20146;&#23385;&#22362;&#24320;&#22987;&#36716;&#25112;&#27743;&#19996;,&#21733;&#21733;&#23385;&#31574;&#22880;&#23450;&#19996;&#21556;&#22522;&#30784;,</em>&#20877;&#21040;&#23385;&#26435;&#24314;&#31435;&#21556;&#22269;,&#19968;&#30452;&#21040;&#23385;&#30355;&#20129;&#22269;,&#21556;&#22269;&#30340;&#21629;&#36816;&#19968;&#30452;&#26159;&#36300;&#23445;&#36215;&#20239;&#12290;&#22312;&#20110;&#26361;&#25805;&#12289;&#21016;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#19996;&#27721;&#26411;&#24180;,&#32858;&#28966;&#21556;&#22269;&#12290;&#33258;&#23385;&#26435;&#30340;&#29238;&#20146;&#23385;&#22362;&#24320;&#22987;&#36716;&#25112;&#27743;&#19996;,&#21733;&#21733;&#23385;&#31574;&#22880;&#23450;&#19996;&#21556;&#22522;&#30784;,<em>&#20877;&#21040;&#23385;&#26435;&#24314;&#31435;&#21556;&#22269;,&#19968;&#30452;&#21040;&#23385;&#30355;&#20129;&#22269;,&#21556;&#22269;&#30340;&#21629;&#36816;&#19968;&#30452;&#26159;&#36300;&#23445;&#36215;&#20239;</em>&#12290;&#22312;&#20110;&#26361;&#25805;&#12289;&#21016;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span><em>&#22312;&#20110;&#26361;&#25805;</em>&#12289;<em>&#21016;&#22791;&#30340;&#25112;&#20105;&#23545;&#25239;&#20013;,&#23613;&#31649;&#26377;&#21608;&#29788;</em>&#12289; <em>&#40065;&#32899;</em> &#12289; <em>&#40644;&#30422;</em> &#12289;<em>&#21525;&#33945;&#31561;&#26480;&#20986;&#30340;&#20154;&#25165;&#30456;&#21161;&#22806;,</em>&#20294;&#26159;&#21556;&#22269;&#36824;&#26159;&#26410;&#33021;&#25104;&#23601;&#22823;&#19994;&#12290;&#26377;&#19968;&#36143;&#31359;&#25972;&#20010;&#19996;&#21556;&#21629;&#36816;&#30340;&#30683;&#30462;&#23601;&#26159; &#23665;&#36234;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#12289;&#21525;&#33945;&#31561;&#26480;&#20986;&#30340;&#20154;&#25165;&#30456;&#21161;&#22806;,<em>&#20294;&#26159;&#21556;&#22269;&#36824;&#26159;&#26410;&#33021;&#25104;&#23601;&#22823;&#19994;</em>&#12290;<em>&#26377;&#19968;&#36143;&#31359;&#25972;&#20010;&#19996;&#21556;&#21629;&#36816;&#30340;&#30683;&#30462;&#23601;&#26159; &#23665;&#36234; &#36825;&#20010;&#22320;&#26041;</em>&#12290;&#20026;&#20160;&#20040;,&#23665;&#36234;&#30340;&#21183;&#21147;&#22914;&#27492;&#24378;&#22823;&#21602;?&#29301;&#21046;&#20102;&#21556;&#22269;&#30340;&#27493;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#36825;&#20010;&#22320;&#26041;&#12290;<em>&#20026;&#20160;&#20040;,&#23665;&#36234;&#30340;&#21183;&#21147;&#22914;&#27492;&#24378;&#22823;&#21602;?&#29301;&#21046;&#20102;&#21556;&#22269;&#30340;&#27493;&#20240;,</em>&#20351;&#23385;&#20210;&#35851;&#37027;&#26679;&#24935;&#26234;&#30340;&#21531;&#20027;&#37117;&#22836;&#30140;&#21602;? &#32763;&#38405;&#21382;&#21490;&#21476;&#20070;,&#23665;&#36234;&#22312;&#21476;&#20070;&#19978;&#26159;&#20998;&#24067;&#22312;&#19996;&#21556;&#20250;&#31293;&#12289;&#21556;&#37089;&#12289;&#20025;&#38451;...</div>`,
+                                    "similar_tips": `来源：&#22914;&#26524;&#27809;&#20102;&#23665;&#36234;&#25199;&#21518;&#33151;,&#19996;&#21556;&#33021;&#21542;&#22312;&#19977;&#22269;&#20013;&#38596;&#36215;?|&#20025;&#38451;|&#23665;&#36234;|&#19996;&#21556;_&#26032;&#28010;&#32593;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#29301;&#21046;&#20102;&#21556;&#22269;&#30340;&#27493;&#20240;,<em>&#20351;&#23385;&#20210;&#35851;&#37027;&#26679;&#24935;&#26234;&#30340;&#21531;&#20027;&#37117;&#22836;&#30140;&#21602;?</em> &#32763;&#38405;&#21382;&#21490;&#21476;&#20070;,&#23665;&#36234;&#22312;&#21476;&#20070;&#19978;&#26159;&#20998;&#24067;&#22312;&#19996;&#21556;&#20250;&#31293;&#12289;&#21556;&#37089;&#12289;&#20025;&#38451;&#12289;&#35947;&#31456;&#12289;&#24208;&#38517;&#12289;&#26032;&#37117;&#12289;&#37169;&#38451;&#31561;&#22320;&#26041;,&#23601;&#26159;...</div>`,
+                                    "similar_tips": `来源：&#22914;&#26524;&#27809;&#20102;&#23665;&#36234;&#25199;&#21518;&#33151;,&#19996;&#21556;&#33021;&#21542;&#22312;&#19977;&#22269;&#20013;&#38596;&#36215;?`
+                                },
+                                           
+                            ]
+                        },
+                 
+                        {
+                            "origin_html": `<em>翻阅历史古书，</em><em>山越在古书上是分布在东吴会稽、吴郡、丹阳、豫章、庐陵、新都、鄱阳等地方，</em><em>就是我们现在的江西、浙江、安徽、福建、苏州等省界交汇的地方，据推测，</em><em>那里是一片丛林原始地带，山势险峻，不受官府的管辖。据相关书籍记载，</em><em>山越一词可能只是对山贼的地域性称呼，而且与山贼、野寇同时出现。</em><em>但这些山贼如同古希腊的政治一样，因为地势的阻隔，小国寡民，实行寡头政治。</em><em>也就说，这些山越部落之间并没有相互联系，虽然众多，也是各占据一盘势力，</em>因此双方的矛盾也是时隐时现。`,
+                            "origin_tips": `此处有168字相似`,
+                            "similar_html": ``,
+                            "similar_tips": `来源：`,
+                            "similar": [
+                                     
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#32763;&#38405;&#21382;&#21490;&#21476;&#20070;<em>,&#23665;&#36234;&#22312;&#21476;&#20070;&#19978;&#26159;&#20998;&#24067;&#22312;&#19996;&#21556;&#20250;&#31293;</em>&#12289;<em>&#21556;&#37089;</em>&#12289;<em>&#20025;&#38451;</em>&#12289;<em>&#35947;&#31456;</em>&#12289;<em>&#24208;&#38517;</em>&#12289;<em>&#26032;&#37117;</em>&#12289;<em>&#37169;&#38451;&#31561;&#22320;&#26041;,</em>&#23601;&#26159;&#25105;&#20204;&#29616;&#22312;&#30340;&#27743;&#35199;&#12289;&#27993;&#27743;&#12289;&#23433;&#24509;&#12289;&#31119;&#24314;&#12289;&#33487;&#24030;&#31561;&#30465;&#30028;&#20132;&#27719;&#30340;&#22320;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#35947;&#31456;&#12289;&#24208;&#38517;&#12289;&#26032;&#37117;&#12289;&#37169;&#38451;&#31561;&#22320;&#26041;,<em>&#23601;&#26159;&#25105;&#20204;&#29616;&#22312;&#30340;&#27743;&#35199;</em>&#12289;<em>&#27993;&#27743;</em>&#12289;<em>&#23433;&#24509;</em>&#12289;<em>&#31119;&#24314;</em>&#12289;<em>&#33487;&#24030;&#31561;&#30465;&#30028;&#20132;&#27719;&#30340;&#22320;&#26041;,&#25454;&#25512;&#27979;,</em>&#37027;&#37324;&#26159;&#19968;&#29255;&#19995;&#26519;&#21407;&#22987;&#22320;&#24102;,&#23665;&#21183;&#38505;&#23803;,&#19981;&#21463;&#23448;&#24220;&#30340;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span><em>&#20294;&#36825;&#20123;&#23665;&#36156;&#22914;&#21516;&#21476;&#24076;&#33098;&#30340;&#25919;&#27835;&#19968;&#26679;,&#22240;&#20026;&#22320;&#21183;&#30340;&#38459;&#38548;,&#23567;&#22269;&#23521;&#27665;,&#23454;&#34892;&#23521;&#22836;&#25919;&#27835;</em>&#12290;&#20063;&#23601;&#35828;,&#36825;&#20123;&#23665;&#36234;&#37096;&#33853;&#20043;&#38388;&#24182;&#27809;&#26377;&#30456;&#20114;&#32852;&#31995;,&#34429;&#28982;&#20247;&#22810;,&#20063;&#26159;&#21508;&#21344;&#25454;&#19968;&#30424;&#21183;&#21147;,...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span><em>&#20063;&#23601;&#35828;,&#36825;&#20123;&#23665;&#36234;&#37096;&#33853;&#20043;&#38388;&#24182;&#27809;&#26377;&#30456;&#20114;&#32852;&#31995;,&#34429;&#28982;&#20247;&#22810;,&#20063;&#26159;&#21508;&#21344;&#25454;&#19968;&#30424;&#21183;&#21147;,</em>&#22240;&#27492;&#21452;&#26041;&#30340;&#30683;&#30462;&#20063;&#26159;&#26102;&#38544;&#26102;&#29616;&#12290; &#23665;&#36234;&#37096;&#33853;&#21508;&#33258;&#21344;&#23665;&#20026;&#29579;,&#20197;&#20256;&#32479;&#20892;&#20107;&#29983;&#20135;&#20026;&#20027;,...</div>`,
+                                    "similar_tips": `来源：&#22914;&#26524;&#27809;&#20102;&#23665;&#36234;&#25199;&#21518;&#33151;,&#19996;&#21556;&#33021;&#21542;&#22312;&#19977;&#22269;&#20013;&#38596;&#36215;?|&#20025;&#38451;|&#23665;&#36234;|&#19996;&#21556;_&#26032;&#28010;&#32593;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#30028;&#20132;&#27719;&#30340;&#22320;&#26041;,&#25454;&#25512;&#27979;,<em>&#37027;&#37324;&#26159;&#19968;&#29255;&#19995;&#26519;&#21407;&#22987;&#22320;&#24102;,&#23665;&#21183;&#38505;&#23803;,&#19981;&#21463;&#23448;&#24220;&#30340;&#31649;&#36758;</em>...<em>&#25454;&#30456;&#20851;&#20070;&#31821;&#35760;&#36733;,</em>&#23665;&#36234;&#19968;&#35789;&#21487;&#33021;&#21482;&#26159;&#23545;&#23665;&#36156;&#30340;&#22320;&#22495;&#24615;&#31216;&#21628;,&#32780;&#19988;&#19982;&#23665;&#36156;&#12289;&#37326;&#23495;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#25454;&#30456;&#20851;&#20070;&#31821;&#35760;&#36733;,<em>&#23665;&#36234;&#19968;&#35789;&#21487;&#33021;&#21482;&#26159;&#23545;&#23665;&#36156;&#30340;&#22320;&#22495;&#24615;&#31216;&#21628;,&#32780;&#19988;&#19982;&#23665;&#36156;</em>&#12289;<em>&#37326;&#23495;&#21516;&#26102;&#20986;&#29616;</em>&#12290;&#20294;&#36825;&#20123;&#23665;&#36156;&#22914;&#21516;&#21476;&#24076;&#33098;&#30340;&#25919;&#27835;&#19968;&#26679;,&#22240;&#20026;&#22320;&#21183;&#30340;&#38459;&#38548;,&#23567;&#22269;&#23521;&#27665;,&#23454;&#34892;&#23521;&#22836;...</div>`,
+                                    "similar_tips": `来源：&#22914;&#26524;&#27809;&#20102;&#23665;&#36234;&#25199;&#21518;&#33151;,&#19996;&#21556;&#33021;&#21542;&#22312;&#19977;&#22269;&#20013;&#38596;&#36215;?`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2019&#24180;5&#26376;17&#26085;&#160;-&#160;</span>&#20294;&#35753;&#20154;&#19975;&#19975;&#27809;&#24819;&#21040;&#30340;&#26159;,&#19978;&#19990;&#32426;&#26411;,&#19968;&#20010;&#33521;&#22269;&#20154;&#31455;&#28982;&#22312;&#19968;&#26412;&#30334;&#24180;&#21476;&#20070;&#24403;&#20013;,&#25214;&#21040;&#20102;&#25105;...&#31616;&#20171;:&#26126;&#22825;&#36807;&#21518;,&#20170;&#26085;&#20415;&#25104;&#20026;<em>&#21382;&#21490;</em>&#12290; &#20316;&#32773;&#26368;&#26032;&#25991;&#31456; &#33521;&#22269;&#25506;&#38505;&#23478;<em>&#32763;&#38405;&#21476;&#20070;,</em>&#24847;...</div>`,
+                                    "similar_tips": `来源：&#33521;&#22269;&#25506;&#38505;&#23478;&#32763;&#38405;&#21476;&#20070;,&#24847;&#22806;&#21457;&#29616;&#19968;&#38544;&#31192;&#35760;&#24405;,&#25171;&#25438;&#19968;&#20010;&#26376;&#33719;&#21033;3000&#19975;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2010&#24180;12&#26376;24&#26085;&#160;-&#160;</span>&#20854;&#20182;<em>&#26102;&#38544;&#26102;&#29616;</em>&#20110;&#29983;&#21629;&#20013;<em>&#30340;&#30683;&#30462;</em>&#22987;&#32456; &#26159;&#36825;&#23545;&#30683;&#30462;&#30340;&#20877;&#29616;...&#20026;&#28789;&#39746;&#19982;&#32905;&#20307;&#30683;&#30462; &#26102;,&#32426;&#20271;&#20262;&#21448;&#24378;&#35843;&#30683;&#30462;<em>&#21452;&#26041;&#30340;</em>&#24046;&#24322;&#24615;...&#32426;&#20271;&#20262;&#35748;&#20026;&#21892;&#19982;&#24694;&#20043;&#38388;&#27809;&#26377;&#32477;&#23545;&#30340;&#30028;&#38480;,<em>&#22240;&#27492;</em>...</div>`,
+                                    "similar_tips": `来源：&#32426;&#20271;&#20262;&#30340;&#22810;&#20803;&#23447;&#25945;&#21644;&#21746;&#23398;&#35266;_&#19979;__&#30334;&#24230;&#25991;&#24211;`
+                                },
+                                           
+                            ]
+                        },
+                 
+                        {
+                            "origin_html": `<em>山越部落各自占山为王，以传统农事生产为主，种植谷物、养蚕剿斯，自给自足。</em><em>因据南方山脉地形，有色金属桐资源较为丰富，逐渐学会冶炼技术，休兵造甲，</em>成为一股不可小觑的力量。`,
+                            "origin_tips": `此处有62字相似`,
+                            "similar_html": ``,
+                            "similar_tips": `来源：`,
+                            "similar": [
+                                     
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span><em>&#23665;&#36234;&#37096;&#33853;&#21508;&#33258;&#21344;&#23665;&#20026;&#29579;,&#20197;&#20256;&#32479;&#20892;&#20107;&#29983;&#20135;&#20026;&#20027;,&#31181;&#26893;&#35895;&#29289;</em>&#12289;<em>&#20859;&#34453;&#21119;&#26031;,&#33258;&#32473;&#33258;&#36275;</em>&#12290;&#22240;&#25454;&#21335;&#26041;&#23665;&#33033;&#22320;&#24418;,&#26377;&#33394;&#37329;&#23646;&#26704;&#36164;&#28304;&#36739;&#20026;&#20016;&#23500;,&#36880;&#28176;&#23398;&#20250;&#20918;&#28860;&#25216;&#26415;,&#20241;&#20853;&#36896;&#30002;,&#25104;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span><em>&#22240;&#25454;&#21335;&#26041;&#23665;&#33033;&#22320;&#24418;,&#26377;&#33394;&#37329;&#23646;&#26704;&#36164;&#28304;&#36739;&#20026;&#20016;&#23500;,&#36880;&#28176;&#23398;&#20250;&#20918;&#28860;&#25216;&#26415;,&#20241;&#20853;&#36896;&#30002;,</em>&#25104;&#20026;&#19968;&#32929;&#19981;&#21487;&#23567;&#35281;&#30340;&#21147;&#37327;&#12290; &#32780;&#20182;&#20204;&#20063;&#19981;&#21463;&#23448;&#23478;&#32479;&#27835;,&#21487;&#35859;&#26691;&#33457;&#28304;&#22659;&#30028;&#12290;&#23385;&#26435;&#32479;&#27835;...</div>`,
+                                    "similar_tips": `来源：&#22914;&#26524;&#27809;&#20102;&#23665;&#36234;&#25199;&#21518;&#33151;,&#19996;&#21556;&#33021;&#21542;&#22312;&#19977;&#22269;&#20013;&#38596;&#36215;?|&#20025;&#38451;|&#23665;&#36234;|&#19996;&#21556;_&#26032;&#28010;&#32593;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract">&#23545;&#20110;&#24038;&#32764;&#20826;&#25289;&#26041;&#20025;&#30340;&#21152;&#20837;&#24847;&#21619;&#30528;<em>&#19968;&#32929;</em>&#24378;&#21170;<em>&#30340;&#21147;&#37327;</em>&#27880;&#20837;,&#21478;&#24503;&#22269;&#20854;&#20182;&#25919;&#20826;<em>&#19981;&#21487;&#23567;&#35281;</em>:&#29616;&#22312;&#25289;&#26041;&#20025;&#24050;&#32463;<em>&#25104;&#20026;</em>&#32852;&#21512;&#20027;&#24109;&#12290; His entry into the Left Party made it a force to ...</div>`,
+                                    "similar_tips": `来源：&#12304;&#19968;&#32929;&#19981;&#21487;&#23567;&#35281;&#30340;&#21147;&#37327;&#12305;`
+                                },
+                                           
+                            ]
+                        },
+                 
+                        {
+                            "origin_html": `<em>而他们也不受官家统治，可谓桃花源境界。</em>孙权统治地区中心的吴郡、会稽、建业等地，<em>他们的存在对于东吴来讲是个眼中刺肉中钉，孙权想要成就大业，</em><em>必定会扩大东吴疆土。而山越部落必是桀骜不驯的。</em><em>因此东吴势必和山越之间必会有一场战争。</em>`,
+                            "origin_tips": `此处有83字相似`,
+                            "similar_html": ``,
+                            "similar_tips": `来源：`,
+                            "similar": [
+                                     
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#22240;&#25454;&#21335;&#26041;&#23665;&#33033;&#22320;&#24418;,&#26377;&#33394;&#37329;&#23646;&#26704;&#36164;&#28304;&#36739;&#20026;&#20016;&#23500;,&#36880;&#28176;&#23398;&#20250;&#20918;&#28860;&#25216;&#26415;,&#20241;&#20853;&#36896;&#30002;,&#25104;&#20026;&#19968;&#32929;&#19981;&#21487;&#23567;&#35281;&#30340;&#21147;&#37327;&#12290; <em>&#32780;&#20182;&#20204;&#20063;&#19981;&#21463;&#23448;&#23478;&#32479;&#27835;,&#21487;&#35859;&#26691;&#33457;&#28304;&#22659;&#30028;</em>&#12290;&#23385;&#26435;&#32479;&#27835;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#23385;&#26435;&#32479;&#27835;&#22320;&#21306;&#20013;&#24515;&#30340;&#21556;&#37089;&#12289;&#20250;&#31293;&#12289;&#24314;&#19994;&#31561;&#22320;,<em>&#20182;&#20204;&#30340;&#23384;&#22312;&#23545;&#20110;&#19996;&#21556;&#26469;&#35762;&#26159;&#20010;&#30524;&#20013;&#21050;&#32905;&#20013;&#38025;,&#23385;&#26435;&#24819;&#35201;&#25104;&#23601;&#22823;&#19994;,</em>&#24517;&#23450;&#20250;&#25193;&#22823;&#19996;&#21556;&#30086;&#22303;&#12290;&#32780;&#23665;&#36234;&#37096;&#33853;&#24517;&#26159;&#26688;&#39580;&#19981;&#39535;&#30340;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#23385;&#26435;&#32479;&#27835;&#22320;&#21306;&#20013;&#24515;&#30340;&#21556;&#37089;&#12289;&#20250;&#31293;&#12289;&#24314;&#19994;&#31561;&#22320;,&#20182;&#20204;&#30340;&#23384;&#22312;&#23545;&#20110;&#19996;&#21556;&#26469;&#35762;&#26159;&#20010;&#30524;&#20013;&#21050;&#32905;&#20013;&#38025;,&#23385;&#26435;&#24819;&#35201;&#25104;&#23601;&#22823;&#19994;,<em>&#24517;&#23450;&#20250;&#25193;&#22823;&#19996;&#21556;&#30086;&#22303;</em>&#12290;<em>&#32780;&#23665;&#36234;&#37096;&#33853;&#24517;&#26159;&#26688;&#39580;&#19981;&#39535;&#30340;</em>...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span><em>&#22240;&#27492;&#19996;&#21556;&#21183;&#24517;&#21644;&#23665;&#36234;&#20043;&#38388;&#24517;&#20250;&#26377;&#19968;&#22330;&#25112;&#20105;</em>&#12290; &#21556;&#35832;&#37089;&#26102;&#24120;&#26377;&#23665;&#36234;&#37096;&#33853;&#20316;&#20081;,&#22312;&#22839;&#38517;&#20043;&#25112;&#20013;,&#22240;&#20026;&#38470;&#36874;&#20987;&#36133;&#20102;&#23665;&#36234;&#37096;&#33853;&#37324;&#30340;&#23450;&#23665;&#36234;&#32780;&#34987;&#23385;&#26435;&#36175;&#35782;,&#25104;&#20026;&#23385;&#26435;&#26049;&#36793;&#30340;...</div>`,
+                                    "similar_tips": `来源：&#22914;&#26524;&#27809;&#20102;&#23665;&#36234;&#25199;&#21518;&#33151;,&#19996;&#21556;&#33021;&#21542;&#22312;&#19977;&#22269;&#20013;&#38596;&#36215;?|&#20025;&#38451;|&#23665;&#36234;|&#19996;&#21556;_&#26032;&#28010;&#32593;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class="m">&#26368;&#20339;&#31572;&#26696;: </span>&#20182;&#20204;&#30340;&#21306;&#21035;&#23601;&#26159;<em>&#21556;&#37089;</em>&#26159;&#27835;&#21439;<em>,&#24314;&#19994;</em>&#26159;&#39318;&#37117;,&#26612;&#26705;&#26159;&#20891;&#20107;&#37325;&#38215;,&#23427;&#20204;&#19977;&#20010;&#22478;&#24066;&#30340;&#25919;&#27835;&#22320;&#20301;&#19981;&#19968;&#26679;&#12290;&#23385;&#27663;&#23646;&#20110;<em>&#21556;&#37089;</em>&#27835;&#19979;&#12290;<em>&#21556;&#37089;</em>&#26159;&#23385;...<br/><a href="http://zhidao.baidu.com/q?ct=17&amp;pn=0&amp;tn=ikaslist&amp;rn=10&amp;word=%E5%AD%99%E6%9D%83%E7%BB%9F%E6%B2%BB%E5%9C%B0%E5%8C%BA%E4%B8%AD%E5%BF%83%E7%9A%84%E5%90%B4%E9%83%A1%E3%80%81%E4%BC%9A%E7%A8%BD%E3%80%81%E5%BB%BA%E4%B8%9A%E7%AD%89%E5%9C%B0%2C" target="_blank" class="c">&#26356;&#22810;&#20851;&#20110;&#23385;&#26435;&#32479;&#27835;&#22320;&#21306;&#20013;&#24515;&#30340;&#21556;&#37089;&#12289;&#20250;&#31293;&#12289;&#24314;&#19994;&#31561;&#22320;,&#30340;&#38382;&#39064;&gt;&gt;</a></div>`,
+                                    "similar_tips": `来源：&#19977;&#22269;&#26102;&#26399;&#19996;&#21556;&#30340;&#21556;&#37089;&#12289;&#26612;&#26705;&#12289;&#24314;&#19994;&#31561;&#20960;&#20010;&#22478;&#24066;&#30340;&#21306;&#21035;?_&#30334;&#24230;&#30693;&#36947;`
+                                },
+                                           
+                            ]
+                        },
+                 
+                        {
+                            "origin_html": `<em>吴诸郡时常有山越部落作乱，在夷陵之战中，</em><em>因为陆逊击败了山越部落里的定山越而被孙权赏识，成为孙权旁边的一名悍将。</em><em>而且在与后来的蜀国较量中，陆逊帮助孙权打败了刘备。从此平步青云，</em><em>在历史上留下浓墨重彩的一笔。奸雄曹操，足智多谋，一眼瞅准了这个战机，</em><em>还利用孙权与山越的矛盾，巧妙的加大矛盾，企图让孙权与山越两者鹬蚌相争，</em><em>自己成为渔翁得利。阴险狡诈的袁术也看到这一点，曾也以授予丹阳越部印章，</em><em>激化孙权与丹阳的联盟，来分化孙策与丹阳部的矛盾，但最终被孙权破解，</em><em>最终只能以失败告终。但，山越部落最为一个矛盾体，是实打实的拖住了孙权的后腿。</em>`,
+                            "origin_tips": `此处有238字相似`,
+                            "similar_html": ``,
+                            "similar_tips": `来源：`,
+                            "similar": [
+                                     
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span><em>&#21556;&#35832;&#37089;&#26102;&#24120;&#26377;&#23665;&#36234;&#37096;&#33853;&#20316;&#20081;,&#22312;&#22839;&#38517;&#20043;&#25112;&#20013;,</em>&#22240;&#20026;&#38470;&#36874;&#20987;&#36133;&#20102;&#23665;&#36234;&#37096;&#33853;&#37324;&#30340;&#23450;&#23665;&#36234;&#32780;&#34987;&#23385;&#26435;&#36175;&#35782;,&#25104;&#20026;&#23385;&#26435;&#26049;&#36793;&#30340;&#19968;&#21517;&#24717;&#23558;&#12290;&#32780;&#19988;&#22312;&#19982;&#21518;&#26469;&#30340;&#34560;&#22269;&#36739;&#37327;&#20013;,&#38470;&#36874;&#24110;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span><em>&#32780;&#19988;&#22312;&#19982;&#21518;&#26469;&#30340;&#34560;&#22269;&#36739;&#37327;&#20013;,&#38470;&#36874;&#24110;&#21161;&#23385;&#26435;&#25171;&#36133;&#20102;&#21016;&#22791;</em>&#12290;<em>&#20174;&#27492;&#24179;&#27493;&#38738;&#20113;,</em>&#22312;&#21382;&#21490;&#19978;&#30041;&#19979;&#27987;&#22696;&#37325;&#24425;&#30340;&#19968;&#31508;&#12290;&#22904;&#38596;&#26361;&#25805;,&#36275;&#26234;&#22810;&#35851;,&#19968;&#30524;&#30597;&#20934;&#20102;&#36825;&#20010;&#25112;&#26426;,&#36824;&#21033;&#29992;&#23385;&#26435;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#22904;&#38596;&#26361;&#25805;,&#36275;&#26234;&#22810;&#35851;,&#19968;&#30524;&#30597;&#20934;&#20102;&#36825;&#20010;&#25112;&#26426;,<em>&#36824;&#21033;&#29992;&#23385;&#26435;&#19982;&#23665;&#36234;&#30340;&#30683;&#30462;,&#24039;&#22937;&#30340;&#21152;&#22823;&#30683;&#30462;,&#20225;&#22270;&#35753;&#23385;&#26435;&#19982;&#23665;&#36234;&#20004;&#32773;&#40556;&#34444;&#30456;&#20105;,</em>&#33258;&#24049;&#25104;&#20026;&#28180;&#32705;&#24471;&#21033;&#12290;&#38452;&#38505;&#29409;&#35784;&#30340;&#34945;&#26415;&#20063;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#30340;&#30683;&#30462;,&#24039;&#22937;&#30340;&#21152;&#22823;&#30683;&#30462;,&#20225;&#22270;&#35753;&#23385;&#26435;&#19982;&#23665;&#36234;&#20004;&#32773;&#40556;&#34444;&#30456;&#20105;,<em>&#33258;&#24049;&#25104;&#20026;&#28180;&#32705;&#24471;&#21033;</em>&#12290;<em>&#38452;&#38505;&#29409;&#35784;&#30340;&#34945;&#26415;&#20063;&#30475;&#21040;&#36825;&#19968;&#28857;,&#26366;&#20063;&#20197;&#25480;&#20104;&#20025;&#38451;&#36234;&#37096;&#21360;&#31456;,</em>&#28608;&#21270;&#23385;&#26435;&#19982;&#20025;&#38451;&#30340;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#38452;&#38505;&#29409;&#35784;&#30340;&#34945;&#26415;&#20063;&#30475;&#21040;&#36825;&#19968;&#28857;,&#26366;&#20063;&#20197;&#25480;&#20104;&#20025;&#38451;&#36234;&#37096;&#21360;&#31456;,<em>&#28608;&#21270;&#23385;&#26435;&#19982;&#20025;&#38451;&#30340;&#32852;&#30431;,&#26469;&#20998;&#21270;&#23385;&#31574;&#19982;&#20025;&#38451;&#37096;&#30340;&#30683;&#30462;,&#20294;&#26368;&#32456;&#34987;&#23385;&#26435;&#30772;&#35299;,</em>&#26368;&#32456;&#21482;&#33021;&#20197;&#22833;&#36133;&#21578;&#32456;&#12290;&#20294;,&#23665;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#30340;&#32852;&#30431;,&#26469;&#20998;&#21270;&#23385;&#31574;&#19982;&#20025;&#38451;&#37096;&#30340;&#30683;&#30462;,<em>&#20294;&#26368;&#32456;</em>&#34987;&#23385;&#26435;&#30772;&#35299;,<em>&#26368;&#32456;&#21482;&#33021;&#20197;&#22833;&#36133;&#21578;&#32456;</em>...<em>&#20294;,&#23665;&#36234;&#37096;&#33853;&#26368;&#20026;&#19968;&#20010;&#30683;&#30462;&#20307;,&#26159;&#23454;&#25171;&#23454;&#30340;&#25302;&#20303;&#20102;&#23385;&#26435;&#30340;&#21518;&#33151;</em>&#12290; &#21746;&#23398;&#19978;&#30340;...</div>`,
+                                    "similar_tips": `来源：&#22914;&#26524;&#27809;&#20102;&#23665;&#36234;&#25199;&#21518;&#33151;,&#19996;&#21556;&#33021;&#21542;&#22312;&#19977;&#22269;&#20013;&#38596;&#36215;?|&#20025;&#38451;|&#23665;&#36234;|&#19996;&#21556;_&#26032;&#28010;&#32593;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#21556;&#35832;&#37089;&#26102;&#24120;&#26377;&#23665;&#36234;&#37096;&#33853;&#20316;&#20081;,&#22312;&#22839;&#38517;&#20043;&#25112;&#20013;,<em>&#22240;&#20026;&#38470;&#36874;&#20987;&#36133;&#20102;&#23665;&#36234;&#37096;&#33853;&#37324;&#30340;&#23450;&#23665;&#36234;&#32780;&#34987;&#23385;&#26435;&#36175;&#35782;,&#25104;&#20026;&#23385;&#26435;&#26049;&#36793;&#30340;&#19968;&#21517;&#24717;&#23558;</em>&#12290;&#32780;&#19988;&#22312;&#19982;&#21518;&#26469;&#30340;&#34560;&#22269;&#36739;&#37327;&#20013;,&#38470;&#36874;&#24110;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#20174;&#27492;&#24179;&#27493;&#38738;&#20113;,<em>&#22312;&#21382;&#21490;&#19978;&#30041;&#19979;&#27987;&#22696;&#37325;&#24425;&#30340;&#19968;&#31508;</em>&#12290;<em>&#22904;&#38596;&#26361;&#25805;,&#36275;&#26234;&#22810;&#35851;,&#19968;&#30524;&#30597;&#20934;&#20102;&#36825;&#20010;&#25112;&#26426;,</em>&#36824;&#21033;&#29992;&#23385;&#26435;&#19982;&#23665;&#36234;&#30340;&#30683;&#30462;,&#24039;&#22937;&#30340;&#21152;&#22823;&#30683;&#30462;,&#20225;&#22270;&#35753;&#23385;&#26435;&#19982;&#23665;&#36234;&#20004;&#32773;...</div>`,
+                                    "similar_tips": `来源：&#22914;&#26524;&#27809;&#20102;&#23665;&#36234;&#25199;&#21518;&#33151;,&#19996;&#21556;&#33021;&#21542;&#22312;&#19977;&#22269;&#20013;&#38596;&#36215;?`
+                                },
+                                           
+                            ]
+                        },
+                 
+                        {
+                            "origin_html": `哲学上的矛盾分析法不是以一分为二的观点要我们看待问题吗？<em>虽然山越的存在对于吴国来讲是一个头疼的问题，但是它的好处也是显而易现的。</em><em>山越作为一股殷实的政治力量不可小觑，山越部落虽然只是山野之民，</em><em>但是晓畅山岭作战之术，射箭、马艺技术更是不在话下，</em><em>这样精锐的部队也可以在野地里生存，在恶劣的环境，他们也可以克服艰难困苦，</em><em>完好生存。在与孙家势力的抗争中，孙权不仅获得了一部分人才，</em><em>而且积累了许多的作战经验。尤其是使东吴积累了不少山地作战的战略谋策。而且，</em><em>东吴也在征讨中获得了许多的俘虏。为东吴人马的壮大也增添了不少功劳。</em><em>而且也为东吴提供粮草等后续补给。</em>`,
+                            "origin_tips": `此处有220字相似`,
+                            "similar_html": ``,
+                            "similar_tips": `来源：`,
+                            "similar": [
+                                     
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span><em>&#34429;&#28982;&#23665;&#36234;&#30340;&#23384;&#22312;&#23545;&#20110;&#21556;&#22269;&#26469;&#35762;&#26159;&#19968;&#20010;&#22836;&#30140;&#30340;&#38382;&#39064;,&#20294;&#26159;&#23427;&#30340;&#22909;&#22788;&#20063;&#26159;&#26174;&#32780;&#26131;&#29616;&#30340;</em>&#12290;&#23665;&#36234;&#20316;&#20026;&#19968;&#32929;&#27575;&#23454;&#30340;&#25919;&#27835;&#21147;&#37327;&#19981;&#21487;&#23567;&#35281;,&#23665;&#36234;&#37096;&#33853;&#34429;&#28982;&#21482;&#26159;&#23665;&#37326;&#20043;&#27665;,&#20294;&#26159;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span><em>&#23665;&#36234;&#20316;&#20026;&#19968;&#32929;&#27575;&#23454;&#30340;&#25919;&#27835;&#21147;&#37327;&#19981;&#21487;&#23567;&#35281;,&#23665;&#36234;&#37096;&#33853;&#34429;&#28982;&#21482;&#26159;&#23665;&#37326;&#20043;&#27665;,</em>&#20294;&#26159;&#26195;&#30021;&#23665;&#23725;&#20316;&#25112;&#20043;&#26415;,&#23556;&#31661;&#12289;&#39532;&#33402;&#25216;&#26415;&#26356;&#26159;&#19981;&#22312;&#35805;&#19979;,&#36825;&#26679;&#31934;&#38160;&#30340;&#37096;&#38431;&#20063;&#21487;&#20197;&#22312;&#37326;&#22320;&#37324;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#23665;&#36234;&#20316;&#20026;&#19968;&#32929;&#27575;&#23454;&#30340;&#25919;&#27835;&#21147;&#37327;&#19981;&#21487;&#23567;&#35281;,&#23665;&#36234;&#37096;&#33853;&#34429;&#28982;&#21482;&#26159;&#23665;&#37326;&#20043;&#27665;,<em>&#20294;&#26159;&#26195;&#30021;&#23665;&#23725;&#20316;&#25112;&#20043;&#26415;,&#23556;&#31661;</em>&#12289;<em>&#39532;&#33402;&#25216;&#26415;&#26356;&#26159;&#19981;&#22312;&#35805;&#19979;,</em>&#36825;&#26679;&#31934;&#38160;&#30340;&#37096;&#38431;&#20063;&#21487;&#20197;&#22312;&#37326;&#22320;&#37324;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#21482;&#26159;&#23665;&#37326;&#20043;&#27665;,&#20294;&#26159;&#26195;&#30021;&#23665;&#23725;&#20316;&#25112;&#20043;&#26415;,&#23556;&#31661;&#12289;&#39532;&#33402;&#25216;&#26415;&#26356;&#26159;&#19981;&#22312;&#35805;&#19979;,<em>&#36825;&#26679;&#31934;&#38160;&#30340;&#37096;&#38431;&#20063;&#21487;&#20197;&#22312;&#37326;&#22320;&#37324;&#29983;&#23384;,&#22312;&#24694;&#21155;&#30340;&#29615;&#22659;,&#20182;&#20204;&#20063;&#21487;&#20197;&#20811;&#26381;&#33392;&#38590;&#22256;&#33510;,</em>&#23436;&#22909;&#29983;&#23384;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#22312;&#19982;&#23385;&#23478;&#21183;&#21147;&#30340;&#25239;&#20105;&#20013;,&#23385;&#26435;&#19981;&#20165;&#33719;&#24471;&#20102;&#19968;&#37096;&#20998;&#20154;&#25165;,<em>&#32780;&#19988;&#31215;&#32047;&#20102;&#35768;&#22810;&#30340;&#20316;&#25112;&#32463;&#39564;</em>&#12290;<em>&#23588;&#20854;&#26159;&#20351;&#19996;&#21556;&#31215;&#32047;&#20102;&#19981;&#23569;&#23665;&#22320;&#20316;&#25112;&#30340;&#25112;&#30053;&#35851;&#31574;</em>&#12290;<em>&#32780;&#19988;,</em>&#19996;&#21556;&#20063;&#22312;&#24449;&#35752;&#20013;&#33719;&#24471;&#20102;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#23588;&#20854;&#26159;&#20351;&#19996;&#21556;&#31215;&#32047;&#20102;&#19981;&#23569;&#23665;&#22320;&#20316;&#25112;&#30340;&#25112;&#30053;&#35851;&#31574;&#12290;&#32780;&#19988;,<em>&#19996;&#21556;&#20063;&#22312;&#24449;&#35752;&#20013;&#33719;&#24471;&#20102;&#35768;&#22810;&#30340;&#20440;&#34383;</em>&#12290;<em>&#20026;&#19996;&#21556;&#20154;&#39532;&#30340;&#22766;&#22823;&#20063;&#22686;&#28155;&#20102;&#19981;&#23569;&#21151;&#21171;</em>&#12290;&#32780;&#19988;&#20063;&#20026;&#19996;&#21556;&#25552;&#20379;&#31918;&#33609;&#31561;&#21518;&#32493;...</div>
+<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#32780;&#19988;,&#19996;&#21556;&#20063;&#22312;&#24449;&#35752;&#20013;&#33719;&#24471;&#20102;&#35768;&#22810;&#30340;&#20440;&#34383;&#12290;&#20026;&#19996;&#21556;&#20154;&#39532;&#30340;&#22766;&#22823;&#20063;&#22686;&#28155;&#20102;&#19981;&#23569;&#21151;&#21171;&#12290;<em>&#32780;&#19988;&#20063;&#20026;&#19996;&#21556;&#25552;&#20379;&#31918;&#33609;&#31561;&#21518;&#32493;&#34917;&#32473;</em>&#12290; &#22240;&#27492;&#21556;&#22269;&#30340;&#25112;&#36133;&#19981;&#33021;&#23616;&#38480;&#20110;&#23665;&#36234;&#36825;&#20010;&#37096;&#33853;...</div>`,
+                                    "similar_tips": `来源：&#22914;&#26524;&#27809;&#20102;&#23665;&#36234;&#25199;&#21518;&#33151;,&#19996;&#21556;&#33021;&#21542;&#22312;&#19977;&#22269;&#20013;&#38596;&#36215;?|&#20025;&#38451;|&#23665;&#36234;|&#19996;&#21556;_&#26032;&#28010;&#32593;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#37096;&#38431;&#20063;&#21487;&#20197;&#22312;&#37326;&#22320;&#37324;&#29983;&#23384;,&#22312;&#24694;&#21155;&#30340;&#29615;&#22659;,&#20182;&#20204;&#20063;&#21487;&#20197;&#20811;&#26381;&#33392;&#38590;&#22256;&#33510;,<em>&#23436;&#22909;&#29983;&#23384;</em>&#12290;<em>&#22312;&#19982;&#23385;&#23478;&#21183;&#21147;&#30340;&#25239;&#20105;&#20013;,&#23385;&#26435;&#19981;&#20165;&#33719;&#24471;&#20102;&#19968;&#37096;&#20998;&#20154;&#25165;,</em>&#32780;&#19988;&#31215;&#32047;&#20102;&#35768;&#22810;&#30340;&#20316;&#25112;...</div>`,
+                                    "similar_tips": `来源：&#22914;&#26524;&#27809;&#20102;&#23665;&#36234;&#25199;&#21518;&#33151;,&#19996;&#21556;&#33021;&#21542;&#22312;&#19977;&#22269;&#20013;&#38596;&#36215;?`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class="m">&#26368;&#20339;&#31572;&#26696;: </span>&#12298;&#32852;&#31995;&#12299;&#22312;&#31934;&#31070;&#24320;&#37322;<em>&#20013;</em>&#36825;&#26679;&#38416;&#36848;<em>&#30683;&#30462;</em>:&#32852;&#31995;<em>&#20013;</em>&#23384;&#22312;&#20027;&#35266;&#19982;&#23458;&#35266;&#24046;&#24322;&#23601;&#23384;&#22312;<em>&#30683;&#30462;</em>&#12290;&#30456;&#21453;,&#20027;&#35266;&#19982;&#23458;&#35266;&#21563;&#21512;&#19968;&#33268;&#28040;&#38500;<em>&#30683;&#30462;</em>&#12290;&#26080;<em>&#30683;&#30462;&#30340;</em>&#32852;&#31995;&#20307;&#29616;&#32456;&#26497;&#29702;&#24615;&#12290;<em>&#30683;&#30462;</em>&#21450;&#20854;&#23545;&#31435;&#32479;&#19968;...<br/><a href="http://zhidao.baidu.com/q?ct=17&amp;pn=0&amp;tn=ikaslist&amp;rn=10&amp;word=%E5%93%B2%E5%AD%A6%E4%B8%8A%E7%9A%84%E7%9F%9B%E7%9B%BE%E5%88%86%E6%9E%90%E6%B3%95%E4%B8%8D%E6%98%AF%E4%BB%A5%E4%B8%80%E5%88%86%E4%B8%BA%E4%BA%8C%E7%9A%84%E8%A7%82%E7%82%B9%E8%A6%81%E6%88%91%E4%BB%AC%E7%9C%8B%E5%BE%85%E9%97%AE%E9%A2%98%E5%90%97%3F" target="_blank" class="c">&#26356;&#22810;&#20851;&#20110;&#21746;&#23398;&#19978;&#30340;&#30683;&#30462;&#20998;&#26512;&#27861;&#19981;&#26159;&#20197;&#19968;&#20998;&#20026;&#20108;&#30340;&#35266;&#28857;&#35201;&#25105;&#20204;&#30475;&#24453;&#38382;&#39064;&#21527;?&#30340;&#38382;&#39064;&gt;&gt;</a></div>`,
+                                    "similar_tips": `来源：&#21746;&#23398;&#30340;&#30683;&#30462;&#30340;&#35266;&#28857;&#23601;&#25351;&#20840;&#38754;&#30340;&#35266;&#28857;,&#19968;&#20998;&#20026;&#20108;&#30340;&#35266;&#28857;&#21527;_&#30334;&#24230;&#30693;&#36947;`
+                                },
+                                           
+                            ]
+                        },
+                 
+                        {
+                            "origin_html": `<em>因此吴国的战败不能局限于山越这个部落，毕竟成功是多方面的。天时地利人和，</em>最终也只能尽人事听天命。`,
+                            "origin_tips": `此处有33字相似`,
+                            "similar_html": ``,
+                            "similar_tips": `来源：`,
+                            "similar": [
+                                     
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class=" newTimeFactor_before_abs m">2018&#24180;11&#26376;7&#26085;&#160;-&#160;</span>&#20026;&#19996;&#21556;&#20154;&#39532;&#30340;&#22766;&#22823;&#20063;&#22686;&#28155;&#20102;&#19981;&#23569;&#21151;&#21171;&#12290;&#32780;&#19988;&#20063;&#20026;&#19996;&#21556;&#25552;&#20379;&#31918;&#33609;&#31561;&#21518;&#32493;&#34917;&#32473;&#12290; <em>&#22240;&#27492;&#21556;&#22269;&#30340;&#25112;&#36133;&#19981;&#33021;&#23616;&#38480;&#20110;&#23665;&#36234;&#36825;&#20010;&#37096;&#33853;,&#27605;&#31455;&#25104;&#21151;&#26159;&#22810;&#26041;&#38754;&#30340;</em>&#12290;<em>&#22825;&#26102;&#22320;&#21033;&#20154;&#21644;,</em>&#26368;...</div>`,
+                                    "similar_tips": `来源：&#22914;&#26524;&#27809;&#20102;&#23665;&#36234;&#25199;&#21518;&#33151;,&#19996;&#21556;&#33021;&#21542;&#22312;&#19977;&#22269;&#20013;&#38596;&#36215;?|&#20025;&#38451;|&#23665;&#36234;|&#19996;&#21556;_&#26032;&#28010;&#32593;`
+                                },
+                                           
+                                {
+                                    "similar_html": `<div class="c-abstract"><span class="m">&#26368;&#20339;&#31572;&#26696;: </span>&#35299;&#37322;&#20026;<em>&#20154;&#20107;</em>:&#20154;&#24773;&#20107;&#29702;;<em>&#22825;&#21629;</em>:&#33258;&#28982;&#35268;&#24459;,&#21487;&#21464;&#22240;&#32032;&#22826;&#22810;,&#32467;&#26524;&#26080;&#27861;&#39044;&#27979;&#12290;&#23613;&#24515;&#23613;&#21147;&#21435;&#20570;&#20107;,&#33021;&#21542;&#25104;&#21151;,&#36824;&#24471;&#21548;&#20854;&#33258;&#28982;&#12290;&#20869;&#24515;&#30340;&#24378;...</div>`,
+                                    "similar_tips": `来源：&#23613;&#20154;&#20107;,&#21548;&#22825;&#21629;&#36825;&#21477;&#35805;&#26159;&#21861;&#24847;&#24605;?_&#30334;&#24230;&#30693;&#36947;`
+                                },
+                                           
+                            ]
+                        },
+                 
+               ],
+            "report_reference": {
+                "reference_title": "全文",
+                "reference_wordnumber": "1200",
+                "reference_data": [
 
-     function overShow(e) {
-  var showDiv = document.getElementById('show_similar');
-  //showDiv.style.left = event.clientX;
-  //showDiv.style.top = event.clientY;
-  //showDiv.style.display = 'block';
-  showDiv.innerHTML = e.dataset.similar;
- }
+                ],
+                "reference_list": [
+                
+                {
+                       
+                        "title": "&#22914;&#26524;&#27809;&#20102;&#23665;&#36234;&#25199;&#21518;&#33151;,&#19996;&#21556;&#33021;&#21542;&#22312;&#19977;&#22269;&#20013;&#38596;&#36215;?|&#20025;&#38451;|&#23665;&#36234;|&#19996;&#21556;_&#26032;&#28010;&#32593;",
+                        "percent": "66.25%"
+                    },
+                
+                {
+                       
+                        "title": "&#22914;&#26524;&#27809;&#20102;&#23665;&#36234;&#25199;&#21518;&#33151;,&#19996;&#21556;&#33021;&#21542;&#22312;&#19977;&#22269;&#20013;&#38596;&#36215;?",
+                        "percent": "13.0833333333%"
+                    },
+                
+                {
+                       
+                        "title": "&#33521;&#22269;&#25506;&#38505;&#23478;&#32763;&#38405;&#21476;&#20070;,&#24847;&#22806;&#21457;&#29616;&#19968;&#38544;&#31192;&#35760;&#24405;,&#25171;&#25438;&#19968;&#20010;&#26376;&#33719;&#21033;3000&#19975;",
+                        "percent": "0.333333333333%"
+                    },
+                
+                {
+                       
+                        "title": "&#22914;&#26524;&#27809;&#20102;&#23665;&#36234;&#25199;&#21518;&#33151;,&#19996;&#21556;&#33021;&#21542;&#22312;&#19977;&#22269;&#20013;&#38596;&#36215;&#21602;?_&#20154;&#25991;&#39057;&#36947;_&#19996;&#26041;&#22836;&#26465;",
+                        "percent": "0.0%"
+                    },
+                
+                {
+                       
+                        "title": "&#21746;&#23398;&#30340;&#30683;&#30462;&#30340;&#35266;&#28857;&#23601;&#25351;&#20840;&#38754;&#30340;&#35266;&#28857;,&#19968;&#20998;&#20026;&#20108;&#30340;&#35266;&#28857;&#21527;_&#30334;&#24230;&#30693;&#36947;",
+                        "percent": "0.0%"
+                    },
+                
+                {
+                       
+                        "title": "&#12304;&#19968;&#32929;&#19981;&#21487;&#23567;&#35281;&#30340;&#21147;&#37327;&#12305;",
+                        "percent": "0.0%"
+                    },
+                
+                {
+                       
+                        "title": "&#23613;&#20154;&#20107;,&#21548;&#22825;&#21629;&#36825;&#21477;&#35805;&#26159;&#21861;&#24847;&#24605;?_&#30334;&#24230;&#30693;&#36947;",
+                        "percent": "0.0%"
+                    },
+                
+                {
+                       
+                        "title": "&#19977;&#22269;&#26102;&#26399;&#19996;&#21556;&#30340;&#21556;&#37089;&#12289;&#26612;&#26705;&#12289;&#24314;&#19994;&#31561;&#20960;&#20010;&#22478;&#24066;&#30340;&#21306;&#21035;?_&#30334;&#24230;&#30693;&#36947;",
+                        "percent": "0.0%"
+                    },
+                
+                {
+                       
+                        "title": "&#32426;&#20271;&#20262;&#30340;&#22810;&#20803;&#23447;&#25945;&#21644;&#21746;&#23398;&#35266;_&#19979;__&#30334;&#24230;&#25991;&#24211;",
+                        "percent": "0.0%"
+                    },
+                
+                    
+                ]
+            }
+        }
+    }
+    $(function () {
+        var pub = {}
+        pub.init = function () {
+            this.getReportData()
+        }
+        pub.getReportData = function () {
+            // var postData = {
+            //     id: 123
+            // }
+            // $.ajax({
+            //     type: "POST",
+            //     url: "https://www.easy-mock.com/mock/5b237705b541690d6ed33ba2/crm_v2/ajax_get_refund_reasons",
+            //     data: JSON.stringify(postData),
+            //     dataType: 'json',
+            //     success: function (res) {
+            //         console.log(res)
+            //     }
+            // })
 
+            setTimeout(() => {
+                //模拟数据，到时可以把setTimeout中内容放入到上面的ajax中
+                console.log(mockdata)
+                var result_html = ''
+                var diff_html = ''
+                if (mockdata.success) {
+                    if (mockdata.data.report_result && mockdata.data.report_result.length > 0) {
+                        mockdata.data.report_result.forEach(function (item) {
+                            result_html += '<div class="report-result-item">' +
+                                '<div class="key">' + item.key + '</div>' +
+                                '<div class="value">' + item.value + '</div>' +
+                                '</div>'
+                        })
+                        $('.report-result-content').html(result_html)
+                    }
+                    if (mockdata.data.report_diff && mockdata.data.report_diff.length > 0) {
+                        mockdata.data.report_diff.forEach(function (item, index) {
+                            diff_html = diff_html + `<div class="report-diff-item">
+                        <div class="origin-item">
+                            <div class="item-index">${index + 1}</div>
+                            <div class="origin-content">
+                                <div class="tips">${item.origin_tips}</div>
+                                <div class="html">
+                                    ${item.origin_html}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="similar-item">
+                            <div class="similar-content">`
+                            item.similar.forEach(function (sitem) {
+                                diff_html = diff_html + `<div class="tips">${sitem.similar_tips}</div>
+                                <div class="html">
+                                    ${sitem.similar_html}
+                                </div>`
+                            })
+                            diff_html = diff_html + `</div>
+                        </div>
+                    </div>`
+                        })
+                        $('.report-diff-content').append(diff_html)
+                    }
+                    if (mockdata.data.createtime) {
+                        $('.report-date').text('检测时间:' + mockdata.data.createtime)
+                    }
+                    if (mockdata.data.report_number) {
+                        $('.report-number').text('No:' + mockdata.data.report_number)
+                    }
+                    if (mockdata.data.report_reference) {
+                        $('.report-reference-title .title').text(mockdata.data.report_reference.reference_title)
+                        $('.report-reference-title .word-number b').text(mockdata.data.report_reference.reference_wordnumber)
+                        var reference_data_html = ''
+                        var reference_list_html = ''
+                        if (mockdata.data.report_reference.reference_data && mockdata.data.report_reference.reference_data.length > 0) {
+                            mockdata.data.report_reference.reference_data.forEach(function (item) {
+                                reference_data_html += `<div class="report-data-item">
+                                        <div class="key">${item.key}</div>
+                                        <div class="value">${item.value}</div>
+                                    </div>`
+                            })
+                            $('.report-reference-data').html(reference_data_html)
+                        }
+                        if (mockdata.data.report_reference.reference_list && mockdata.data.report_reference.reference_list.length > 0) {
+                            mockdata.data.report_reference.reference_list.forEach(function (item, index) {
+                                reference_list_html += `<div class="report-reference-item">
+                                        <div class="report-item-left">
+                                            <div class="index">${index + 1}</div>
+                                            <div class="reference-content">
+                                                <div class="title">${item.title}</div>
+                                            </div>
+                                        </div>
+                                        <div class="report-item-right">
+                                            <div class="percent">${item.percent}</div>
+                                        </div>
+                                    </div>`
+                            })
+                            $('.report-reference-content').html(reference_list_html)
+                        }
 
-
+                    }
+                }
+            }, 500)
+        }
+        pub.init()
+    })
 </script>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+    }
+
+    .main {
+        width: 660px;
+        min-height: 800px;
+        background: #fff;
+        margin: 0 auto;
+        border: 1px solid #eee;
+    }
+
+    .report-title {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        padding: 18px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .report-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        height: 36px;
+        border-bottom: 1px solid #eee;
+        border-top: none;
+        background: #f4f9ef;
+    }
+
+    .report-number {
+        padding-left: 10px;
+    }
+
+    .report-date {
+        padding-right: 10px;
+    }
+
+    .report-result-title {
+        height: 30px;
+        line-height: 30px;
+        background: #e6fffc;
+        padding-left: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .report-result-content {
+        border-bottom: 1px solid #eee;
+        padding: 10px 10px 0 10px;
+        display: flex;
+        flex-wrap: wrap;
+        background: #f7f7f7;
+    }
+
+    .report-result-item {
+        display: flex;
+        width: 50%;
+        padding-bottom: 10px;
+    }
+
+    .report-result-item .key {
+        padding-right: 20px;
+    }
+
+    .report-diff-title {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+    }
+
+    .report-diff-title>div {
+        flex: 1;
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        font-size: 14px;
+        background: #e6fffc;
+    }
+
+    .report-diff-title>div:first-child {
+        border-right: 1px solid #eee;
+    }
+
+    .report-diff-item {
+        display: flex;
+        border-bottom: 1px solid #eee;
+    }
+
+    .origin-item {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        border-right: 1px solid #eee;
+    }
+
+    .similar-item {
+        flex: 1;
+    }
+
+    .origin-item .item-index {
+        width: 20px;
+        background: #fff7e6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .origin-item .origin-content {
+        flex: 1;
+        padding: 10px;
+        border-left: 1px solid #eee;
+    }
+
+    .similar-item .similar-content {
+        padding: 10px;
+    }
+
+    .similar-color-danger {
+        color: #ff4d4f;
+    }
+
+    .similar-color-waring {
+        color: #ffa940;
+    }
+
+    .similar-color-tips {
+        color: #a0d911
+    }
+
+    .report-diff-item .tips {
+        color: #fa541c;
+        font-size: 12px;
+        font-weight: bold;
+        padding-bottom: 5px;
+        padding-top: 8px;
+    }
+
+    .report-reference {
+        width: 100%;
+    }
+
+    .report-reference-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px;
+        height: 30px;
+        background: #e6fffc;
+        border-bottom: 1px solid #eee;
+    }
+
+    .report-reference-title .title {
+        font-size: 14px;
+    }
+
+    .report-reference-title .word-number b {
+        padding-left: 10px;
+    }
+
+    .report-reference-sub {
+        padding: 0 10px;
+        height: 30px;
+        line-height: 30px;
+        background: #f7f7f7;
+        border-bottom: 1px solid #eee;
+    }
+
+    .report-reference-data {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        border-bottom: 1px solid #eee;
+        background: #f7f7f7;
+    }
+
+    .report-reference-data .report-data-item {
+        display: flex;
+        padding: 0 10px;
+    }
+
+    .report-reference-item {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .report-reference-item .report-item-left {
+        display: flex;
+        flex: 1;
+        height: 100%;
+        border-right: 1px solid #eee;
+    }
+
+    .report-reference-item .report-item-left .reference-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding-left: 20px;
+    }
+
+    .report-reference-item .report-item-left .index {
+        width: 20px;
+        border-right: 1px solid #eee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        background: #fff7e6;
+    }
+
+    .report-reference-item .report-item-right {
+        width: 150px;
+        text-align: center;
+    }
+
+    .report-reference-item .report-item-right .percent {
+        color: #ff4d4f;
+        font-size: 13px;
+    }
+    
+    em {
+    color:red;
+    }
+    
+</style>
+
 </html>
